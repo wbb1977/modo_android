@@ -13,4 +13,3 @@ Plugins used:
 
 Disabled plugins
 * Xmp
-* 
