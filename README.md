@@ -9,7 +9,8 @@ Plugins used:
 * ASAP
 * StSoundLibrary
 * SidPlay2
-* Xmp (disabled)
 * MikMod
 
-
+Disabled plugins
+* Xmp
+* 
