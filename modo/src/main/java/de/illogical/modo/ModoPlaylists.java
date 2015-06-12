@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -214,7 +215,7 @@ implements
 		vPlaylists.setSelectionFromTop(savedPosition, savedY);
 		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         vPlaylists.getRootView().setBackgroundColor(prefs.getInt("overlay_color", 0xaa000000));		
 	}

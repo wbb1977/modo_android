@@ -454,7 +454,9 @@ implements	OnSeekBarChangeListener,
 		edit = PreferenceManager.getDefaultSharedPreferences(this).edit();
         
 		setTitle("");
-		
+		getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME);
+		getSupportActionBar().setIcon(R.drawable.modo);
+
 		PlaylistManager.loadFromSQL(getApplicationContext());
 
         mHandler = new Handler(this);

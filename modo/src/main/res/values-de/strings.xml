@@ -173,11 +173,6 @@
         <item>Musik pausieren</item>
         <item>App beenden</item>
     </string-array>
-    <string-array name="arr_action_entries">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>		
 	<string name="pref_scanfiles">Dateien untersuchen</string>
 	<string name="pref_scanfiles_summary">Zeigt bei der Dateiauswahl den Spielname oder den ersten Titel der Datei an. Zip-Dateien (noch) nicht unterstützt.</string>
 	

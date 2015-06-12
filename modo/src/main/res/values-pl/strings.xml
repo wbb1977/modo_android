@@ -29,23 +29,6 @@
         <item>50min</item>
         <item>60min</item>
     </string-array>
-    <string-array name="arr_stdplaytime_entries">
-        <item>60000</item>
-        <item>120000</item>
-        <item>180000</item>
-        <item>240000</item>
-        <item>300000</item>
-        <item>360000</item>
-        <item>420000</item>
-        <item>480000</item>
-        <item>540000</item>
-        <item>600000</item>
-        <item>1200000</item>
-        <item>1800000</item>
-        <item>2400000</item>
-        <item>3000000</item>
-        <item>3600000</item>
-    </string-array>
 
     <string name="pref_default_playtime">Domyślna długość utworu</string>
     <string name="text_no_file_details">&lt;brak informacji&gt;</string>
@@ -85,12 +68,6 @@
         <item>+1</item>
         <item>+2</item>
         <item>+3</item>
-    </string-array>
-    <string-array name="arr_sound_boost_entries">
-        <item>0</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
     </string-array>
 
     <string name="help_title">Modo - Readme.txt</string>
@@ -174,12 +151,6 @@
         <item>Średni</item>
         <item>Mocny</item>
     </string-array>
-    <string-array name="arr_shake_entries">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
 
     <string name="pref_silence">Wykrywanie ciszy</string>
     <string name="pref_silence_summary">Zwiększ aby naprawić możliwe problemy na początku utworu.</string>
@@ -191,14 +162,6 @@
         <item>15 sekund</item>
         <item>30 sekund</item>
         <item>60 sekund</item>
-    </string-array>
-    <string-array name="arr_silence_entries">
-        <item>2</item>
-        <item>4</item>
-        <item>8</item>
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
     </string-array>
 
     <string name="browser_one_level_up">Poziom w górę</string>
@@ -217,16 +180,9 @@
         <item>Zapauzuj odtwarzacz</item>
         <item>Wyjdź z odtwarzacza</item>
     </string-array>
-    <string-array name="arr_action_entries">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
 
     <string name="pref_scanfiles">Skanuj pliki</string>
     <string name="pref_scanfiles_summary">Przeglądarka plików wyświetla nazwę gry lub pierwszy tytuł. Pliki ZIP nie są obecnie skanowane.</string>
-    <string name="action_settings">Ustawienia</string>
-    <string name="emptystring"></string>
     <string name="menu_add_tune">Dodaj</string>
     <string name="menu_playlists">Playlisty</string>
     <string name="menu_new_playlist">Nowa</string>

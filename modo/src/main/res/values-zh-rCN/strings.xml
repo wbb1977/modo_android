@@ -29,23 +29,6 @@
         <item>50分钟</item>
         <item>60分钟</item>
     </string-array>
-    <string-array name="arr_stdplaytime_entries">
-        <item>60000</item>
-        <item>120000</item>
-        <item>180000</item>
-        <item>240000</item>
-        <item>300000</item>
-        <item>360000</item>
-        <item>420000</item>
-        <item>480000</item>
-        <item>540000</item>
-        <item>600000</item>
-        <item>1200000</item>
-        <item>1800000</item>
-        <item>2400000</item>
-        <item>3000000</item>
-        <item>3600000</item>
-    </string-array>
 
     <string name="pref_default_playtime">默认播放时间</string>
     <string name="text_no_file_details">&lt;无&gt;</string>
@@ -85,12 +68,6 @@
         <item>+1</item>
         <item>+2</item>
         <item>+3</item>
-    </string-array>
-    <string-array name="arr_sound_boost_entries">
-        <item>0</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
     </string-array>
 
     <string name="help_title">关于Modo</string>
@@ -175,12 +152,6 @@
         <item>中</item>
         <item>强</item>
     </string-array>
-    <string-array name="arr_shake_entries">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
 
     <string name="pref_silence">静态检测</string>
     <string name="pref_silence_summary">增加修复可能的开头track播放问题的时间。</string>
@@ -192,14 +163,6 @@
         <item>15秒</item>
         <item>30秒</item>
         <item>60秒</item>
-    </string-array>
-    <string-array name="arr_silence_entries">
-        <item>2</item>
-        <item>4</item>
-        <item>8</item>
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
     </string-array>
 
     <string name="browser_one_level_up">上一级</string>
@@ -218,17 +181,10 @@
         <item>暂停</item>
         <item>退出</item>
     </string-array>
-    <string-array name="arr_action_entries">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
 
     <string name="pref_scanfiles">扫描文件</string>
     <string name="pref_scanfiles_summary">文件管理器会显示游戏名称或者详细信息第一列字。Zip尚不能扫描。</string>
-    <string name="action_settings">设置</string>
-	<string name="emptystring"></string>
-	
+
 	<string name="menu_add_tune">添加</string>
 	<string name="menu_playlists">播放列表</string>
 	<string name="menu_new_playlist">新建</string>
@@ -248,7 +204,7 @@
 	<string name="dialog_remove_entry_title">真的要删除？</string>
 	<string name="dialog_remove_entry_message">%1$s\n声道 %2$s</string>
 	<string name="dialog_add_tune_title">添加音乐到</string>
-	<string name="dialog_remove_entr2y_fail">要删除播放列表才能移除最后一个音乐。</string>
+	<string name="dialog_remove_entry_fail">要删除播放列表才能移除最后一个音乐。</string>
 	<string name="welcome">欢迎！</string>
 	<string name="welcome_msg">欢迎！\n\n需要我给你创建一个含有示例音乐的播放列表给你吗？</string>
 	<string name="examples_playlist_name">示例列表</string>

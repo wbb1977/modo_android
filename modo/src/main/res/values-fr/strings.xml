@@ -136,6 +136,7 @@
 	<string name="pref_shake">Shake</string>
 	<string name="pref_shake_summary">Régler l\'intensité pour le chargement du module suivant.</string>
 	<string name="pref_AY_stereo">AY Stereo</string>
+    <string name="pref_AY_stereo_summary">Enable to play .ay files in stereo.</string>
 	<string name="pref_stereo_summary"> Uniquement pour les modules tracker ainsi que les fichiers NSF et VGM. Mono (0\%%) à Stereo (100\%%).</string>	
     <string-array name="arr_shake">
         <item>Désactivé</item>
@@ -171,9 +172,9 @@
 	</string-array>
 	<string name="pref_scanfiles">Scan</string>
 	<string name="pref_scanfiles_summary">Affichage, pour chaque fichier, du nom du jeu et de son support(sauf .zip).</string>
-	
-	<string name="menu_add_tune">Ajouter</string>
-	<string name="menu_playlists">Playlists</string>
+
+    <string name="menu_playlists">Playlists</string>
+    <string name="menu_add_tune">Ajouter</string>
 	<string name="menu_new_playlist">Créer</string>
 	<string name="menu_rename_playlist">Renommer</string>
 	<string name="menu_delete_playlist">Supprimer</string>

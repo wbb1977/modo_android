@@ -323,7 +323,7 @@ implements	OnItemClickListener,
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.browser);
-		
+
 		header = (TextView)findViewById(R.id.browser_text_header);
 		header.setText(Html.fromHtml("<b><font color=\"#FFFFFF\">" + getText(R.string.browser_one_level_up) + "</font></b><br><font color=\"#88FFFFFF\">" + getText(R.string.browser_parent_directory) + "</font>"));
 		header.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.arrow_up_float, 0, /*android.R.drawable.ic_menu_revert,*/ android.R.drawable.arrow_up_float, 0);
@@ -961,7 +961,7 @@ implements	OnItemClickListener,
 		}	
 	}
 	
-	static final boolean acceptZipEntry(ZipEntry e) {
+	static boolean acceptZipEntry(ZipEntry e) {
 		
 		if (e.isDirectory())
 			return true;
