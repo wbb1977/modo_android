@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+    <item yourapp:showAsAction="always|withText" android:id="@+id/menu_add_tune" android:title="@string/menu_add_tune"></item>
+    <item yourapp:showAsAction="always|withText" android:id="@+id/menu_playlists" android:title="@string/menu_playlists"></item>
+    <item yourapp:showAsAction="always" android:id="@+id/menu_shuffle" android:icon="@android:drawable/ic_menu_sort_by_size" android:title="@string/menu_shuffle"></item>
+    <!-- 
+    <item android:id="@+id/menu_shuffle" android:icon="@android:drawable/ic_menu_sort_by_size" android:title="@string/menu_shuffle"  yourapp:showAsAction="ifRoom|withText" ></item>    
+     -->
+    <item yourapp:showAsAction="always" android:id="@+id/menu_loop" android:icon="@android:drawable/ic_menu_rotate" android:title="@string/menu_loop"></item>
+    <!-- 
+    <item android:id="@+id/menu_loop"  yourapp:showAsAction="ifRoom|withText"  android:icon="@android:drawable/ic_menu_rotate" android:title="@string/menu_loop"></item>
+    -->
+    <item yourapp:showAsAction="never" android:title="@string/menu_settings" android:id="@+id/menu_settings" android:icon="@android:drawable/ic_menu_preferences"></item>
+    <item yourapp:showAsAction="never" android:id="@+id/menu_sleeptimer_plus_5min" android:icon="@android:drawable/ic_menu_add" android:title="@string/menu_sleep_timer_plus"></item>
+    <item yourapp:showAsAction="never" android:id="@+id/menu_stop_sleeptimer" android:icon="@android:drawable/ic_menu_close_clear_cancel" android:title="@string/menu_sleep_timer_cancel"></item>
+    <item yourapp:showAsAction="never" android:title="@string/menu_about" android:id="@+id/menu_about" android:icon="@android:drawable/ic_menu_info_details"></item>
+    <item yourapp:showAsAction="never" android:title="@string/menu_help" android:id="@+id/menu_help" android:icon="@android:drawable/ic_menu_help"></item>
+    <!-- 
+    <item android:id="@+id/menu_tablet" android:title="@string/menu_tablet"></item>
+     -->
+    
+</menu>

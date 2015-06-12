@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+    <item yourapp:showAsAction="always" android:id="@+id/menu_add_tune" android:title="@string/menu_add_tune"></item>
+    <item yourapp:showAsAction="always" android:id="@+id/menu_sort" android:title="@string/browser_menu_sort_normal"></item>
+</menu>

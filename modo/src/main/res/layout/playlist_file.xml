@@ -1,0 +1,48 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:weightSum="20">
+	<ImageView
+	    android:layout_width="0dp"
+	    android:layout_weight="2"
+		android:layout_height="match_parent"
+		android:layout_margin="3dp"
+	    android:id="@+id/playlist_entry_icon" 
+	    />
+	<TextView
+	    android:layout_width="0dp"
+		android:layout_height="wrap_content"
+	    android:layout_margin="3dp"
+	    android:textSize="20sp"
+	    android:textColor="@color/white_text"
+	    android:id="@+id/playlist_entry_filename"
+	    android:layout_weight="16"
+	    android:singleLine="true"
+	    android:ellipsize="marquee"
+	    android:marqueeRepeatLimit="1"/>
+
+	<TextView
+	    android:gravity="right"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	    android:layout_margin="3dp"
+	    android:textSize="20sp"
+	    android:textColor="@color/white_text"
+	    android:text="@string/tracknr"
+	    android:layout_weight="0"
+	    android:id="@+id/playlist_entry_track"
+	    android:singleLine="true"/>
+		
+	<TextView
+	    android:layout_weight="3"
+	    android:layout_width="0dp"
+		android:layout_height="wrap_content"
+	    android:layout_margin="3dp"
+	    android:textSize="20sp"
+	    android:textColor="@color/white_text"
+	    android:id="@+id/playlist_entry_tracknr"
+	    android:singleLine="true"/>
+		
+</LinearLayout>

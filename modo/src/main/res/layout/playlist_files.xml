@@ -1,0 +1,24 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:layout_gravity="center">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/white_text"
+    android:textSize="20sp"
+    android:layout_margin="3dp"   
+    android:text="@string/no_entries"
+    android:id="@+id/playlists_entries_infottext"/>
+
+<ListView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/list_playlists_entries"
+	android:divider="@null"
+	android:dividerHeight="0dp"/>    
+
+
+</LinearLayout>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Modo - Computer Music Player</string>
+    <string name="seek_warning_forward">Please note, seeking not possible in this format. Activating fast forward instead.</string>
+    <string name="button_filebrowser">Browse music</string>
+    <string name="text_track"> 0 / 0 </string>
+    <string name="loading_failed">:: !Loading failed! ::</string>
+    <string name="hint_loadfile">Touch \&quot;Browse music\&quot; to start.</string>
+    <string name="app_description">Plays 8/16bit computer music :)</string>
+    <string name="reading_directory">Reading directory&#8230;</string>
+    <string name="text_file_details">File details</string>
+    <string name="now_playing">now playing</string>
+
+    <string-array name="arr_stdplaytime">
+        <item>1min</item>
+        <item>2min</item>
+        <item>3min</item>
+        <item>4min</item>
+        <item>5min</item>
+        <item>6min</item>
+        <item>7min</item>
+        <item>8min</item>
+        <item>9min</item>
+        <item>10min</item>
+        <item>20min</item>
+        <item>30min</item>
+        <item>40min</item>
+        <item>50min</item>
+        <item>60min</item>
+    </string-array>
+    <string-array name="arr_stdplaytime_entries">
+        <item>60000</item>
+        <item>120000</item>
+        <item>180000</item>
+        <item>240000</item>
+        <item>300000</item>
+        <item>360000</item>
+        <item>420000</item>
+        <item>480000</item>
+        <item>540000</item>
+        <item>600000</item>
+        <item>1200000</item>
+        <item>1800000</item>
+        <item>2400000</item>
+        <item>3000000</item>
+        <item>3600000</item>
+    </string-array>
+
+    <string name="pref_default_playtime">Default playtime</string>
+    <string name="text_no_file_details">&lt;no info available&gt;</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+    <string name="menu_help">Help</string>
+    <string name="dialog_about">Modo v2.4a\n\nby\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanish translation by Gorka Oteiza.\n\nFrench translation by Zod.\n\nChinese translation by SuperMarioX.\n\nPolish translation by Łukasz Wollnikowski.\n\nThanks to Abrimaal, Frapsman123.\n\nEnjoy some great tunes!</string>
+    <string name="pref_sound_boost">Volume boost</string>
+    <string name="pref_sound_boost_summary">Increases the volume, but can result in oversampling.</string>
+    <string name="pref_sound_boost_modules">Volume boost modules</string>
+    <string name="pref_sound_boost_summary_modules">Increases the volume, but can result in clipping / bad quality.\nFile extensions: .mod, .xm, .it, .med, .okt, .s3m</string>
+    <string name="pref_sound_boost_nsf">Volume boost Famicom</string>
+    <string name="pref_sound_boost_summary_nsf">File extensions: .nsf, .nsfe</string>
+    <string name="pref_sound_boost_spc">Volume boost Snes</string>
+    <string name="pref_sound_boost_summary_spc">File extensions: .spc, .rsn</string>
+    <string name="pref_sound_boost_vgm">Volume boost Mega Drive</string>
+    <string name="pref_sound_boost_summary_vgm">File extensions: .vgm, .vgz</string>
+    <string name="pref_sound_boost_gbs">Volume boost Game Boy</string>
+    <string name="pref_sound_boost_summary_gbs">File extension: .gbs</string>
+    <string name="pref_sound_boost_ay">Volume boost Spectrum/CPC</string>
+    <string name="pref_sound_boost_summary_ay">File extension: .ay</string>
+    <string name="pref_sound_boost_sap">Volume boost Pokey</string>
+    <string name="pref_sound_boost_summary_sap">File extension: .sap</string>
+    <string name="pref_sound_boost_hes">Volume boost PC-Engine</string>
+    <string name="pref_sound_boost_summary_hes">File extension: .hes</string>
+    <string name="pref_sound_boost_kss">Volume boost Msx/Sega</string>
+    <string name="pref_sound_boost_summary_kss">File extension: .kss</string>
+    <string name="pref_sound_boost_gym">Volume boost Mega Drive (old)</string>
+    <string name="pref_sound_boost_summary_gym">File extension: .gym</string>
+    <string name="pref_sound_boost_ym">Volume boost Atari ST</string>
+    <string name="pref_sound_boost_summary_ym">File extension: .ym</string>
+    <string name="pref_sound_boost_sid">Volume boost C64</string>
+    <string name="pref_sound_boost_summary_sid">File extensions: .sid, .mus</string>
+
+    <string-array name="arr_sound_boost">
+        <item>No boost</item>
+        <item>+1</item>
+        <item>+2</item>
+        <item>+3</item>
+    </string-array>
+    <string-array name="arr_sound_boost_entries">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string name="help_title">Modo - Readme.txt</string>
+    <string name="help_text">=== About ===
+        \n\nYou can playback the following music file formats:
+        \n\nTracker modules:
+        \n\t.mod .xm .it .s3m .med .okt
+        \n\nCommodore C64:
+        \n\t.sid .mus
+        \n\nNintendo Game Boy / NES / SNES:
+        \n\t.gbs .nsf .nsfe .spc .rsn
+        \n\nSega Master System / Mega Drive / Genesis:
+        \n\t.gym .vgm .vgz
+        \n\nAtari / Amstrad CPC / Spectrum:
+        \n\t.sap .ay .ym
+        \n\n\n=== Quickstart ===
+        \n\nTo terminate the playback service, pause music and hit the back button.
+        \n\n1. Copy some music files to your device.
+        \n2. Navigate to your music directory.
+        \n3. Touch a music file to start.
+        \n4. Hold the Previous/Next button to play the previous/next file in current directory.
+        \n\n\n=== Remarks ===
+        \n\n\n= C64 SID &amp; MUS =
+        \n\n* The player has builtin songlength support for HVSC #61. You can not use an external file. I will update the builtin songlength database as needed. I have decided to do, because parsing the database from the original file at each startup is to slow. I have converted the database into a custom small size format for fast and easy access within the player.
+        \n\n* SID emulation is CPU intensive (especially RSID), so expect stutter if you play in background if you have a low end device.
+        \n\n\n= Tracker Modules =
+        \n\n* If a module is looped at the end, the player loops that part three times and then loads the next file. There is currently no setting to change this by the user.
+        \n\n* If you seek within the file, the sound may appear corrupted. That is because you skip patterns and this is a result of the how the file format works.
+        \n\n\nThat\'s all for the moment. Please enjoy some great tunes.
+        \n\nYou can contact me anytime.\n&lt;wb@illogical.de&gt;\n\nBastian Pflieger\nDecember 1, 2011
+        \n\n\n\n
+        \nGme - http://code.google.com/p/game-music-emu
+        \nAsap - http://asap.sourceforge.net
+        \nStSound - http://leonard.oxg.free.fr/stsound.html
+        \nXmp - http://xmp.sourceforge.net
+        \nSidPlay2 - http://sidplay2.sourceforge.net
+        \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>
+    <string name="filebrowser_directory">Directory</string>
+    <string name="pref_default_playtime_summary">Is used as the track length if no track information is available. Does not apply to tracker formats.</string>
+    <string name="enjoy_some_retro_music">Ready for some retro music!</string>
+    <string name="browser_header">&lt;b&gt;One Level up&lt;/b&gt;\n\nParent Directory</string>
+    <string name="service_started">Player service started</string>
+    <string name="pref_overlay_color_summary">Set wallpaper overlay color and alpha value.</string>
+    <string name="pref_overlay_color">Wallpaper overlay color</string>
+    <string name="app_title_short">Modo</string>
+    <string name="menu_shuffle">Toggle Shuffle</string>
+    <string name="menu_shuffle_is_on">Shuffle is on</string>
+    <string name="menu_shuffle_is_off">Shuffle is off</string>
+    <string name="menu_loop">Toggle Loop</string>
+    <string name="menu_loop_is_on">Loop is on</string>
+    <string name="menu_loop_is_off">Loop is off</string>
+    <string name="menu_loop_99">99min play time</string>
+    <string name="menu_sleep_timer_plus">Sleep Timer +10min</string>
+    <string name="menu_sleep_timer_cancel">Stop Sleep Timer</string>
+    <string name="info_shuffle_on">Shuffle is now ON.</string>
+    <string name="info_shuffle_off">Shuffle is now OFF.</string>
+    <string name="info_loop_on">Loop is now ON.</string>
+    <string name="info_loop_off">Loop is now OFF.</string>
+    <string name="info_loop_99">ALTERNATIVE loop: 99min play time.</string>
+    <string name="dialog_about_title1">About</string>
+    <string name="okay">Okay</string>
+    <string name="info_service_terminated">Modo - playback service terminated!</string>
+    <string name="info_service_continue">Modo - pause music to terminate service!</string>
+    <string name="menu_tablet">Check out Modo for tablet</string>
+    <string name="pref_interpolation_summary">Applies only to tracker formats. Requires more CPU time, better sound output.</string>
+    <string name="pref_interpolation">Interpolation mixer</string>
+    <string name="pref_mediabuttons">Ignore Media Buttons</string>
+    <string name="pref_mediabuttons_summary">Enable if other music apps cause problems.</string>
+    <string name="pref_stereo">Stereo separation</string>
+    <string name="pref_stereo_max">Stereo</string>
+    <string name="pref_stereo_min">Mono</string>
+    <string name="pref_stereo_summary">Applies currently only to tracker formats / Nsf / Vgm. Mono (0\%%) to Stereo (100\%%).</string>
+    <string name="pref_shake">Shake</string>
+    <string name="pref_shake_summary">Set the intensity level to load next song file.</string>
+    <string name="pref_AY_stereo">AY Stereo</string>
+    <string name="pref_AY_stereo_summary">Enable to play .ay files in stereo.</string>
+
+    <string-array name="arr_shake">
+        <item>Disabled</item>
+        <item>Soft</item>
+        <item>Medium</item>
+        <item>Strong</item>
+    </string-array>
+    <string-array name="arr_shake_entries">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string name="pref_silence">Silence detection</string>
+    <string name="pref_silence_summary">Increase to fix possible playback problems at the begin of a track.</string>
+
+    <string-array name="arr_silence">
+        <item>2 seconds</item>
+        <item>4 seconds</item>
+        <item>8 seconds</item>
+        <item>15 seconds</item>
+        <item>30 seconds</item>
+        <item>60 seconds</item>
+    </string-array>
+    <string-array name="arr_silence_entries">
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+
+    <string name="browser_one_level_up">One Level Up</string>
+    <string name="browser_parent_directory">Parent Directory</string>
+    <string name="browser_menu_sort_normal">A-Z</string>
+    <string name="browser_menu_sort_invert">Z-A</string>
+    <string name="please_wait">Please wait&#8230;\n\u00A0\u00A0</string>
+    <string name="hint_loadfile_v">Touch the disc icon to start.</string>
+    <string name="pref_seekbar">Disable seek bar</string>
+    <string name="pref_seekbar_summary">No more pattern change or fast forward by accident.</string>
+    <string name="pref_action_player">Automatic action</string>
+    <string name="pref_action_player_summary">Action to perform after all files were played once.</string>
+
+    <string-array name="arr_action">
+        <item>Loop the files</item>
+        <item>Pause the player</item>
+        <item>Exit the player</item>
+    </string-array>
+    <string-array name="arr_action_entries">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="pref_scanfiles">Scan files</string>
+    <string name="pref_scanfiles_summary">File browser displays game name or first title. Zip files not yet scanned.</string>
+    <string name="action_settings">Settings</string>
+	<string name="emptystring"></string>
+	
+	<string name="menu_add_tune">Add</string>
+	<string name="menu_playlists">Playlists</string>
+	<string name="menu_new_playlist">New</string>
+	<string name="menu_rename_playlist">Rename</string>
+	<string name="menu_delete_playlist">Delete</string>
+	<string name="dialog_new_playlist_fail">Unable to create playlist. The name already exists.</string>
+	<string name="dialog_new_playlist_fail2">Unable to create playlist. No name given.</string>
+	<string name="dialog_rename_playlist_fail">Unable to rename. The new name already exists.</string>
+	<string name="dialog_rename_playlist_fail2">Unable to rename. No name given.</string>
+	<string name="dialog_rename_playlist_title">Rename Playlist</string>	
+	<string name="dialog_delete_playlist_title">Delete Playlist?</string>
+	<string name="dialog_new_playlist_title">New Playlist</string>	
+	<string name="dialog_delete_playlist_message">%1$s</string>
+	<string name="menu_delete_playlistentry">Remove</string>
+	<string name="no_entries">\nPlaylist has no entries.\n\nUse \"Add\" from the player view to add tunes.</string>
+	<string name="tracknr">Track: </string>
+	<string name="dialog_remove_entry_title">Remove Entry?</string>
+	<string name="dialog_remove_entry_message">%1$s\nTrack %2$s</string>
+	<string name="dialog_add_tune_title">Add track to</string>
+	<string name="dialog_remove_entry_fail">Delete the playlist to remove the last entry.</string>
+	<string name="welcome">Welcome!</string>
+	<string name="welcome_msg">Hello and welcome!\n\nFor a quick start, do you want me to add an example playlist with some tunes?</string>
+	<string name="examples_playlist_name">Example Playlist</string>
+	
+    <string name="pref_flatzip">Flat zip files</string>
+    <string name="pref_flatzip_summary">Shows all entries in a zip files at once. Limits to 2000 files.</string>    
+    <string name="dialog_no_directory_atm">Adding a directory to a playlist is currently not supported.</string>
+    <string name="dialog_add_files_title">Add files to</string>		
+</resources>

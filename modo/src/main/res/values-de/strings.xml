@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Modo - Computer Music Player</string>
+    <string name="seek_warning_forward">Leider nur schneller Vorlauf für dieses Format möglich.</string>
+    <string name="button_filebrowser">Musik laden</string>
+    <string name="text_track"> 0 / 0 </string>
+    <string name="loading_failed">:: ! Fehler beim Laden ! ::</string>
+    <string name="hint_loadfile">Berühre \&quot;Musik laden\&quot; um loszulegen.</string>
+    <string name="app_description">Spielt 8/16bit Computermusik :)</string>
+    <string name="reading_directory">Lese Verzeichnis&#8230;</string>
+    <string name="text_file_details">Details</string>
+    <string name="now_playing">wird abgespielt</string>
+    <string-array name="arr_stdplaytime">
+		<item>1 Minute</item>
+		<item>2 Minuten</item>
+		<item>3 Minuten</item>
+		<item>4 Minuten</item>
+		<item>5 Minuten</item>
+		<item>6 Minuten</item>
+		<item>7 Minuten</item>
+		<item>8 Minuten</item>
+		<item>9 Minuten</item>
+		<item>10 Minuten</item>
+		<item>20 Minuten</item>
+		<item>30 Minuten</item>
+		<item>40 Minuten</item>
+		<item>50 Minuten</item>
+		<item>60 Minuten</item>
+    </string-array>
+    <string name="pref_default_playtime">Voreinstellung Spieldauer</string>
+    <string name="text_no_file_details">&lt;Keine Informationen verfügbar&gt;</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_about">Über</string>
+    <string name="menu_help">Hilfe</string>
+    <string name="dialog_about">Modo v2.4a\n\nvon\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanische Übersetzung von Gorka Oteiza.\n\nFranzösische Übersetzung von Zod.\n\nPolnische Übersetzung von Łukasz Wollnikowski.\n\nDank an Abrimaal, Frapsman123.\n\nViel Spass beim Hören!</string>
+    <string name="pref_sound_boost">Verstärkung</string>
+    <string name="pref_sound_boost_summary">Erhöht die Lautstärke, kann die Tonqualität beeinträchtigen.</string>    
+    <string name="pref_sound_boost_modules">Verstärkung Module</string>
+    <string name="pref_sound_boost_summary_modules">Erhöht die Lautstärke, kann die Tonqualität beeinträchtigen.\nDateierweiterungen: .mod, .xm, .it, .med, .okt, .s3m</string>
+    <string name="pref_sound_boost_nsf">Verstärkung Famicom</string>
+    <string name="pref_sound_boost_summary_nsf">Dateierweiterungen: .nsf, .nsfe</string>
+    <string name="pref_sound_boost_spc">Verstärkung Snes</string>
+    <string name="pref_sound_boost_summary_spc">Dateierweiterungen: .spc, .rsn</string>
+    <string name="pref_sound_boost_vgm">Verstärkung Mega Drive</string>   
+    <string name="pref_sound_boost_summary_vgm">Dateierweiterungen: .vgm, .vgz</string>
+    <string name="pref_sound_boost_gbs">Verstärkung Game Boy</string>
+    <string name="pref_sound_boost_summary_gbs">Dateierweiterung: .gbs</string>
+    <string name="pref_sound_boost_ay">Verstärkung Spectrum/CPC</string>
+    <string name="pref_sound_boost_summary_ay">Dateierweiterung: .ay</string>
+    <string name="pref_sound_boost_sap">Verstärkung Pokey</string>
+    <string name="pref_sound_boost_summary_sap">Dateierweiterung: .sap</string>
+    <string name="pref_sound_boost_hes">Verstärkung PC-Engine</string>
+    <string name="pref_sound_boost_summary_hes">Dateierweiterung: .hes</string>
+    <string name="pref_sound_boost_kss">Verstärkung Msx/Sega</string>
+    <string name="pref_sound_boost_summary_kss">Dateierweiterung: .kss</string>
+    <string name="pref_sound_boost_gym">Verstärkung Mega Drive (alt)</string>
+    <string name="pref_sound_boost_summary_gym">Dateierweiterung: .gym</string>
+    <string name="pref_sound_boost_ym">Verstärkung Atari ST</string>
+    <string name="pref_sound_boost_summary_ym">Dateierweiterung: .ym</string>
+    <string name="pref_sound_boost_sid">Verstärkung C64</string>
+    <string name="pref_sound_boost_summary_sid">Dateierweiterungen: .sid, .mus</string>    
+    <string-array name="arr_sound_boost">
+        <item>Keine</item>
+        <item>+1</item>
+        <item>+2</item>
+        <item>+3</item>
+    </string-array>
+    <string name="help_title">Modo - Liesmich.txt</string>
+    <string name="help_text">=== Über ===
+        \n\nEs werden die folgenden Musikformate unterstützt:
+        \n\nTracker-Module:
+        \n\t.mod .xm .it .s3m .med .okt
+        \n\nCommodore C64:
+        \n\t.sid .mus
+        \n\nNintendo Game Boy / NES / SNES:
+        \n\t.gbs .nsf .nsfe .spc .rsn
+        \n\nSega Master System / Mega Drive / Genesis:
+        \n\t.gym .vgm .vgz
+        \n\nAtari / Amstrad CPC / Spectrum:
+        \n\t.sap .ay .ym
+        \n\n\n=== Schnellstart ===
+        \n\nUm die App und den Abspieldienst zu beenden, die Musik pausieren und den Zurück-Knopf am Handy drücken.
+        \n\n1. Musikdateien auf das Handy kopieren.
+        \n2. App starten und das Verzeichnis mit den Musikdateien auswählen.
+        \n3. Beliebige Musikdatei antippen.
+        \n4. Den Rücklauf/Vorlauf-Knopf halten um die nächste/vorherige Musikdatei im Verzeichnis anzuhören.
+        \n\n\n=== Anmerkungen ===
+        \n\n\n= C64 SID &amp; MUS =
+        \n\n* Es ist die HVSC#61 Datenbank für die Wiedergabezeiten direkt in den Player integriert. Man kann im Moment keine externe Datenbank verwenden.
+        \n\n* SID-Emulation ist sehr CPU intensiv. Es kann zu Störungen in der Wiedergabe kommen, falls das Handy eine zu schwache CPU verwendet oder viele andere Hintergrundprozesse aktiv sind.
+        \n\n\n= Tracker-Module =
+        \n\n* Falls ein Modul am Ende auf ein vorheriges Pattern zurückspringt, wird dies dreimal durchgeführt, danach wird die nächste Datei geladen. Es gibt im Moment keine Einstellmöglichkeit um dies zu ändern.
+        \n\n* Falls direkt zu einem bestimmten Pattern gesprungen wird, kann sich die Soundausgabe kurz etwas ungewohnt anhöhren. Dies ist einfach ein Nebeneffekt der Tracker-Formate.
+        \n\n\nDas wäre erstmal alles für den Moment. Jetzt viel Spass beim Hören von alten aber schönen Melodien :)
+        \n\nFür Vorschläge oder Kritik bitte einfach eine Mail an &lt;wb@illogical.de&gt;
+        \n\nBastian Pflieger
+        \n1. Dezember 2011
+        \n\n\n\n
+        \nGme - http://code.google.com/p/game-music-emu
+        \nAsap - http://asap.sourceforge.net
+        \nStSound - http://leonard.oxg.free.fr/stsound.html
+        \nXmp - http://xmp.sourceforge.net
+        \nSidPlay2 - http://sidplay2.sourceforge.net
+        \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>        
+    <string name="filebrowser_directory">Verzeichnis</string>
+    <string name="pref_default_playtime_summary">Wird als Spieldauer verwendet, falls keine Vorgabe in der Musikdatei. Nicht für Tracker-Module.</string>
+    <string name="enjoy_some_retro_music">Viel Spass beim Hören von 8/16bit Musik.</string>        
+    <string name="browser_header">&lt;b&gt;One Level up&lt;/b&gt;\nParent Directory</string>
+    <string name="service_started">Abspieldienst gestartet</string>
+    <string name="pref_overlay_color_summary">Legt Farbe und Transparenz für den Hintergrund fest.</string>
+    <string name="pref_overlay_color">Farbton Hintergrund</string>
+    <string name="app_title_short">Modo</string>
+    <string name="menu_shuffle">Zufall an/aus</string>
+    <string name="menu_shuffle_is_on">Zufall is an</string>
+    <string name="menu_shuffle_is_off">Zufall ist aus</string>
+	<string name="menu_loop">Wiederholung aus/an/99</string>    
+    <string name="menu_loop_is_on">Wiederholung ist an</string>
+    <string name="menu_loop_is_off">Wiederholung ist aus</string>
+    <string name="menu_loop_99">99min Spieldauer</string>
+    <string name="menu_sleep_timer_plus">Schlafmodus +10min</string>
+    <string name="menu_sleep_timer_cancel">Schlafmodus beenden</string>
+    <string name="info_shuffle_on">Zufall ist AN.</string>
+    <string name="info_shuffle_off">Zufall ist AUS.</string>
+    <string name="info_loop_on">Wiederholung ist AN.</string>
+    <string name="info_loop_off">Wiederholung ist AUS.</string>
+    <string name="info_loop_99">ALTERNATIVE Wiederholung: 99min Spieldauer</string>
+    <string name="dialog_about_title1">Über</string>
+    <string name="okay">Ok</string>
+    <string name="info_service_terminated">Modo - App wurde beendet!</string>
+    <string name="info_service_continue">Modo - Musik pausieren um die App zu beenden!</string>
+	<string name="menu_tablet">Modo für das Tablet</string>
+	<string name="pref_interpolation_summary">Nur für Tracker-Module. Benötigt mehr CPU-Leistung für bessere Tonqualität.</string>
+	<string name="pref_interpolation">Interpolationsmixer</string>
+ 	<string name="pref_mediabuttons">Media Buttons ignorieren</string>	    
+ 	<string name="pref_mediabuttons_summary">Aktivieren um mögliche Konflikte mit anderen Apps zu vermeiden.</string>	    
+ 	<string name="pref_stereo">Stereo-Trennung</string>
+	<string name="pref_stereo_max">Stereo</string>
+	<string name="pref_stereo_min">Mono</string>
+	<string name="pref_stereo_summary">Nur für Tracker-Module / Nsf / Vgm. Mono (0\%%) bis Stereo (100\%%).</string>
+	<string name="pref_AY_stereo">AY Stereo</string>
+	<string name="pref_AY_stereo_summary">Abspielen von .ay Dateien in Stereo.</string>
+	<string name="pref_shake">Schütteln</string>
+	<string name="pref_shake_summary">Intensität festlegen um die nächste Datei zu laden.</string>
+    <string-array name="arr_shake">
+        <item>Aus</item>
+        <item>Soft</item>
+        <item>Mittel</item>
+        <item>Stark</item>
+    </string-array>
+    <string name="pref_silence">Pausenerkennung</string>
+    <string name="pref_silence_summary">Längere Dauer löst mögliche Abspielprobleme zu Begin eines Titels.</string>
+    <string-array name="arr_silence">
+        <item>2 Sekunden</item>
+        <item>4 Sekunden</item>
+        <item>8 Sekunden</item>
+        <item>15 Sekunden</item>
+        <item>30 Sekunden</item>
+        <item>60 Sekunden</item>
+    </string-array> 		
+	<string name="browser_one_level_up">Eine Ebene höher</string>
+	<string name="browser_parent_directory">Übergeordnetes Verzeichnis</string>
+	<string name="browser_menu_sort_normal">A-Z</string>	
+	<string name="browser_menu_sort_invert">Z-A</string>
+	<string name="please_wait">Bitte warten&#8230;\n\u00A0\u00A0</string>
+	
+	<string name="hint_loadfile_v">Zum starten die Diskette berühren.</string>
+	<string name="pref_seekbar">Zeitbalken deaktivieren</string>
+	<string name="pref_seekbar_summary">Verhindert das versehentliche vorspulen der Musik.</string>
+	<string name="pref_action_player">Wiederholung</string>
+	<string name="pref_action_player_summary">Legt fest was passiert sobald jede Datei einmal abgespielt wurde.</string>
+    <string-array name="arr_action">
+        <item>Alles wiederholen </item>
+        <item>Musik pausieren</item>
+        <item>App beenden</item>
+    </string-array>
+    <string-array name="arr_action_entries">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>		
+	<string name="pref_scanfiles">Dateien untersuchen</string>
+	<string name="pref_scanfiles_summary">Zeigt bei der Dateiauswahl den Spielname oder den ersten Titel der Datei an. Zip-Dateien (noch) nicht unterstützt.</string>
+	
+	<string name="menu_add_tune">\u00A0\u00A0+++\u00A0\u00A0</string>
+	<string name="menu_playlists">Playlist</string>
+	<string name="menu_new_playlist">Neu</string>
+	<string name="menu_rename_playlist">Umbenennen</string>
+	<string name="menu_delete_playlist">Löschen</string>
+	<string name="dialog_new_playlist_fail">Playlist kann nicht erstellt werden. Name bereits vorhanden.</string>
+	<string name="dialog_new_playlist_fail2">Playlist kann nicht erstellt werden. Kein gültiger Name.</string>
+	<string name="dialog_rename_playlist_fail">Playlist kann nicht umbenannt werden. Neuer Name existiert bereits.</string>
+	<string name="dialog_rename_playlist_fail2">Playlist kann nicht umbenannt werden. Kein gültiger Name.</string>
+	<string name="dialog_rename_playlist_title">Umbenennen</string>	
+	<string name="dialog_delete_playlist_title">Löschen?</string>
+	<string name="dialog_new_playlist_title">Neue Liste</string>	
+	<string name="dialog_delete_playlist_message">%1$s</string>
+	<string name="menu_delete_playlistentry">Entfernen</string>
+	<string name="no_entries">\nIn dieser Playlist sind keine Einträge vorhanden.\n\nBenutze \"+++\" in der Player-Ansicht um Einträge hinzuzufügen.</string>
+	<string name="tracknr">Titel: </string>
+	<string name="dialog_remove_entry_title">Eintrag entfernen?</string>
+	<string name="dialog_remove_entry_message">%1$s\nTitel %2$s</string>
+	<string name="dialog_add_tune_title">Titel hinzufügen zu</string>
+	<string name="dialog_remove_entry_fail">Bitte die Playlist löschen um den letzten Eintrag zu entfernen.</string>
+	<string name="welcome">Willkommen!</string>
+	<string name="welcome_msg">Hallo und herzlich willkommen!\n\nSoll ich für den schnellen Einstieg eine Playlist mit ein paar Chiptunes erstellen?</string>
+	<string name="examples_playlist_name">Beispiele</string>
+	
+	<string name="pref_flatzip">Flache Zip-Dateien</string>
+    <string name="pref_flatzip_summary">Zeigt alle Dateien im Archiv auf einmal. Limitiert auf 2000 Dateien.</string>    
+    <string name="dialog_no_directory_atm">Verzeichnisse in der Playlist werden momentan nicht unterstützt.</string>
+    <string name="dialog_add_files_title">Dateiein hinzufügen</string>		
+</resources>
+

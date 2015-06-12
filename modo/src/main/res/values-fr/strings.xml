@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Modo - Computer Music Player</string>
+    <string name="seek_warning_forward">Impossible d\'avancer la lecture pour ce type de format, augmentation de la vitesse de lecture.</string>
+    <string name="button_filebrowser">Rechercher</string>
+    <string name="text_track"> 0 / 0 </string>
+    <string name="loading_failed">:: !Erreur lors du chargement! ::</string>
+    <string name="hint_loadfile">Touchez \&quot;Rechercher\&quot; pour commencer.</string>
+    <string name="app_description">Écouter ses fichiers 8/16bit :)</string>
+    <string name="reading_directory">Chargement&#8230;</string>
+    <string name="text_file_details">Détails/Commentaires</string>
+    <string name="now_playing">En écoute</string>
+    <string-array name="arr_stdplaytime">
+		<item>1min</item>
+		<item>2min</item>
+		<item>3min</item>
+		<item>4min</item>
+		<item>5min</item>
+		<item>6min</item>
+		<item>7min</item>
+		<item>8min</item>
+		<item>9min</item>
+		<item>10min</item>
+		<item>20min</item>
+		<item>30min</item>
+		<item>40min</item>
+		<item>50min</item>
+		<item>60min</item>
+    </string-array>
+    <string name="pref_default_playtime">Temps d\'écoute par défaut</string>
+    <string name="text_no_file_details">&lt;Aucune information disponible&gt;</string>
+    <string name="menu_settings">Réglages</string>
+    <string name="menu_about">À propos</string>
+    <string name="menu_help">Aide</string>
+    <string name="dialog_about">Modo v2.4a\n\npar\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTraduction espagnole par Gorka Oteiza.\n\nTraduction française par Sub.\n\nRemerciements à Abrimaal.\n\nBonne écoute!</string>
+    <string name="pref_sound_boost">Augmenter le volume</string>
+    <string name="pref_sound_boost_summary">Augmente le volume, perte de qualité possible.</string>   
+	<string name="pref_sound_boost_modules">Volume modules</string>
+	<string name="pref_sound_boost_summary_modules">Augmente le volume, perte de qualité possible.\nExtensions concernées: .mod, .xm, .it, .med, .okt, .s3m</string>
+	<string name="pref_sound_boost_nsf"> Volume Famicom</string>
+	<string name="pref_sound_boost_summary_nsf">Extensions concernées: .nsf, .nsfe</string>
+	<string name="pref_sound_boost_spc"> Volume Snes</string>
+	<string name="pref_sound_boost_summary_spc">Extensions concernées: .spc, .rsn</string>
+	<string name="pref_sound_boost_vgm"> Volume Mega Drive</string>
+	<string name="pref_sound_boost_summary_vgm">Extensions concernées: .vgm, .vgz</string>
+	<string name="pref_sound_boost_gbs"> Volume Game Boy</string>
+	<string name="pref_sound_boost_summary_gbs">Extension concernée: .gbs</string>
+	<string name="pref_sound_boost_ay">Volume Spectrum/CPC</string>
+	<string name="pref_sound_boost_summary_ay">Extension concernée: .ay</string>
+	<string name="pref_sound_boost_sap"> Volume Pokey</string>
+	<string name="pref_sound_boost_summary_sap">Extension concernée: .sap</string>
+	<string name="pref_sound_boost_hes"> Volume PC-Engine</string>
+	<string name="pref_sound_boost_summary_hes">Extension concernée: .hes</string>
+	<string name="pref_sound_boost_kss"> Volume Msx/Sega</string>
+	<string name="pref_sound_boost_summary_kss">Extension concernée: .kss</string>
+	<string name="pref_sound_boost_gym"> Volume Mega Drive (Ancien modèle)</string>
+	<string name="pref_sound_boost_summary_gym">Extension concernée: .gym</string>
+	<string name="pref_sound_boost_ym"> Volume Atari ST</string>
+	<string name="pref_sound_boost_summary_ym">Extension concernée: .ym</string>
+	<string name="pref_sound_boost_sid"> Volume C64</string>
+	<string name="pref_sound_boost_summary_sid">Extensions concernées: .sid, .mus</string>
+    <string-array name="arr_sound_boost">
+        <item>Non</item>
+        <item>+1</item>
+        <item>+2</item>
+        <item>+3</item>
+    </string-array>
+    <string name="help_title">Modo - Readme.txt</string>
+    <string name="help_text">=== À propos ===
+        \n\nMODo prend en charge les formats suivants:
+        \n\nTracker modules:
+        \n\t.mod .xm .it .s3m .med .okt
+        \n\nCommodore C64:
+        \n\t.sid .mus
+        \n\nNintendo Game Boy / NES / SNES:
+        \n\t.gbs .nsf .nsfe .spc .rsn
+        \n\nSega Master System / Mega Drive / Genesis:
+        \n\t.gym .vgm .vgz
+        \n\nAtari / Amstrad CPC / Spectrum:
+        \n\t.sap .ay .ym
+        \n\n\n=== Démarrage rapide ===
+        \n\nPour arrêter une écoute,appuyez sur pause puis sur la touche retour de votre appareil.
+        \n\n1. Copier vos fichiers musicaux dans un dossier de votre appareil.
+        \n2. Sur MODo recherchez vos fichiers en appuyant sur la touche Rechercher.
+        \n3. Selectionner un fichier pour démarrer l\'écoute.
+        \n4. Les touches Suivant/Précédent vous permettent de selectionner le fichier suivant ou précédent dans le même dossier.
+        \n\n\n=== Remarques ===
+        \n\n\n= C64 SID &amp; MUS =
+        \n\n* La lecture des fichiers SID utilisent beaucoup de mémoire processeur,(surtout RSID) il est donc possible que votre lecture subisse des ralentissements si votre appareil a de faibles capacités.
+        \n\n\n= Tracker Modules =
+        \n\n* Si un module se répète à la fin,Le logiciel le répétera alors trois fois avant de charger le prochain fichier,Il n\'y a actuellement, aucune option pour changer cela.
+        \n\n* Si vous tentez d\'avancer la lecture, le fichier peut ne pas se lire correctement, ceci est dû au saut de paterns.
+        \n\n\nC\'est tout pour le moment. Bonne écoute.
+        \n\nVous pouvez me contacter à tous moments.\n&lt;wb@illogical.de&gt;\n\nBastian Pflieger\nDecember 1, 2011
+        \n\n\n\n
+        \nGme - http://code.google.com/p/game-music-emu
+        \nAsap - http://asap.sourceforge.net
+        \nStSound - http://leonard.oxg.free.fr/stsound.html
+        \nXmp - http://xmp.sourceforge.net
+        \nSidPlay2 - http://sidplay2.sourceforge.net
+        \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>
+    <string name="filebrowser_directory">Dossier</string>
+    <string name="pref_default_playtime_summary">Temps d\'écoute si non spécifié par le fichier.</string>
+    <string name="enjoy_some_retro_music">Prêt pour un peu de musique rétro!</string>        
+    <string name="browser_header">&lt;b&gt;Retour&lt;/b&gt;\nDossier Parent</string>
+    <string name="service_started">Lecteur actif</string>
+    <string name="pref_overlay_color_summary">Changer la couleur du fond et sa transparence.</string>
+    <string name="pref_overlay_color">Fond d\'écran</string>
+    <string name="app_title_short">Modo</string>
+    <string name="menu_shuffle">Lecture aléatoire</string>
+    <string name="menu_shuffle_is_on">Lecture aléatoire</string>
+    <string name="menu_shuffle_is_off">Lecture suivie</string>
+	<string name="menu_loop">Répétition</string>    
+    <string name="menu_loop_is_on">Lecture en boucle</string>
+    <string name="menu_loop_is_off">Lecture simple</string>
+    <string name="menu_loop_99">Lecture pour 99 min</string>
+    <string name="menu_sleep_timer_plus">Minuteur +10min</string>
+    <string name="menu_sleep_timer_cancel">Minuteur inactif</string>
+    <string name="info_shuffle_on">Lecture aléatoire active.</string>
+    <string name="info_shuffle_off">Lecture aléatoire inactive.</string>
+    <string name="info_loop_on">Répétition active</string>
+    <string name="info_loop_off">Répétition inactive</string>
+    <string name="info_loop_99">Répétition alternative: 99min.</string>
+    <string name="dialog_about_title1">À propos</string>
+    <string name="okay">Ok</string>
+    <string name="info_service_terminated">Modo - Écoute terminée!</string>
+    <string name="info_service_continue">Modo - Pause pour arrêter l\'écoute!</string>
+	<string name="menu_tablet">Modo sur tablette</string>
+	<string name="pref_interpolation_summary">Pour module tracker uniquement. Meilleure qualité sonore, requiert plus de mémoire processeur</string>
+	<string name="pref_interpolation">Interpolation</string>
+	<string name="pref_mediabuttons">Ignorer le bouton de média</string>
+ 	<string name="pref_mediabuttons_summary">Activer si des problèmes apparaissent avec d\'autres logiciels.</string>	    	    
+	<string name="pref_stereo">Stereo</string>
+	<string name="pref_stereo_max">Stereo</string>
+	<string name="pref_stereo_min">Mono</string>
+	<string name="pref_shake">Shake</string>
+	<string name="pref_shake_summary">Régler l\'intensité pour le chargement du module suivant.</string>
+	<string name="pref_AY_stereo">AY Stereo</string>
+	<string name="pref_stereo_summary"> Uniquement pour les modules tracker ainsi que les fichiers NSF et VGM. Mono (0\%%) à Stereo (100\%%).</string>	
+    <string-array name="arr_shake">
+        <item>Désactivé</item>
+        <item>Faible</item>
+        <item>Moyenne</item>
+        <item>Forte</item>
+    </string-array>
+    <string name="pref_silence">Détection de silence</string>
+    <string name="pref_silence_summary">Peut corriger les problèmes de lecture au début d\'un module.</string>
+    <string-array name="arr_silence">
+        <item>2 secondes</item>
+        <item>4 secondes</item>
+        <item>8 secondes</item>
+        <item>15 secondes</item>
+        <item>30 secondes</item>
+        <item>60 secondes</item>
+    </string-array>
+	<string name="browser_one_level_up">Niveau Supérieur</string>
+	<string name="browser_parent_directory">Dossier Parent</string>
+	<string name="browser_menu_sort_normal">A-Z</string>	
+	<string name="browser_menu_sort_invert">Z-A</string>
+	<string name="please_wait">S\'il vous plaît attendre&#8230;\n\u00A0\u00A0</string>
+
+	<string name="hint_loadfile_v">Touchez la disquette pour démarrer.</string>
+	<string name="pref_seekbar">Désactiver la barre d\'avancement</string>
+	<string name="pref_seekbar_summary">Plus de problème d\'avancement rapide ou de changement de pattern.</string>
+	<string name="pref_action_player">Action automatique</string>
+	<string name="pref_action_player_summary">Action d\'après lecture de tous les fichiers.</string>
+	<string-array name="arr_action">
+	    <item>Répéter</item>
+		<item>Pause</item>
+		<item>Quitter</item>
+	</string-array>
+	<string name="pref_scanfiles">Scan</string>
+	<string name="pref_scanfiles_summary">Affichage, pour chaque fichier, du nom du jeu et de son support(sauf .zip).</string>
+	
+	<string name="menu_add_tune">Ajouter</string>
+	<string name="menu_playlists">Playlists</string>
+	<string name="menu_new_playlist">Créer</string>
+	<string name="menu_rename_playlist">Renommer</string>
+	<string name="menu_delete_playlist">Supprimer</string>
+	<string name="dialog_new_playlist_fail">Impossible de créer là playlist, une du même nom existe.</string>
+	<string name="dialog_new_playlist_fail2">Impossible de créer une playlist sans nom.</string>
+	<string name="dialog_rename_playlist_fail">Nom de playlist déjà utilisé.</string>
+	<string name="dialog_rename_playlist_fail2">Veuillez entrer un nom.</string>
+	<string name="dialog_rename_playlist_title">Renommer</string>
+	<string name="dialog_delete_playlist_title">Supprimer?</string>
+	<string name="dialog_new_playlist_title">Créer</string>
+	<string name="dialog_delete_playlist_message">%1$s</string>
+	<string name="menu_delete_playlistentry">Supprimer</string>
+	<string name="no_entries">\nCette playlist est vide.\n\nUtiliser \"Ajouter\" depuis le menu de lecture pour ajouter des fichiers.</string>	
+	<string name="tracknr">Liste: </string>
+	<string name="dialog_remove_entry_title">Supprimer?</string>
+	<string name="dialog_remove_entry_message">%1$s\nListe %2$s</string>
+	<string name="dialog_add_tune_title">Ajouter à</string>
+	<string name="dialog_remove_entry_fail">Detruire la playlist pour supprimer le dernier fichier.</string>
+	<string name="welcome">Bienvenue!</string>
+	<string name="welcome_msg">Bienvenue!\n\nVoulez vous installer quelques fichier d\'exemples?</string>
+	<string name="examples_playlist_name">Exemples</string>
+	
+	<string name="pref_flatzip">Scan fichiers zippés</string>
+	<string name="pref_flatzip_summary">Indique les pistes présentes dans un fichier zip, limité à 2000 fichiers.</string>
+	<string name="dialog_no_directory_atm">Impossible d\'ajouter tout un répertoire.</string>
+	<string name="dialog_add_files_title">Ajouter à </string>	
+						
+</resources>

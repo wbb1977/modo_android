@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Modo - Reproductor de Música de Ordenador</string>
+    <string name="seek_warning_forward">No es posible realizar búsquedas en este formato. Activando el avance rápido en su lugar.</string>
+    <string name="button_filebrowser">Explorar música</string>
+    <string name="text_track"> 0 / 0 </string>
+    <string name="loading_failed">:: !Error en la carga! ::</string>
+    <string name="hint_loadfile">Pulsa \&quot;Explorar música\&quot; para empezar.</string>
+    <string name="app_description">Reproduce música de ordenadores de 8/16bit :)</string>
+    <string name="reading_directory">Leyendo directorio&#8230;</string>
+    <string name="text_file_details">Detalles del fichero</string>
+    <string name="now_playing">ahora suena</string>
+    <string-array name="arr_stdplaytime">
+		<item>1min</item>
+		<item>2min</item>
+		<item>3min</item>
+		<item>4min</item>
+		<item>5min</item>
+		<item>6min</item>
+		<item>7min</item>
+		<item>8min</item>
+		<item>9min</item>
+		<item>10min</item>
+		<item>20min</item>
+		<item>30min</item>
+		<item>40min</item>
+		<item>50min</item>
+		<item>60min</item>
+    </string-array>
+    <string name="pref_default_playtime">Tiempo de reproducción por defecto</string>
+    <string name="text_no_file_details">&lt;no hay información disponible&gt;</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="menu_about">Acerca de</string>
+    <string name="menu_help">Ayuda</string>
+    <string name="dialog_about">Modo v2.4a\n\npor\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTraducción al Castellano por Gorka Oteiza\n\nTraducción frances de Zod\n\nGracias a Abrimaal\n\nDisfruta de estupendas melodías!</string>
+    <string name="pref_sound_boost">Potenciador del Volumen</string>
+    <string name="pref_sound_boost_summary">Incrementa el volumen, pero puede producir sobremuestreo / mala calidad.</string>
+    <string name="pref_sound_boost_modules">Módulos de incremento de volumen</string>
+    <string name="pref_sound_boost_summary_modules">Incrementa el volumen, pero puede producir sobremuestreo / mala calidad.\nExtensiones de fichero: .mod, .xm, .it, .med, .okt, .s3m</string>
+    <string name="pref_sound_boost_nsf">Incrementar el volumen en Famicom</string>
+    <string name="pref_sound_boost_summary_nsf">Extensiones de fichero: .nsf, .nsfe</string>
+    <string name="pref_sound_boost_spc">Incrementar el volumen en Snes</string>
+    <string name="pref_sound_boost_summary_spc">Extensiones de fichero: .spc, .rsn</string>
+    <string name="pref_sound_boost_vgm">Incrementar el volumen en Mega Drive</string>   
+    <string name="pref_sound_boost_summary_vgm">Extensiones de fichero: .vgm, .vgz</string>
+    <string name="pref_sound_boost_gbs">Incrementar el volumen en Game Boy</string>
+    <string name="pref_sound_boost_summary_gbs">Extensión de fichero: .gbs</string>
+    <string name="pref_sound_boost_ay">Incrementar el volumen en Spectrum/CPC</string>
+    <string name="pref_sound_boost_summary_ay">Extensión de fichero: .ay</string>
+    <string name="pref_sound_boost_sap">Incrementar el volumen en Pokey</string>
+    <string name="pref_sound_boost_summary_sap">Extensión de fichero: .sap</string>
+    <string name="pref_sound_boost_hes">Incrementar el volumen en PC-Engine</string>
+    <string name="pref_sound_boost_summary_hes">Extensión de fichero: .hes</string>
+    <string name="pref_sound_boost_kss">Incrementar el volumen en Msx/Sega</string>
+    <string name="pref_sound_boost_summary_kss">Extensión de fichero: .kss</string>
+    <string name="pref_sound_boost_gym">Incrementar el volumen en Mega Drive (antiguo)</string>
+    <string name="pref_sound_boost_summary_gym">Extensión de fichero: .gym</string>
+    <string name="pref_sound_boost_ym">Incrementar el volumen en Atari ST</string>
+    <string name="pref_sound_boost_summary_ym">Extensión de fichero: .ym</string>
+    <string name="pref_sound_boost_sid">Incrementar el volumen en C64</string>
+    <string name="pref_sound_boost_summary_sid">Extensiones de fichero: .sid, .mus</string>    
+    <string-array name="arr_sound_boost">
+        <item>Sin incremento</item>
+        <item>+1</item>
+        <item>+2</item>
+        <item>+3</item>
+    </string-array>
+    <string name="help_title">Modo - Readme.txt</string>
+    <string name="help_text">=== Acerca de ===\n\nPuedes reproducir los siguientes formatos de fichero:\n\nMódulos de Tracker:\n\t.mod .xm .it .s3m .med .okt\n\nCommodore C64:\n\t.sid .mus\n\nNintendo Game Boy / NES / SNES:\n\t.gbs .nsf .nsfe .spc .rsn\n\nSega Master System / Mega Drive / Genesis:\n\t.gym .vgm .vgz\n\nAtari / Amstrad CPC / Spectrum:\n\t.sap .ay .ym\n\n\n=== Inicio Rápido ===\n\nPara terminar el servicio de reproducción de música, pon en Pausa la música y pulsa el botón Atrás.\n\n1. Copia algunos ficheros de música a tu dispositivo.\n2. Navega hasta el directorio donde esté la música.\n3. Selecciona un fichero para empezar.\n4. Mantén pulsado el botón Anterior/Siguiente para reproducir el fichero anterior/siguiente en el directorio actual.\n\n\n=== Observaciones ===\n\n\n= C64 SID &amp; MUS =\n\n* El reproductor tiene incorporado el soporte para la longitud del fichero de música en HVSC #61. No se puede utilizar un fichero externo. Voy a actualizar la base de datos de longitud de las canciones que está incroporada, según vaya haciendo falta. He decidido hacerlo así, ya que interpretar la base de datos desde el fichero original al arranque de la aplicación es algo muy lento. He convertido la base de datos a un pequeño fichero personalizado, para un acceso rápido y sencillo desde el propio reproductor.\n\n* La emulación SID requiere mucha CPU (especialmente RSID), así que es posible que haya pequeños cortes si se reproduce como música de fondo y tienes un dispositivo poco potente.\n\n\n= Módulos de Tracker  =\n\n* Si un módulo se escucha con repetición al final, el reproductor repite esa parte tres veces y luego carga el siguiente fichero. Actualmente no hay forma de cambiar esto por parte del usuario.\n\n* Si realizas una búsqeuda dentro de un fichero, el sonido puede parecer que esté corrupto. Esto es debido a que se saltan patrones y es el resultado de cómo funciona ese formato de fichero en concreto.\n\nEso es todo por el momento. Disfruta de estupendas melodías. \n\nPuedes contactar conmigo en cualquier momento. \n&lt;wb@illogical.de&gt;\n\nBastian Pflieger\n1 de diciembre de 2011
+        \n\n\n\n
+        \nGme - http://code.google.com/p/game-music-emu
+        \nAsap - http://asap.sourceforge.net
+        \nStSound - http://leonard.oxg.free.fr/stsound.html
+        \nXmp - http://xmp.sourceforge.net
+        \nSidPlay2 - http://sidplay2.sourceforge.net
+        \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>
+    <string name="filebrowser_directory">Directorio</string>
+    <string name="pref_default_playtime_summary">Se usa como longitud de la pista si no se dispone de información de la pista. No se aplica a los formatos Tracker.</string>
+    <string name="enjoy_some_retro_music">Preparado para un poco de música retro!</string>        
+    <string name="browser_header">&lt;b&gt;Subir un nivel&lt;/b&gt;\nDirectorio Padre</string>
+    <string name="service_started">Servicio de reproducción comenzado</string>
+    <string name="pref_overlay_color_summary">Elige el color del fondo y el valor de la transparencia.</string>
+    <string name="pref_overlay_color">Color del fondo</string>
+    <string name="app_title_short">Modo</string>
+    <string name="menu_shuffle">Cambiar Orden Aleatorio</string>
+    <string name="menu_shuffle_is_on">Orden Aleatorio activado</string>
+    <string name="menu_shuffle_is_off">Orden Aleatorio desactivado</string>
+	<string name="menu_loop">Cambiar Repetición</string>    
+    <string name="menu_loop_is_on">Repetición activada</string>
+    <string name="menu_loop_is_off">Repetición desactivada</string>
+    <string name="info_shuffle_on">El Orden Aleatorio está ACTIVADO.</string>
+    <string name="info_shuffle_off">El Orden Aleatorio está DESACTIVADO.</string>
+    <string name="info_loop_on">La Repetición está ACTIVADA.</string>
+    <string name="info_loop_off">La Repetición está DESACTIVADA.</string>
+    <string name="dialog_about_title1">Acerca de</string>
+    <string name="okay">OK</string>
+    <string name="info_service_terminated">Modo - servicio de reproducción terminado!</string>
+    <string name="info_service_continue">Modo - dale al pause en la música para terminar el servicio!</string>
+	<string name="menu_tablet">Prueba Modo para Tablet</string>
+	<string name="pref_interpolation_summary">Se aplica solo a los formatos tracker. Requiere más tiempo de CPU, mejor calidad de sonido.</string>
+	<string name="pref_interpolation">Mezclador de interpolación</string> 
+	<string name="pref_stereo">Separación Estéreo</string>
+	<string name="pref_stereo_max">Estéreo</string>
+	<string name="pref_stereo_min">Mono</string>
+	<string name="pref_stereo_summary">Se aplica solo a los formatos tracker, Nsf y Vgm. Mono (0\%%) a Estéreo (100\%%).</string>
+	<string name="menu_sleep_timer_plus">Auto Apagado +10min</string>
+	<string name="menu_sleep_timer_cancel">Parar Auto Apagado</string>
+	<string name="browser_one_level_up">Subir Un Nivel</string>
+	<string name="browser_parent_directory">Directorio Padre</string>	    	
+    <string name="menu_loop_99">Reproducción 99min</string>
+    <string name="info_loop_99">REPETICIÓN ALTERNATIVA: Reproducción 99min.</string>
+    <string name="pref_shake">Agitar</string>
+    <string name="pref_shake_summary">Elige el nivel de intensidad para cargar la siguiente canción.</string>
+    <string-array name="arr_shake">
+        <item>Deshabilitado</item>
+        <item>Suave</item>
+        <item>Medio</item>
+        <item>Fuerte</item>
+    </string-array>
+	<string name="pref_mediabuttons">Ignorar Botones Multimedia</string>
+	<string name="pref_mediabuttons_summary">Habilitar esta opción si otras aplicaciones para música causan problemas.</string>
+ 	<string name="browser_menu_sort_normal">A-Z</string>    
+	<string name="browser_menu_sort_invert">Z-A</string>
+  	<string name="pref_silence">Detección de silencio</string>
+	<string name="pref_silence_summary">Incrementar el valor para solucionar posibles problemas de reproducción al comienzo de una pista.</string>
+	<string-array name="arr_silence">
+		<item>2 segundos</item>
+	    <item>4 segundos</item>
+		<item>8 segundos</item>
+		<item>15 segundos</item>
+		<item>30 segundos</item>
+		<item>60 segundos</item>
+	</string-array>
+	<string name="pref_AY_stereo">Estéreo AY</string>
+    <string name="pref_AY_stereo_summary">Habilitar para reproducir ficheros .ay en estéreo.</string>
+	<string name="please_wait">Por favor, espere&#8230;\n\u00A0\u00A0</string>
+	<string name="hint_loadfile_v">Pulsa el icono del disco para comenzar.</string>
+    <string name="pref_seekbar">Deshabilitar la barra de búsqueda.</string>
+    <string name="pref_seekbar_summary">No cambiar el patrón ni avanzar rápidamente por accidente.</string>
+    <string name="pref_action_player">Acción automática.</string>
+    <string name="pref_action_player_summary">Acción a ejecutar después de que todos los ficheros hayan sido reproducidos una vez.</string>
+    <string-array name="arr_action">
+        <item>Bucle de ficheros</item>
+        <item>Poner en Pausa el reproductor</item>
+        <item>Salir del reproductor</item>
+    </string-array>
+    <string name="pref_scanfiles">Analizar ficheros</string>
+    <string name="pref_scanfiles_summary">El explorador de ficheros muestra el nombre del juego o el primer título. Todavía no se analizan los ficheros Zip.</string>
+    
+    <string name="menu_add_tune">Añadir</string>
+	<string name="menu_new_playlist">Nueva</string>
+	<string name="menu_rename_playlist">Renombrar</string>
+	<string name="menu_delete_playlist">Borrar</string>
+	<string name="dialog_new_playlist_fail">No se pudo crear la lista de reproducción. El nombre ya existe.</string>
+	<string name="dialog_new_playlist_fail2">No se pudo crear la lista de reproducción. No se ha especificado un nombre.</string>
+	<string name="dialog_rename_playlist_fail">No se pudo renombrar. El nuevo nombre ya existe.</string>
+	<string name="dialog_rename_playlist_fail2">No se pudo renombrar. No se ha especificado un nombre.</string>
+	<string name="dialog_rename_playlist_title">Renombrar Lista de Reproducción</string>    
+	<string name="dialog_delete_playlist_title">¿Borrar Lista de Reproducción?</string>
+	<string name="dialog_new_playlist_title">Nueva Lista de Reproducción</string>    
+	<string name="dialog_delete_playlist_message">%1$s</string>
+	<string name="menu_delete_playlistentry">Eliminar</string>
+	<string name="no_entries">\nLa Lista de Reproducción no tiene entradas.\n\nUse \"Añadir\" desde la vista del reproductor para añadir melodías.</string>
+	<string name="tracknr">Pista: </string>
+	<string name="dialog_remove_entry_title">¿Eliminar Entrada?</string>
+	<string name="dialog_remove_entry_message">%1$s\nPista %2$s</string>
+	<string name="dialog_add_tune_title">Añadir pista a</string>
+	<string name="dialog_remove_entry_fail">Borrar la lista de reproducción para eliminar la última entrada.</string>
+	<string name="welcome">¡Bienvenido/a!</string>
+	<string name="welcome_msg">¡Hola y bienvenido/a!\n\nPara comenzar rápidamente, ¿quieres que añada un lista de reproducción de ejemplo con algunas melodías?</string>
+	<string name="examples_playlist_name">Ejemplos</string>
+
+	<string name="pref_flatzip">Ficheros ZIP planos</string>
+	<string name="pref_flatzip_summary">Muestra todas las entradas en ficheros ZIP de una sola vez. Límite de 2000 ficheros.</string>    
+	<string name="dialog_no_directory_atm">Añadir un directorio a una lista de reproducción no está soportado en estos momentos.</string>
+	<string name="dialog_add_files_title">Añadir ficheros a</string>
+				
+</resources>

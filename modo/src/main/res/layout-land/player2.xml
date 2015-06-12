@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:baselineAligned="false"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:orientation="horizontal">
+  <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="0.4">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="2" android:drawableLeft="@drawable/file_abri_amiga" android:layout_marginLeft="10dip" android:textColor="@color/white_text" android:text="@string/welcome" android:drawablePadding="5dip" android:id="@+id/textFileInfo" android:lineSpacingMultiplier="1.5" android:layout_marginTop="5dip"></TextView>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:id="@+id/linearLayout1" android:layout_height="3px" android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:background="@drawable/gradient_line"></LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout10" android:gravity="center">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:typeface="monospace" android:textSize="20dip" android:textColor="@color/white_text" android:text="00" android:id="@+id/textPlaytimeMinutes" android:singleLine="true"></TextView>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:typeface="monospace" android:textSize="20dip" android:text=":" android:textColor="@color/white_text" android:id="@+id/textPlaytimeColon" android:singleLine="true"></TextView>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:typeface="monospace" android:textSize="20dip" android:textColor="@color/white_text" android:text="00" android:id="@+id/textPlaytimeSeconds" android:singleLine="true"></TextView>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:typeface="monospace" android:textSize="20dip" android:textColor="@color/white_text" android:text=" / 00:00" android:id="@+id/mytextTrackLength" android:singleLine="true"></TextView>
+        </LinearLayout>
+        <TextView android:layout_height="wrap_content" android:text="@string/text_track" android:textStyle="bold" android:typeface="monospace" android:textSize="15dip" android:layout_width="wrap_content" android:id="@+id/textTrack" android:textColor="@color/white_text" android:singleLine="true" android:layout_gravity="center_horizontal"></TextView>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:id="@+id/linearLayout8" android:layout_height="3px" android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:background="@drawable/gradient_line"></LinearLayout>
+        <SeekBar android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/seekPlaytime" android:layout_marginLeft="10dip" android:layout_marginRight="10dip"></SeekBar>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout13" android:layout_marginLeft="5dip" android:layout_marginRight="5dip">
+        <ImageButton android:src="@android:drawable/ic_media_pause" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/buttonPauseResume" android:onClick="onClick_ButtonPauseResume" android:layout_weight="0.33"></ImageButton>
+        <ImageButton android:src="@android:drawable/ic_media_previous" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/buttonPrevTrack" android:onClick="onClick_ButtonPrevTrack" android:layout_weight="0.33"></ImageButton>
+        <ImageButton android:src="@android:drawable/ic_media_next" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/buttonNextTrack" android:onClick="onClick_ButtonNextTrack" android:layout_weight="0.33"></ImageButton>
+    </LinearLayout>
+    <ImageButton android:src="@android:drawable/ic_menu_save" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/buttonFilebrowser" android:onClick="onClick_ButtonFilebrowser" android:layout_marginLeft="5dip" android:layout_marginRight="5dip"></ImageButton>
+	<!--  
+	<LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textStatusShuffle"
+	            android:layout_marginLeft="10dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" android:layout_weight="0.5"/>
+
+            <TextView
+                android:id="@+id/textStatusLoop"
+            	android:layout_marginRight="10dip"              
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" android:layout_weight="0.5" android:gravity="right"/>
+
+        </LinearLayout>
+        -->
+</LinearLayout>
+    
+  <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="0.4">
+      
+
+      
+	<LinearLayout
+	    	android:layout_marginTop="5dip"
+            android:id="@+id/linearLayout30"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    	<TextView
+    	    	android:layout_width="0dip"
+    	    	android:layout_height="wrap_content"
+    	    	android:id="@+id/textView1"
+    	    	android:layout_marginLeft="10dip"
+    	    	android:text="@string/text_file_details"
+    	    	android:textColor="@color/white_text"
+    	    	android:singleLine="true"
+    	    	android:ellipsize="none"  
+    	    	android:layout_weight="0.5"  	    	
+    	    	android:gravity="left"/>
+    	<TextView
+                android:id="@+id/textSleeptimer"
+            	android:layout_marginRight="10dip"              
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue_ligth"
+    	    	android:singleLine="true"
+    	    	android:ellipsize="none" 
+    	    	android:layout_weight="0.5"               
+                android:gravity="right"/>
+    </LinearLayout>      
+         
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:id="@+id/linearLayout17" android:background="@drawable/gradient_line" android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:layout_height="1px"></LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_marginLeft="10dip" android:layout_weight="1">
+
+         	<TextView android:layout_height="wrap_content"  android:id="@+id/textFileDetails" android:layout_width="match_parent" android:text="@string/text_no_file_details" android:textColor="@color/white_text" android:typeface="monospace"></TextView>
+        </ScrollView>
+
+    	<LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:id="@+id/linearLayout16" android:background="@drawable/gradient_line" android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:layout_height="1px"></LinearLayout>
+    	<TextView
+	    	android:id="@+id/textPlaylistname"
+		  	android:layout_marginRight="10dip"              
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:textColor="@color/blue_ligth"
+			android:singleLine="true"
+			android:visibility="gone"	    
+		    android:gravity="center"/>                
+        
+	</LinearLayout>            
+</LinearLayout>

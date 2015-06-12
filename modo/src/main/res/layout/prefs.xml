@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:key="modo">
+    	<CheckBoxPreference
+		    android:key="mediabuttons"
+            android:title="@string/pref_mediabuttons"
+            android:summary="@string/pref_mediabuttons_summary"
+            android:defaultValue="false">            
+        </CheckBoxPreference>
+    	<CheckBoxPreference
+		    android:key="interpolation"
+            android:title="@string/pref_interpolation"
+            android:summary="@string/pref_interpolation_summary"
+            android:defaultValue="true">            
+        </CheckBoxPreference>
+    	<CheckBoxPreference
+		    android:key="aystereo"
+            android:title="@string/pref_AY_stereo"
+            android:summary="@string/pref_AY_stereo_summary"
+            android:defaultValue="true">            
+        </CheckBoxPreference>
+    	<CheckBoxPreference
+		    android:key="scanfiles"
+            android:title="@string/pref_scanfiles"
+            android:summary="@string/pref_scanfiles_summary"
+            android:defaultValue="false">            
+        </CheckBoxPreference>
+    	<CheckBoxPreference
+		    android:key="seekbar_disabled"
+            android:title="@string/pref_seekbar"
+            android:summary="@string/pref_seekbar_summary"
+            android:defaultValue="false">            
+        </CheckBoxPreference>
+    	<CheckBoxPreference
+		    android:key="flatzip"
+            android:title="@string/pref_flatzip"
+            android:summary="@string/pref_flatzip_summary"
+            android:defaultValue="false">
+        </CheckBoxPreference>
+   		<de.illogical.modo.PrefStereo
+			android:key="stereo"
+			android:defaultValue="128"
+			android:dialogLayout="@layout/prefstereo"
+			android:title="@string/pref_stereo"
+			android:summary="@string/pref_stereo_summary">
+        </de.illogical.modo.PrefStereo>
+    	<ListPreference android:key="automaticaction"
+	  					android:title="@string/pref_action_player"
+	  					android:summary="@string/pref_action_player_summary"
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_action"
+	  					android:entryValues="@array/arr_action_entries">
+	  	</ListPreference>    		
+    	<ListPreference android:key="stdplaytime"
+	  					android:title="@string/pref_default_playtime"
+	  					android:summary="@string/pref_default_playtime_summary"
+	  					android:defaultValue="180000"
+	  					android:entries="@array/arr_stdplaytime"
+	  					android:entryValues="@array/arr_stdplaytime_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="silence"
+	  					android:title="@string/pref_silence"
+	  					android:summary="@string/pref_silence_summary"
+	  					android:defaultValue="4"
+	  					android:entries="@array/arr_silence"
+	  					android:entryValues="@array/arr_silence_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="shakelevel"
+	  					android:title="@string/pref_shake"
+	  					android:summary="@string/pref_shake_summary"
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_shake"
+	  					android:entryValues="@array/arr_shake_entries">
+	  	</ListPreference>
+		<com.att.preference.colorpicker.ColorPickerPreference
+			android:key="overlay_color"
+    		android:title="@string/pref_overlay_color"
+    		android:summary="@string/pref_overlay_color_summary"
+    		android:defaultValue="0xaa000000"
+    		alphaSlider="true">
+    	</com.att.preference.colorpicker.ColorPickerPreference>	  	
+    	<!-- 
+	  	<ListPreference android:key="soundboost"
+	  					android:title="@string/pref_sound_boost"
+	  					android:summary="@string/pref_sound_boost_summary"
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+ -->
+     <PreferenceCategory 
+        android:title="Volume boost">
+ 		
+	  	<ListPreference android:key="soundboost_modules"
+	  					android:title="@string/pref_sound_boost_modules"
+	  					android:summary="@string/pref_sound_boost_summary_modules"
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="soundboost_nsf"
+	  					android:title="@string/pref_sound_boost_nsf"
+	  					android:summary="@string/pref_sound_boost_summary_nsf"
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  		  	<ListPreference android:key="soundboost_spc"
+	  					android:title="@string/pref_sound_boost_spc"
+	  					android:summary="@string/pref_sound_boost_summary_spc"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="soundboost_vgm"
+	  					android:title="@string/pref_sound_boost_vgm"
+	  					android:summary="@string/pref_sound_boost_summary_vgm"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="soundboost_gbs"
+	  					android:title="@string/pref_sound_boost_gbs"
+	  					android:summary="@string/pref_sound_boost_summary_gbs"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="soundboost_sid"
+	  					android:title="@string/pref_sound_boost_sid"
+	  					android:summary="@string/pref_sound_boost_summary_sid"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>	  	
+	  	<ListPreference android:key="soundboost_ay"
+	  					android:title="@string/pref_sound_boost_ay"
+	  					android:summary="@string/pref_sound_boost_summary_ay"
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="soundboost_ym"
+	  					android:title="@string/pref_sound_boost_ym"
+	  					android:summary="@string/pref_sound_boost_summary_ym"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="soundboost_sap"
+	  					android:title="@string/pref_sound_boost_sap"
+	  					android:summary="@string/pref_sound_boost_summary_sap"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="soundboost_hes"
+	  					android:title="@string/pref_sound_boost_hes"
+	  					android:summary="@string/pref_sound_boost_summary_hes"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	  	<ListPreference android:key="soundboost_kss"
+	  					android:title="@string/pref_sound_boost_kss"
+	  					android:summary="@string/pref_sound_boost_summary_kss"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+	    <ListPreference android:key="soundboost_gym"
+	  					android:title="@string/pref_sound_boost_gym"
+	  					android:summary="@string/pref_sound_boost_summary_gym"	  					
+	  					android:defaultValue="0"
+	  					android:entries="@array/arr_sound_boost"
+	  					android:entryValues="@array/arr_sound_boost_entries">
+	  	</ListPreference>
+  </PreferenceCategory>	  		  		  		  	
+</PreferenceScreen>

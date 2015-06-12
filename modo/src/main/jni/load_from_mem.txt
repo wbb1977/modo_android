@@ -1,0 +1,6 @@
+YM => copies data
+ASAP => copies data
+GME => copies data, koder54 version offer possible to pass pointer (no copy)
+NEZPLUG => copies data
+SID => copies data
+MIKMOD => DOES NOT copy data, puts given pointer in place

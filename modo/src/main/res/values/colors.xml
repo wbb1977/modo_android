@@ -1,0 +1,12 @@
+
+    <resources>
+        <color name="blue_background">#FF4444FF</color>
+        <color name="white_text">#FFFFFF</color>
+        <color name="blue_ligth">#a9d3ff</color>
+        <color name="green_light">#88CC88</color>
+        <color name="white_50_alpha">#88FFFFFF</color>
+        <color name="black">#ffffff</color>
+        <color name="green">#00ff00</color>
+        <color name="myTransparent">#bb000000</color>
+        <color name="dark_transparent">#AA000000</color>
+    </resources>

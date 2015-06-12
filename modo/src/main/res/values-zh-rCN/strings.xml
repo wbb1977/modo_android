@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Modo中文版</string>
+    <string name="seek_warning_forward">对不起。此格式并不支持跳转。只能快进。</string>
+    <string name="button_filebrowser">浏览</string>
+    <string name="text_track"> 0 / 0 </string>
+    <string name="loading_failed">:: !读取失败! ::</string>
+    <string name="hint_loadfile">触击 \&quot;浏览\&quot; 以开始音乐之旅</string>
+    <string name="app_description">播放8/16位电子音乐:)</string>
+    <string name="reading_directory">正在读取文件夹&#8230;</string>
+    <string name="text_file_details">详细信息</string>
+    <string name="now_playing">正在播放</string>
+
+    <string-array name="arr_stdplaytime">
+        <item>1分钟</item>
+        <item>2分钟</item>
+        <item>3分钟</item>
+        <item>4分钟</item>
+        <item>5分钟</item>
+        <item>6分钟</item>
+        <item>7分钟</item>
+        <item>8分钟</item>
+        <item>9分钟</item>
+        <item>10分钟</item>
+        <item>20分钟</item>
+        <item>30分钟</item>
+        <item>40分钟</item>
+        <item>50分钟</item>
+        <item>60分钟</item>
+    </string-array>
+    <string-array name="arr_stdplaytime_entries">
+        <item>60000</item>
+        <item>120000</item>
+        <item>180000</item>
+        <item>240000</item>
+        <item>300000</item>
+        <item>360000</item>
+        <item>420000</item>
+        <item>480000</item>
+        <item>540000</item>
+        <item>600000</item>
+        <item>1200000</item>
+        <item>1800000</item>
+        <item>2400000</item>
+        <item>3000000</item>
+        <item>3600000</item>
+    </string-array>
+
+    <string name="pref_default_playtime">默认播放时间</string>
+    <string name="text_no_file_details">&lt;无&gt;</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_about">关于</string>
+    <string name="menu_help">帮助</string>
+    <string name="dialog_about">Modo v2.4\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal.\n\n尽享电子音乐！</string>
+    <string name="pref_sound_boost">音量</string>
+    <string name="pref_sound_boost_summary">增大音量，但会导致采样率过高。</string>
+    <string name="pref_sound_boost_modules">模块音量</string>
+    <string name="pref_sound_boost_summary_modules">增大音量，但会导致采样率下降(clipping)/坏音质。\n用于: .mod, .xm, .it, .med, .okt, .s3m</string>
+    <string name="pref_sound_boost_nsf">FC/NES音量</string>
+    <string name="pref_sound_boost_summary_nsf">拥于: .nsf, .nsfe</string>
+    <string name="pref_sound_boost_spc">Snes/SFC音量</string>
+    <string name="pref_sound_boost_summary_spc">用于: .spc, .rsn</string>
+    <string name="pref_sound_boost_vgm">MD音量</string>
+    <string name="pref_sound_boost_summary_vgm">用于: .vgm, .vgz</string>
+    <string name="pref_sound_boost_gbs">GB音量</string>
+    <string name="pref_sound_boost_summary_gbs">用于: .gbs</string>
+    <string name="pref_sound_boost_ay">Spectrum/CPC音量</string>
+    <string name="pref_sound_boost_summary_ay">用于: .ay</string>
+    <string name="pref_sound_boost_sap">Pokey音量</string>
+    <string name="pref_sound_boost_summary_sap">用于: .sap</string>
+    <string name="pref_sound_boost_hes">PC-Engine音量</string>
+    <string name="pref_sound_boost_summary_hes">用于: .hes</string>
+    <string name="pref_sound_boost_kss">Msx/Sega音量</string>
+    <string name="pref_sound_boost_summary_kss">用于: .kss</string>
+    <string name="pref_sound_boost_gym">MD旧版音量</string>
+    <string name="pref_sound_boost_summary_gym">用于: .gym</string>
+    <string name="pref_sound_boost_ym">雅达利ST音量</string>
+    <string name="pref_sound_boost_summary_ym">用于: .ym</string>
+    <string name="pref_sound_boost_sid">C64音量</string>
+    <string name="pref_sound_boost_summary_sid">用于: .sid, .mus</string>
+
+    <string-array name="arr_sound_boost">
+        <item>0</item>
+        <item>+1</item>
+        <item>+2</item>
+        <item>+3</item>
+    </string-array>
+    <string-array name="arr_sound_boost_entries">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string name="help_title">关于Modo</string>
+    <string name="help_text">=== 关于 ===
+        \n\n你可以播放以下音乐格式：
+        \n\nTracker modules:
+        \n\t.mod .xm .it .s3m .med .okt
+        \n\nCommodore C64:
+        \n\t.sid .mus
+        \n\nNintendo Game Boy / NES / SNES:
+        \n\t.gbs .nsf .nsfe .spc .rsn
+        \n\nSega Master System / Mega Drive / Genesis:
+        \n\t.gym .vgm .vgz
+        \n\nAtari / Amstrad CPC / Spectrum:
+        \n\t.sap .ay .ym
+        \n\n\n=== 向导 ===
+        \n\n 要停止后台播放，请暂停音乐并按返回键。
+        \n\n1. 复制一些音乐文件到你的手机中。 
+        \n2. 转到你的音乐目录。
+        \n3. 触击一个你想听的音乐。
+        \n4. 按住 上一个/下一个 按钮来切换播放 上一个/下一个 文件。
+        \n\n\n=== 备注 ===
+        \n\n\n= C64 SID &amp; MUS =
+        \n\n* 本应用拥有内建歌曲长度(builtin songlength)给HVSC #61。你可以不使用外部文件。我将会根据需要升级builtin songlength数据库。我之所以这样做，是因为每次都要从文件里解析数据实在是太慢了。我已经把数据库转成一个可自定义的小文件格式里以便可以快速访问。
+        \n\n* SID模拟器是CPU密集的(特别是RSID)，所以如果你是要在一个低端手机上后台播放的话请expect stutter。
+        \n\n\n= Tracker模块 =
+        \n\n* 如果一个模块在结尾播放时循环，本播放器将会循环该部分三次然后读取下一个文件。遗憾的是，现在没有改变这个设置的选项。
+        \n\n* 如果你在播放时跳转，就可能会造成播放损坏。这是因为你跳过了模式并且这是此音乐格式特殊的构造所造成的结果。 
+        \n\n\n 我就说这么多了。请享受音乐吧。
+        \n\n 你可以在任何时间联系我。\n&lt;wb@illogical.de&gt;\n\nBastian Pflieger\n2011.12.1
+        \n\n\n\n
+        \nGme - http://code.google.com/p/game-music-emu
+        \nAsap - http://asap.sourceforge.net
+        \nStSound - http://leonard.oxg.free.fr/stsound.html
+        \nXmp - http://xmp.sourceforge.net
+        \nSidPlay2 - http://sidplay2.sourceforge.net
+        \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html
+		\n\n 欢迎来到汉化作者主页：czxinc.421y.com</string>
+    <string name="filebrowser_directory">文件夹</string>
+    <string name="pref_default_playtime_summary">如果没有可用信息的话就使用这个作为替代声道长度。</string>
+    <string name="enjoy_some_retro_music">准备好开始了吗</string>
+    <string name="browser_header">&lt;b&gt;上一级&lt;/b&gt;\n\n</string>
+    <string name="service_started">Modo播放器已启动</string>
+    <string name="pref_overlay_color_summary">设置背景色和透明值。</string>
+    <string name="pref_overlay_color">背景颜色</string>
+    <string name="app_title_short">Modo</string>
+    <string name="menu_shuffle">随机切换</string>
+    <string name="menu_shuffle_is_on">随机开</string>
+    <string name="menu_shuffle_is_off">随机关</string>
+    <string name="menu_loop">循环切换</string>
+    <string name="menu_loop_is_on">循环开</string>
+    <string name="menu_loop_is_off">循环关</string>
+    <string name="menu_loop_99">99分钟播放模式</string>
+    <string name="menu_sleep_timer_plus">关闭倒计时+10分钟</string>
+    <string name="menu_sleep_timer_cancel">停止关闭倒计时</string>
+    <string name="info_shuffle_on">随机播放已开启</string>
+    <string name="info_shuffle_off">随机播放已关闭</string>
+    <string name="info_loop_on">单曲循环已开启</string>
+    <string name="info_loop_off">单曲循环已关闭</string>
+    <string name="info_loop_99">99分钟播放模式已开启</string>
+    <string name="dialog_about_title1">关于</string>
+    <string name="okay">关闭</string>
+    <string name="info_service_terminated">后台播放服务正在关闭</string>
+    <string name="info_service_continue">后台播放服务正在开启</string>
+    <string name="menu_tablet">查看Modo平板版</string>
+    <string name="pref_interpolation_summary">只用于tracker格式。需要消耗更多的CPU时间以获取更好的音质输出。</string>
+    <string name="pref_interpolation">混合插补</string>
+    <string name="pref_mediabuttons">忽略媒体按键</string>
+    <string name="pref_mediabuttons_summary">如果和其他音乐应用产生冲突的话就开启</string>
+    <string name="pref_stereo">立体声分离度</string>
+    <string name="pref_stereo_max">立体声</string>
+    <string name="pref_stereo_min">单声道</string>
+    <string name="pref_stereo_summary">只用于tracker格式 / Nsf / Vgm。单声道(0\%%)至立体声(100\%%).</string>
+    <string name="pref_shake">摇一摇</string>
+    <string name="pref_shake_summary">设置读取下一首歌所需的摇晃强度</string>
+    <string name="pref_AY_stereo">AY立体声</string>
+    <string name="pref_AY_stereo_summary">用立体声播放.ay文件</string>
+
+    <string-array name="arr_shake">
+        <item>关闭</item>
+        <item>轻</item>
+        <item>中</item>
+        <item>强</item>
+    </string-array>
+    <string-array name="arr_shake_entries">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string name="pref_silence">静态检测</string>
+    <string name="pref_silence_summary">增加修复可能的开头track播放问题的时间。</string>
+
+    <string-array name="arr_silence">
+        <item>2秒</item>
+        <item>4秒</item>
+        <item>8秒</item>
+        <item>15秒</item>
+        <item>30秒</item>
+        <item>60秒</item>
+    </string-array>
+    <string-array name="arr_silence_entries">
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+
+    <string name="browser_one_level_up">上一级</string>
+    <string name="browser_parent_directory">目录</string>
+    <string name="browser_menu_sort_normal">A-Z</string>
+    <string name="browser_menu_sort_invert">Z-A</string>
+    <string name="please_wait">请稍候&#8230;\n\u00A0\u00A0</string>
+    <string name="hint_loadfile_v">触击磁碟图标以开始。</string>
+    <string name="pref_seekbar">关闭进度条</string>
+    <string name="pref_seekbar_summary">可以阻止因模式改变和快进造成的故障</string>
+    <string name="pref_action_player">播报完毕，然后....？</string>
+    <string name="pref_action_player_summary">音乐被播放完毕后的动作。</string>
+
+    <string-array name="arr_action">
+        <item>循环</item>
+        <item>暂停</item>
+        <item>退出</item>
+    </string-array>
+    <string-array name="arr_action_entries">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="pref_scanfiles">扫描文件</string>
+    <string name="pref_scanfiles_summary">文件管理器会显示游戏名称或者详细信息第一列字。Zip尚不能扫描。</string>
+    <string name="action_settings">设置</string>
+	<string name="emptystring"></string>
+	
+	<string name="menu_add_tune">添加</string>
+	<string name="menu_playlists">播放列表</string>
+	<string name="menu_new_playlist">新建</string>
+	<string name="menu_rename_playlist">重命名</string>
+	<string name="menu_delete_playlist">删除</string>
+	<string name="dialog_new_playlist_fail">不能创建播放列表。列表名已存在。</string>
+	<string name="dialog_new_playlist_fail2">不能创建播放列表。没有指定名称。</string>
+	<string name="dialog_rename_playlist_fail">不能重命名。名称已存在。</string>
+	<string name="dialog_rename_playlist_fail2">不能重命名。没有指定名称。</string>
+	<string name="dialog_rename_playlist_title">真的要重命名列表？</string>	
+	<string name="dialog_delete_playlist_title">真的要删除列表？</string>
+	<string name="dialog_new_playlist_title">新建列表</string>	
+	<string name="dialog_delete_playlist_message">%1$s</string>
+	<string name="menu_delete_playlistentry">移除</string>
+	<string name="no_entries">\n播放列表里没有任何音乐\n\n使用 \"添加\" 按钮来添加音乐</string>
+	<string name="tracknr">声道: </string>
+	<string name="dialog_remove_entry_title">真的要删除？</string>
+	<string name="dialog_remove_entry_message">%1$s\n声道 %2$s</string>
+	<string name="dialog_add_tune_title">添加音乐到</string>
+	<string name="dialog_remove_entr2y_fail">要删除播放列表才能移除最后一个音乐。</string>
+	<string name="welcome">欢迎！</string>
+	<string name="welcome_msg">欢迎！\n\n需要我给你创建一个含有示例音乐的播放列表给你吗？</string>
+	<string name="examples_playlist_name">示例列表</string>
+	
+    <string name="pref_flatzip">浏览zip文件</string>
+    <string name="pref_flatzip_summary">显示zip文件里的音乐。限制不超2000个文件。</string>    
+    <string name="dialog_no_directory_atm">不支持添加一个目录作为播放列表。</string>
+    <string name="dialog_add_files_title">添加文件到</string>		
+</resources>

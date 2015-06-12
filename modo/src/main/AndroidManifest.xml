@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.illogical.modo"
+    android:installLocation="auto"
+    android:versionCode="16"
+    android:versionName="2.4a" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" >
+    </uses-sdk>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:allowClearUserData="true"
+        android:description="@string/app_description"
+        android:icon="@drawable/modo"
+        android:label="@string/app_title_short" android:restoreNeedsApplication="false" android:restoreAnyVersion="false" android:backupAgent="DatabaseBackup2" android:killAfterRestore="false">
+		<meta-data android:name="com.google.android.backup.api_key" android:value="AEdPqrEAAAAIooGruawHSqVxnufJL2xnWIkmzmeS1wBhhEqinA" />        
+        <receiver android:name="de.illogical.modo.ModoReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="de.illogical.modo.Modo"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.DimBackground" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="de.illogical.modo.ServicePlayer"
+            android:label="Play Computer Music in BG" >
+        </service>
+
+        <activity
+            android:name="de.illogical.modo.FileBrowser"
+            android:theme="@style/Theme.DimBackground" android:label="@string/emptystring">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Modo" />     
+        </activity>
+        <activity
+            android:name="de.illogical.modo.Prefs"
+            android:theme="@style/Theme.DimBackground" >
+        </activity>
+        <activity
+            android:name="de.illogical.modo.Help"
+            android:theme="@style/Theme.DimBackground" >
+        </activity>
+        <activity android:label="@string/menu_playlists" android:name="de.illogical.modo.ModoPlaylists" android:theme="@style/Theme.DimBackground">
+			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Modo" />     
+        </activity>
+        <activity android:label="@string/emptystring" android:name="de.illogical.modo.ModoPlaylistEntries" android:theme="@style/Theme.DimBackground">
+			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Modo" />     
+        </activity>
+        </application>
+
+</manifest>

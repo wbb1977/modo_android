@@ -1,0 +1,4 @@
+* Nach jeder neuen Version in blargg_config lz support aktivieren.
+* in blargg config auch type list editieren.
+* in gme_types.h support deaktivieren für verschiedene formate
+* Ay_Emu für Stereo-Wiedergabe verändert. setvoices
