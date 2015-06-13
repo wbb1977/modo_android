@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_marginLeft="10dip" android:layout_weight="1">
-            <TextView android:layout_height="wrap_content"  android:id="@+id/textFileDetails" android:layout_width="match_parent" android:text="@string/text_no_file_details" android:textColor="@color/white_text" android:typeface="monospace"></TextView>
+            <TextView android:layout_height="wrap_content"  android:id="@+id/textFileDetails" android:layout_width="match_parent" android:text="@string/text_no_file_details" android:textColor="@color/white_text" android:typeface="monospace" android:fontFamily="monospace"></TextView>
         </ScrollView>
 
     <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:id="@+id/linearLayout17" android:background="@drawable/gradient_line" android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:layout_height="1px"></LinearLayout>
