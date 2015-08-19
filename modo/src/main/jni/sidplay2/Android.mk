@@ -2,8 +2,9 @@
 
    include $(CLEAR_VARS)
    
-   LOCAL_C_INCLUDES += $(NDK_APP_PROJECT_PATH)/jni/unzip   
+   LOCAL_C_INCLUDES += $(NDK_APP_PROJECT_PATH)/jni/unzip
    LOCAL_SHARED_LIBRARIES := libunzip
+#   LOCAL_LDLIBS := -llog
    LOCAL_MODULE    := sidplay2
    LOCAL_SRC_FILES := sid.cpp voice.cpp wave.cpp envelope.cpp filter.cpp extfilt.cpp pot.cpp version.cpp \
 	wave6581_PST.cpp wave6581_PS_.cpp wave6581_P_T.cpp \
