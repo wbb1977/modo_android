@@ -7,7 +7,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="22" >
+        android:targetSdkVersion="21" >
     </uses-sdk>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -28,7 +28,7 @@
         <activity
             android:name="de.illogical.modo.Modo"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.DimBackground" android:label="@string/app_name">
+            android:theme="@style/Theme.Modo" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,21 +43,21 @@
 
         <activity
             android:name="de.illogical.modo.FileBrowser"
-            android:theme="@style/Theme.DimBackground" android:label="@string/emptystring">
+            android:theme="@style/Theme.Modo" android:label="@string/emptystring">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Modo" />     
         </activity>
         <activity
             android:name="de.illogical.modo.Prefs"
-            android:theme="@style/Theme.DimBackground" >
+            android:theme="@style/Theme.Modo" >
         </activity>
         <activity
             android:name="de.illogical.modo.Help"
-            android:theme="@style/Theme.DimBackground" >
+            android:theme="@style/Theme.Modo" >
         </activity>
-        <activity android:label="@string/menu_playlists" android:name="de.illogical.modo.ModoPlaylists" android:theme="@style/Theme.DimBackground">
+        <activity android:label="@string/menu_playlists" android:name="de.illogical.modo.ModoPlaylists" android:theme="@style/Theme.Modo">
 			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Modo" />     
         </activity>
-        <activity android:label="@string/emptystring" android:name="de.illogical.modo.ModoPlaylistEntries" android:theme="@style/Theme.DimBackground">
+        <activity android:label="@string/emptystring" android:name="de.illogical.modo.ModoPlaylistEntries" android:theme="@style/Theme.Modo">
 			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Modo" />     
         </activity>
         </application>
