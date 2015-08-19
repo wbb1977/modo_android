@@ -35,7 +35,7 @@
     <string name="menu_settings">Ustawienia</string>
     <string name="menu_about">O programie</string>
     <string name="menu_help">Pomoc</string>
-    <string name="dialog_about">Modo v2.4a\n\nTwórca\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTłumaczenie na język hiszpański - Gorka Oteiza.\n\nTłumaczenie na język francuski - Zod.\n\nTłumaczenie na język chiński - SuperMarioX.\n\nTłumaczenie na język polski - Łukasz Wollnikowski.\n\nPodziękowania dla Abrimaal, Frapsman123.\n\nBaw się dobrze słuchając świetnych utworów!</string>
+    <string name="dialog_about">Modo v2.5\n\nTwórca\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTłumaczenie na język hiszpański - Gorka Oteiza.\n\nTłumaczenie na język francuski - Zod.\n\nTłumaczenie na język chiński - SuperMarioX.\n\nTłumaczenie na język polski - Łukasz Wollnikowski.\n\nPodziękowania dla Abrimaal, Frapsman123.\n\nBaw się dobrze słuchając świetnych utworów!</string>
     <string name="pref_sound_boost">Podbij głośność</string>
     <string name="pref_sound_boost_summary">Zwiększa głośność, ale może być powodem oversamplingu.</string>
     <string name="pref_sound_boost_modules">Podbij głośność modułów</string>
@@ -91,7 +91,7 @@
         \n4. Przytrzymaj przycisk Poprzedni/Następny aby odegrać poprzedni/następny plik w obecnym katalogu.
         \n\n\n=== Uwagi ===
         \n\n\n= C64 SID &amp; MUS =
-        \n\n* Odtwarzacz ma wbudowane długości utworu z HVSC #61. Nie możesz używać zewnętrznych plików. Zamierzam aktualizować wbudowaną baze długości piosenek kiedy będzie taka potrzeba. Zadecydowałem tak, ponieważ parsowanie oryginalnego pliku z bazy danych przy każdym starcie programu jest zbyt wolne. Przekonwertowałem bazę danych we własny, mały format w celu szybkiego i łatwego dostępu z poziomu odtwarzacza.
+        \n\n* Odtwarzacz ma wbudowane długości utworu z HVSC #63. Nie możesz używać zewnętrznych plików. Zamierzam aktualizować wbudowaną baze długości piosenek kiedy będzie taka potrzeba. Zadecydowałem tak, ponieważ parsowanie oryginalnego pliku z bazy danych przy każdym starcie programu jest zbyt wolne. Przekonwertowałem bazę danych we własny, mały format w celu szybkiego i łatwego dostępu z poziomu odtwarzacza.
         \n\n* Emulacja układu SID jest zasobożerna dla CPU (szczególnie RSID), więc spodziewaj się zacięć, jeżeli odtwarzasz w tle na mało wydajnym urządzeniu.
         \n\n\n= Moduły trackerowe =
         \n\n* Jeżeli moduł jest na końcu zapętlony, odtwarzacz zapętla tą część trzy razy, a następnie ładuje kolejny plik. Obecnie, użytkownik nie może tego zmienić.
@@ -102,7 +102,7 @@
         \nGme - http://code.google.com/p/game-music-emu
         \nAsap - http://asap.sourceforge.net
         \nStSound - http://leonard.oxg.free.fr/stsound.html
-        \nXmp - http://xmp.sourceforge.net
+        \nMikMod - http://mikmod.sourceforge.net
         \nSidPlay2 - http://sidplay2.sourceforge.net
         \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>
     <string name="filebrowser_directory">Katalog</string>

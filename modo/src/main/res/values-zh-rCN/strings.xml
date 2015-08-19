@@ -35,7 +35,7 @@
     <string name="menu_settings">设置</string>
     <string name="menu_about">关于</string>
     <string name="menu_help">帮助</string>
-    <string name="dialog_about">Modo v2.4\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal.\n\n尽享电子音乐！</string>
+    <string name="dialog_about">Modo v2.5\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal.\n\n尽享电子音乐！</string>
     <string name="pref_sound_boost">音量</string>
     <string name="pref_sound_boost_summary">增大音量，但会导致采样率过高。</string>
     <string name="pref_sound_boost_modules">模块音量</string>
@@ -91,7 +91,7 @@
         \n4. 按住 上一个/下一个 按钮来切换播放 上一个/下一个 文件。
         \n\n\n=== 备注 ===
         \n\n\n= C64 SID &amp; MUS =
-        \n\n* 本应用拥有内建歌曲长度(builtin songlength)给HVSC #61。你可以不使用外部文件。我将会根据需要升级builtin songlength数据库。我之所以这样做，是因为每次都要从文件里解析数据实在是太慢了。我已经把数据库转成一个可自定义的小文件格式里以便可以快速访问。
+        \n\n* 本应用拥有内建歌曲长度(builtin songlength)给HVSC #63。你可以不使用外部文件。我将会根据需要升级builtin songlength数据库。我之所以这样做，是因为每次都要从文件里解析数据实在是太慢了。我已经把数据库转成一个可自定义的小文件格式里以便可以快速访问。
         \n\n* SID模拟器是CPU密集的(特别是RSID)，所以如果你是要在一个低端手机上后台播放的话请expect stutter。
         \n\n\n= Tracker模块 =
         \n\n* 如果一个模块在结尾播放时循环，本播放器将会循环该部分三次然后读取下一个文件。遗憾的是，现在没有改变这个设置的选项。
@@ -102,7 +102,7 @@
         \nGme - http://code.google.com/p/game-music-emu
         \nAsap - http://asap.sourceforge.net
         \nStSound - http://leonard.oxg.free.fr/stsound.html
-        \nXmp - http://xmp.sourceforge.net
+        \nMikMod - http://mikmod.sourceforge.net
         \nSidPlay2 - http://sidplay2.sourceforge.net
         \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html
 		\n\n 欢迎来到汉化作者主页：czxinc.421y.com</string>

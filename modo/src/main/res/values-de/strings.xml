@@ -32,7 +32,7 @@
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_about">Über</string>
     <string name="menu_help">Hilfe</string>
-    <string name="dialog_about">Modo v2.4a\n\nvon\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanische Übersetzung von Gorka Oteiza.\n\nFranzösische Übersetzung von Zod.\n\nPolnische Übersetzung von Łukasz Wollnikowski.\n\nDank an Abrimaal, Frapsman123.\n\nViel Spass beim Hören!</string>
+    <string name="dialog_about">Modo v2.5\n\nvon\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanische Übersetzung von Gorka Oteiza.\n\nFranzösische Übersetzung von Zod.\n\nPolnische Übersetzung von Łukasz Wollnikowski.\n\nDank an Abrimaal, Frapsman123.\n\nViel Spass beim Hören!</string>
     <string name="pref_sound_boost">Verstärkung</string>
     <string name="pref_sound_boost_summary">Erhöht die Lautstärke, kann die Tonqualität beeinträchtigen.</string>    
     <string name="pref_sound_boost_modules">Verstärkung Module</string>
@@ -86,7 +86,7 @@
         \n4. Den Rücklauf/Vorlauf-Knopf halten um die nächste/vorherige Musikdatei im Verzeichnis anzuhören.
         \n\n\n=== Anmerkungen ===
         \n\n\n= C64 SID &amp; MUS =
-        \n\n* Es ist die HVSC#61 Datenbank für die Wiedergabezeiten direkt in den Player integriert. Man kann im Moment keine externe Datenbank verwenden.
+        \n\n* Es ist die HVSC#63 Datenbank für die Wiedergabezeiten direkt in den Player integriert. Man kann im Moment keine externe Datenbank verwenden.
         \n\n* SID-Emulation ist sehr CPU intensiv. Es kann zu Störungen in der Wiedergabe kommen, falls das Handy eine zu schwache CPU verwendet oder viele andere Hintergrundprozesse aktiv sind.
         \n\n\n= Tracker-Module =
         \n\n* Falls ein Modul am Ende auf ein vorheriges Pattern zurückspringt, wird dies dreimal durchgeführt, danach wird die nächste Datei geladen. Es gibt im Moment keine Einstellmöglichkeit um dies zu ändern.
@@ -99,7 +99,7 @@
         \nGme - http://code.google.com/p/game-music-emu
         \nAsap - http://asap.sourceforge.net
         \nStSound - http://leonard.oxg.free.fr/stsound.html
-        \nXmp - http://xmp.sourceforge.net
+        \nMikMod - http://mikmod.sourceforge.net
         \nSidPlay2 - http://sidplay2.sourceforge.net
         \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>        
     <string name="filebrowser_directory">Verzeichnis</string>
