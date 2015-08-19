@@ -364,11 +364,11 @@ implements	OnItemClickListener,
 	    		// We have to resume from a zip file
 	    		File zipSrc = new File(zipFileStr);
 	    		if (zipSrc.exists())
-	   				currentDirectory = new ModoFile(Modo.prefsIsZipFlat ? zipSrc.getName() : zipDirStr, zipSrc, true);
-	    			// zipSrc.getName() so that the current file name is displayed in title. Entry does not matter for parsing.
+					currentDirectory = new ModoFile(Modo.prefsIsZipFlat ? zipSrc.getName() : zipDirStr, zipSrc, true);
+	   			// zipSrc.getName() so that the current file name is displayed in title. Entry does not matter for parsing.
 	    	}
     	}
-    	
+
     	// In case everything goes wrong this is the fall back
     	if (currentDirectory == null)
     		currentDirectory = new File("/mnt/");
@@ -456,8 +456,9 @@ implements	OnItemClickListener,
 		} else if (selected.isDirectory()) {
 			populateFilelist(selected);
 		} else {
-			Modo.setPlaylist(fileAdapter.getVisibleFiles(), selected, currentDirectory instanceof ModoFile ? true : false);
+			Modo.setPlaylist(fileAdapter.getVisibleFiles(), selected, currentDirectory instanceof ModoFile ? true : false, position);
 			Intent modoplay  = new Intent(selected.getAbsolutePath());
+			Log.d(TAG, "selected: " + selected.getAbsolutePath());
 			setResult(RESULT_OK, modoplay);
 			finish();
 		}		
@@ -712,7 +713,8 @@ implements	OnItemClickListener,
 	}
 
 	static int getDrawableResourceForFile(File file) {	
-		//String fname = file.getName().toLowerCase(Locale.getDefault());
+		if (file.isDirectory())
+			return R.drawable.ic_file_folder;
 		return getDrawableResourceForName(file.getName().toLowerCase(Locale.getDefault()));
 	}
 

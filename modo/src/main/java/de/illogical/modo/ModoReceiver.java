@@ -20,6 +20,19 @@ final public class ModoReceiver extends BroadcastReceiver {
 			synchronized (Modo.sync) {
 				if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
 					switch (keyEvent.getKeyCode()) {
+						// adb shell input keycode <xx>
+						// 85  - MEDIA_PLAY_PAUSE
+						// 126 - MEDIA_PLAY
+						// 127 - MEDIA_PAUSE
+						// 88  - MEDIA_PREVIOUS
+						// 87  - MEDIA_NEXT
+						// 79  - HEADSETHOOK
+						case KeyEvent.KEYCODE_MEDIA_PAUSE:
+							Modo.myModo.MediaPause();
+							break;
+						case KeyEvent.KEYCODE_MEDIA_PLAY:
+							Modo.myModo.MediaPlay();
+							break;
 						case KeyEvent.KEYCODE_HEADSETHOOK:
 						case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
 							Modo.myModo.onClick_ButtonPauseResume(null);

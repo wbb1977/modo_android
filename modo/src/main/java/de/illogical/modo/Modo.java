@@ -13,6 +13,11 @@
 
 package de.illogical.modo;
 
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.session.MediaController;
+import android.os.Build;
 import android.support.v7.app.*;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,6 +53,7 @@ import android.os.Message;
 import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -223,8 +229,19 @@ implements	OnSeekBarChangeListener,
 	
 	// Restore / backup from cloud
 	BackupManager backup;
-	
-	// Listener when a new file is loaded to highlight current playlist / track
+
+    // Intents for notification
+    final static String INTENT_NOTIFICATION_NEXT = "de.illogical.modo.next";
+    final static String INTENT_NOTIFICATION_PREV = "de.illogical.modo.prev";
+    final static String INTENT_NOTIFICATION_PLAY = "de.illogical.modo.play";
+    final static String INTENT_NOTIFICATION_PAUSE = "de.illogical.modo.pause";
+
+    private PendingIntent intentNext;// = PendingIntent.getBroadcast(this, 2, new Intent("de.illogical.modo.next"), PendingIntent.FLAG_CANCEL_CURRENT);
+    private PendingIntent intentPrev;// = PendingIntent.getBroadcast(this, 2, new Intent("de.illogical.modo.prev"), PendingIntent.FLAG_CANCEL_CURRENT);
+    private PendingIntent intentPause;// = PendingIntent.getBroadcast(this, 2, new Intent("de.illogical.modo.play"), PendingIntent.FLAG_CANCEL_CURRENT);
+    private PendingIntent intentPlay;// = PendingIntent.getBroadcast(this, 2, new Intent("de.illogical.modo.pause"), PendingIntent.FLAG_CANCEL_CURRENT);
+
+    // Listener when a new file is loaded to highlight current playlist / track
 	private ArrayList<OnNextPlaylistEntryListener> listeners = new ArrayList<Modo.OnNextPlaylistEntryListener>(20);
 	
 	interface OnNextPlaylistEntryListener {
@@ -243,8 +260,8 @@ implements	OnSeekBarChangeListener,
 			ServicePlayer.p.setHandler(mHandler);
     		
     		if (!sp.isForeground()) { 
-    			Notification n = new Notification(R.drawable.modo, getText(R.string.enjoy_some_retro_music), System.currentTimeMillis());
-        		PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 2, new Intent(Modo.this, Modo.class), Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);     		
+    			Notification n = new Notification(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? R.drawable.modo_white : R.drawable.modo, getText(R.string.enjoy_some_retro_music), System.currentTimeMillis());
+        		PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 2, new Intent(Modo.this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);//Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         		n.setLatestEventInfo(getApplicationContext(), getText(R.string.service_started), getText(R.string.enjoy_some_retro_music), contentIntent);    			
     			sp.startForeground(1, n);
     			sp.setIsForeground(true);
@@ -540,6 +557,21 @@ implements	OnSeekBarChangeListener,
         prefsIsLoop = prefs.getBoolean("loop", false);
         prefsIs99 = prefs.getBoolean("loop99", false);
         prefsIsMediabuttons = prefs.getBoolean("mediabuttons", false);
+
+        //
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            IntentFilter filter = new IntentFilter();
+            filter.addAction("de.illogical.modo.next");
+            filter.addAction("de.illogical.modo.prev");
+            filter.addAction("de.illogical.modo.play");
+            filter.addAction("de.illogical.modo.pause");
+            registerReceiver(new NotificationReceiver(), filter);
+
+            intentNext = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
+            intentPrev = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PREV), PendingIntent.FLAG_UPDATE_CURRENT);
+            intentPause = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+            intentPlay = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PLAY), PendingIntent.FLAG_UPDATE_CURRENT);
+        }
     }
         
     protected void onStart() {
@@ -615,7 +647,7 @@ implements	OnSeekBarChangeListener,
         
     	//Log.e(TAG, "OnStart");    	
     }
-    
+
     protected void onResume() {
     	super.onResume();
     	buttonFilebrowser.setEnabled(true);
@@ -636,6 +668,8 @@ implements	OnSeekBarChangeListener,
     
     protected void onDestroy() {
 //        android.util.Log.e(TAG, "OnDestroy - executing service unbind");
+
+		backup.dataChanged();
 
     	if (isRealMachine)
     		mSensorManager.unregisterListener(mSensorListener);
@@ -779,12 +813,37 @@ implements	OnSeekBarChangeListener,
     @SuppressWarnings("deprecation")
 	void sendNotification(int resid) {
     	if (prefsIsNotifyOnTrackChange) {
-    		Notification n  = new Notification(R.drawable.modo, path.getName(), System.currentTimeMillis());
-    		PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);     		
-    		n.setLatestEventInfo(this, path.getName(), getText(resid), contentIntent);
-    		mNotificationManager.notify(1, n);
-    	}
+            if (resid == R.string.now_playing && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                // Try for Android 5
+                Notification.Builder builder = new Notification.Builder(getApplicationContext());
+				builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+                builder.setSmallIcon(R.drawable.modo_white);
+				builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.modo_white_2));
+				builder.setContentTitle(path.getName());
+                builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
+                //builder.setContentInfo(FileBrowser.getDescription(path));
+                builder.setSubText(FileBrowser.getDescription(path));
+                builder.addAction(android.R.drawable.ic_media_previous, "", intentPrev);
+                if (isFastForward || isPause)
+                    builder.addAction(android.R.drawable.ic_media_play, "", intentPlay);
+                else
+                    builder.addAction(android.R.drawable.ic_media_pause, "", intentPause);
+                builder.addAction(android.R.drawable.ic_media_next, "", intentNext);
+                builder.setStyle(new Notification.MediaStyle().setShowActionsInCompactView(0,1,2));
+                PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
+                builder.setContentIntent(contentIntent);
+                builder.setShowWhen(false);
+                Notification n = builder.build();
+                mNotificationManager.notify(1, n);
+            } else {
+                Notification n = new Notification(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? R.drawable.modo_white : R.drawable.modo, path.getName(), System.currentTimeMillis());
+                PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
+                n.setLatestEventInfo(this, path.getName(), getText(resid), contentIntent);
+                mNotificationManager.notify(1, n);
+            }
+        }
     }
+
 
     // only call if service is bound: sp != null, startTrack currently not used
     protected void prepareNextFile(int startTrack) {
@@ -913,8 +972,8 @@ implements	OnSeekBarChangeListener,
 			playtimeStamp = playtime;
 			return true;
 		}
-		
-		if (delta >= 1000 || forceUpdate) {
+
+		if (delta >= 100 || forceUpdate) {
 			playtimeStamp = playtime;
 			forceUpdate = false;
 			ymSeeking = false;
@@ -931,8 +990,8 @@ implements	OnSeekBarChangeListener,
     	    }
     	    	
     	    textPlaytimeMinutes.setText(TimeToString[min]);
-    	    textPlaytimeSeconds.setText(TimeToString[sec]);    			
-    		
+    	    textPlaytimeSeconds.setText(TimeToString[sec]);
+
     		if (!isUserSeeking)	{
     			if (decoder.isTrackerFormat())
     				seekPlaytime.setProgress((int)currentTrack); // mikmod
@@ -996,7 +1055,7 @@ implements	OnSeekBarChangeListener,
     		File lastUserDirectory = new File(prefs.getString("last_directory", ""));
     		if (lastUserDirectory.exists()) {
     			i.setAction(lastUserDirectory.getAbsolutePath());
-    		}
+			}
     	}
     	
     	startActivityForResult(i, 0);
@@ -1068,33 +1127,51 @@ implements	OnSeekBarChangeListener,
 		}
     	updateStatusButtons();
     }
-    
+
+	public void MediaPause() {
+		isFastForward = false;
+		isPause = false;
+		onClick_ButtonPauseResume(null);
+	}
+	public void MediaPlay() {
+		isFastForward = false;
+		isPause = true;
+		onClick_ButtonPauseResume(null);
+	}
+
     public void onClick_ButtonPauseResume(View v) {
-    	if (isFastForward) {
-    		isFastForward = false;
-    		isPause = false;
-    		ServicePlayer.p.resumePlayer();
-    	} else {
-    		isPause = !isPause;
-    		if (isPause)
-    			ServicePlayer.p.pausePlayer();
-    		else
-    			ServicePlayer.p.resumePlayer();
-    	}
-    	updateStatusButtons();
+		synchronized (sync) {
+			if (isFastForward) {
+				isFastForward = false;
+				isPause = false;
+				ServicePlayer.p.resumePlayer();
+			} else {
+				isPause = !isPause;
+				if (isPause)
+					ServicePlayer.p.pausePlayer();
+				else
+					ServicePlayer.p.resumePlayer();
+			}
+			updateStatusButtons();
+            sendNotification(R.string.now_playing);
+		}
     }
    
     public boolean onLongClick(View v) {
-    	if (v == buttonPrevTrack)
-    		playlist.reducePlayPosition();
-    	if (v == buttonNextTrack)
-    		playlist.advancePlayPosition();
-    	prepareNextFile(0);
+		synchronized (sync) {
+			if (v == buttonPrevTrack)
+				playlist.reducePlayPosition();
+			if (v == buttonNextTrack)
+				playlist.advancePlayPosition();
+			prepareNextFile(0);
+		}
     	return true;
     }
        
     public void onClick_ButtonPrevTrack(View v) {
     	synchronized (sync) {
+			//if (isPause)
+			//	return;
     		if (!isLoadingOkay)
     			return;    		
     		int diff = decoder.playtime() - playTimeFirstClickOnTrackZero;    		
@@ -1104,20 +1181,26 @@ implements	OnSeekBarChangeListener,
         	} else {
         		trackSelection(-1);
         		skipTrackUpdate = true;
-        	}
+                sendNotification(R.string.now_playing);
+            }
         }
     }
 
     public void onClick_ButtonNextTrack(View v) {
-		if (!isLoadingOkay)
-			return;    		
-    	if ((track + 1) >= tracks) {
-    		playlist.advancePlayPosition();
-    		prepareNextFile(0);
-    	} else {
-    		trackSelection(+1);
-    		skipTrackUpdate = true;
-    	}
+		synchronized (sync) {
+			//if (isPause)
+			//	return;
+			if (!isLoadingOkay)
+				return;
+			if ((track + 1) >= tracks) {
+				playlist.advancePlayPosition();
+				prepareNextFile(0);
+			} else {
+				trackSelection(+1);
+				skipTrackUpdate = true;
+                sendNotification(R.string.now_playing);
+			}
+		}
     }
     
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -1386,11 +1469,13 @@ implements	OnSeekBarChangeListener,
 	}
 	
 	// generate playlist from files
-	static void setPlaylist(ArrayList<File> pl, File playing, boolean withinZip) {
+	static void setPlaylist(ArrayList<File> pl, File playing, boolean withinZip, int selectedIndex) {
 		
 		synchronized(playlistSync) {
 		
-			withinZipfile = withinZip ? (ModoFile)pl.get(0) : null;
+			// If there is a mix of directories and files in current zipdir, selectedIndex get the right path of the user selected file.
+			//withinZipfile = withinZip ? (ModoFile)pl.get(0) : null;
+			withinZipfile = withinZip ? (ModoFile)pl.get(selectedIndex) : null;
 
 			for (Playlist.Entry pe: peCache) {
 				pe.path = null;
