@@ -7,59 +7,59 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 final public class ModoReceiver extends BroadcastReceiver {
-	public void onReceive(Context context, Intent intent) {
-		if (intent.getAction().equals(Intent.ACTION_MEDIA_BUTTON) && Modo.myModo != null && Modo.playlist != null && ServicePlayer.p != null) {
-			
-			// Pref "Ignore Mediabuttons" - true = ignore, false = process
-			if (Modo.myModo.prefsIsMediabuttons == true)
-				return;
-			
-			Bundle bundle = intent.getExtras();
-			KeyEvent keyEvent = (KeyEvent)bundle.get(Intent.EXTRA_KEY_EVENT);
+    public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equals(Intent.ACTION_MEDIA_BUTTON) && Modo.myModo != null && Modo.playlist != null && ServicePlayer.p != null) {
 
-			synchronized (Modo.sync) {
-				if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-					switch (keyEvent.getKeyCode()) {
-						// adb shell input keycode <xx>
-						// 85  - MEDIA_PLAY_PAUSE
-						// 126 - MEDIA_PLAY
-						// 127 - MEDIA_PAUSE
-						// 88  - MEDIA_PREVIOUS
-						// 87  - MEDIA_NEXT
-						// 79  - HEADSETHOOK
-						case KeyEvent.KEYCODE_MEDIA_PAUSE:
-							Modo.myModo.MediaPause();
-							break;
-						case KeyEvent.KEYCODE_MEDIA_PLAY:
-							Modo.myModo.MediaPlay();
-							break;
-						case KeyEvent.KEYCODE_HEADSETHOOK:
-						case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
-							Modo.myModo.onClick_ButtonPauseResume(null);
-							break;
-						case KeyEvent.KEYCODE_MEDIA_NEXT:
-							if (Modo.decoder != null && Modo.decoder instanceof MikModDecoder) {
-								synchronized (Modo.playlistSync) {
-									Modo.playlist.advancePlayPosition();
-									Modo.myModo.prepareNextFile(0);																	
-								}
-							} else {
-								Modo.myModo.onClick_ButtonNextTrack(null);
-							}
-							break;
-						case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-							if (Modo.decoder != null && Modo.decoder instanceof MikModDecoder) {
-								synchronized (Modo.playlistSync) {
-									Modo.playlist.reducePlayPosition();
-									Modo.myModo.prepareNextFile(0);																	
-								}
-							} else {
-								Modo.myModo.onClick_ButtonPrevTrack(null);
-							}
-							break;
-					}
-				}
-			}
-		}
-	}
+            // Pref "Ignore Mediabuttons" - true = ignore, false = process
+            if (Modo.myModo.prefsIsMediabuttons == true)
+                return;
+
+            Bundle bundle = intent.getExtras();
+            KeyEvent keyEvent = (KeyEvent)bundle.get(Intent.EXTRA_KEY_EVENT);
+
+            synchronized (Modo.sync) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyEvent.getKeyCode()) {
+                        // adb shell input keycode <xx>
+                        // 85  - MEDIA_PLAY_PAUSE
+                        // 126 - MEDIA_PLAY
+                        // 127 - MEDIA_PAUSE
+                        // 88  - MEDIA_PREVIOUS
+                        // 87  - MEDIA_NEXT
+                        // 79  - HEADSETHOOK
+                        case KeyEvent.KEYCODE_MEDIA_PAUSE:
+                            Modo.myModo.MediaPause();
+                            break;
+                        case KeyEvent.KEYCODE_MEDIA_PLAY:
+                            Modo.myModo.MediaPlay();
+                            break;
+                        case KeyEvent.KEYCODE_HEADSETHOOK:
+                        case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+                            Modo.myModo.onClick_ButtonPauseResume(null);
+                            break;
+                        case KeyEvent.KEYCODE_MEDIA_NEXT:
+                            if (Modo.decoder != null && Modo.decoder instanceof MikModDecoder) {
+                                synchronized (Modo.playlistSync) {
+                                    Modo.playlist.advancePlayPosition();
+                                    Modo.myModo.prepareNextFile(0);
+                                }
+                            } else {
+                                Modo.myModo.onClick_ButtonNextTrack(null);
+                            }
+                            break;
+                        case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
+                            if (Modo.decoder != null && Modo.decoder instanceof MikModDecoder) {
+                                synchronized (Modo.playlistSync) {
+                                    Modo.playlist.reducePlayPosition();
+                                    Modo.myModo.prepareNextFile(0);
+                                }
+                            } else {
+                                Modo.myModo.onClick_ButtonPrevTrack(null);
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+    }
 }

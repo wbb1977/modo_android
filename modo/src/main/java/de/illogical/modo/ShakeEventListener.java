@@ -67,7 +67,7 @@ final class ShakeEventListener implements SensorEventListener {
   }
 
   public void onSensorChanged(SensorEvent se) {
-	  
+
     // get sensor data
     float x = se.values[0]; //SensorManager.DATA_X
     float y = se.values[1]; //SensorManager.DATA_Y
@@ -133,10 +133,10 @@ final class ShakeEventListener implements SensorEventListener {
   }
   
   void setForce(int force, int changes, int pause) {
-	  resetShakeParameters();
-	  MIN_FORCE = force;
-	  MIN_DIRECTION_CHANGE = changes;
-	  MAX_PAUSE_BETHWEEN_DIRECTION_CHANGE = pause;
+      resetShakeParameters();
+      MIN_FORCE = force;
+      MIN_DIRECTION_CHANGE = changes;
+      MAX_PAUSE_BETHWEEN_DIRECTION_CHANGE = pause;
   }
     
 }
