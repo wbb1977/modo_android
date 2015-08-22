@@ -6,6 +6,7 @@ import com.att.preference.colorpicker.ColorPickerPreference;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -60,14 +61,15 @@ implements OnSharedPreferenceChangeListener {
 
         if (p instanceof ListPreference) {
             ListPreference lp = (ListPreference)p;
-            p.setSummary(Html.fromHtml(String.format("<i>%s</i><br>%s", lp.getEntry(), descriptions.get(key))));
+            //p.setSummary(Html.fromHtml(String.format("<i>%s</i><br>%s", lp.getEntry(), descriptions.get(key))));
+            p.setSummary("[ " + lp.getEntry() + " ]\n" + descriptions.get(key));
         } else if (p instanceof ColorPickerPreference){
-            p.setSummary(Html.fromHtml(String.format("%s", descriptions.get(key))));
+            p.setSummary(descriptions.get(key));
             root.setBackgroundColor(((ColorPickerPreference) p).getValue());
         } else if (p instanceof PrefStereo) {
-            p.setSummary(Html.fromHtml(String.format("<i>%s%%</i><br>%s", p.getSharedPreferences().getInt(key, 128) * 100 / 128, descriptions.get(key))));
+            p.setSummary("[ " + p.getSharedPreferences().getInt(key, 128) * 100 / 128 + "% ]\n" + descriptions.get(key));
         } else {
-            p.setSummary(Html.fromHtml(String.format("%s", descriptions.get(key))));
+            p.setSummary(descriptions.get(key));
         }
     }
 
