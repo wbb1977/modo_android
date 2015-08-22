@@ -835,14 +835,12 @@ implements	OnSeekBarChangeListener,
                 builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.modo_white_2));
                 builder.setContentTitle(path.getName());
                 builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
-                //builder.setContentInfo(FileBrowser.getDescription(path));
                 builder.setSubText(FileBrowser.getDescription(path));
                 builder.addAction(android.R.drawable.ic_media_previous, "", intentPrev);
                 if (isFastForward || isPause)
                     builder.addAction(android.R.drawable.ic_media_play, "", intentPlay);
                 else
                     builder.addAction(android.R.drawable.ic_media_pause, "", intentPause);
-                builder.setProgress(50, 40, false);
                 builder.addAction(android.R.drawable.ic_media_next, "", intentNext);
                 builder.addAction(android.R.drawable.ic_delete, "", intentStop);
                 builder.setStyle(new Notification.MediaStyle().setShowActionsInCompactView(0, 1, 2));
