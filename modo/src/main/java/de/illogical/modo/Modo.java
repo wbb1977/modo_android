@@ -235,11 +235,15 @@ implements	OnSeekBarChangeListener,
     final static String INTENT_NOTIFICATION_PREV = "de.illogical.modo.prev";
     final static String INTENT_NOTIFICATION_PLAY = "de.illogical.modo.play";
     final static String INTENT_NOTIFICATION_PAUSE = "de.illogical.modo.pause";
+    final static String INTENT_NOTIFICATION_STOP = "de.illogical.modo.stop";
 
     private PendingIntent intentNext;// = PendingIntent.getBroadcast(this, 2, new Intent("de.illogical.modo.next"), PendingIntent.FLAG_CANCEL_CURRENT);
     private PendingIntent intentPrev;// = PendingIntent.getBroadcast(this, 2, new Intent("de.illogical.modo.prev"), PendingIntent.FLAG_CANCEL_CURRENT);
     private PendingIntent intentPause;// = PendingIntent.getBroadcast(this, 2, new Intent("de.illogical.modo.play"), PendingIntent.FLAG_CANCEL_CURRENT);
     private PendingIntent intentPlay;// = PendingIntent.getBroadcast(this, 2, new Intent("de.illogical.modo.pause"), PendingIntent.FLAG_CANCEL_CURRENT);
+    private PendingIntent intentStop;
+
+    private NotificationReceiver notificationReceiver = null;
 
     // Listener when a new file is loaded to highlight current playlist / track
     private ArrayList<OnNextPlaylistEntryListener> listeners = new ArrayList<Modo.OnNextPlaylistEntryListener>(20);
@@ -561,16 +565,19 @@ implements	OnSeekBarChangeListener,
         //
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             IntentFilter filter = new IntentFilter();
-            filter.addAction("de.illogical.modo.next");
-            filter.addAction("de.illogical.modo.prev");
-            filter.addAction("de.illogical.modo.play");
-            filter.addAction("de.illogical.modo.pause");
-            registerReceiver(new NotificationReceiver(), filter);
+            filter.addAction(INTENT_NOTIFICATION_NEXT);
+            filter.addAction(INTENT_NOTIFICATION_PREV);
+            filter.addAction(INTENT_NOTIFICATION_PLAY);
+            filter.addAction(INTENT_NOTIFICATION_PAUSE);
+            filter.addAction(INTENT_NOTIFICATION_STOP);
+            notificationReceiver = new NotificationReceiver();
+            registerReceiver(notificationReceiver, filter);
 
             intentNext = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
             intentPrev = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PREV), PendingIntent.FLAG_UPDATE_CURRENT);
             intentPause = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
             intentPlay = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PLAY), PendingIntent.FLAG_UPDATE_CURRENT);
+            intentStop = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
         }
     }
         
@@ -682,13 +689,17 @@ implements	OnSeekBarChangeListener,
         
         if (loadFile != null)
             loadFile.cancel(true);
-        
+
+        if (notificationReceiver != null)
+            unregisterReceiver(notificationReceiver);
+
         unbindService(servicePlayerConnection);
 
         mNotificationManager.cancelAll();
 
         audioManager.unregisterMediaButtonEventReceiver(cc);
         soundPool.release();
+
 
         edit.putBoolean("loop", prefsIsLoop);
         edit.putBoolean("loop99", prefsIs99);
@@ -810,8 +821,11 @@ implements	OnSeekBarChangeListener,
         seekPlaytime.setEnabled(isLoadingOkay && !isPause);
     }
     
-    @SuppressWarnings("deprecation")
     void sendNotification(int resid) {
+        sendNotification(resid, -1);
+    }
+
+    void sendNotification(int resid, int progress) {
         if (prefsIsNotifyOnTrackChange) {
             if (resid == R.string.now_playing && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 // Try for Android 5
@@ -828,8 +842,10 @@ implements	OnSeekBarChangeListener,
                     builder.addAction(android.R.drawable.ic_media_play, "", intentPlay);
                 else
                     builder.addAction(android.R.drawable.ic_media_pause, "", intentPause);
+                builder.setProgress(50, 40, false);
                 builder.addAction(android.R.drawable.ic_media_next, "", intentNext);
-                builder.setStyle(new Notification.MediaStyle().setShowActionsInCompactView(0,1,2));
+                builder.addAction(android.R.drawable.ic_delete, "", intentStop);
+                builder.setStyle(new Notification.MediaStyle().setShowActionsInCompactView(0, 1, 2));
                 PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
                 builder.setContentIntent(contentIntent);
                 builder.setShowWhen(false);
@@ -995,10 +1011,11 @@ implements	OnSeekBarChangeListener,
             textPlaytimeSeconds.setText(TimeToString[sec]);
 
             if (!isUserSeeking)	{
-                if (decoder.isTrackerFormat())
-                    seekPlaytime.setProgress((int)currentTrack); // mikmod
-                else
-                    seekPlaytime.setProgress((int)(100 * playtime / trackLength));
+                if (decoder.isTrackerFormat()) {
+                    seekPlaytime.setProgress((int) currentTrack); // mikmod
+                } else {
+                    seekPlaytime.setProgress((int) (100 * playtime / trackLength));
+                }
             }
 
             if (decoder.isTrackerFormat() && !skipTrackUpdate)

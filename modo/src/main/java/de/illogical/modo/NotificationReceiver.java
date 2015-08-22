@@ -13,6 +13,9 @@ final public class NotificationReceiver extends android.content.BroadcastReceive
         if (Modo.myModo != null && Modo.playlist != null && ServicePlayer.p != null) {
             synchronized (Modo.sync) {
                 switch (intent.getAction()) {
+                    case "de.illogical.modo.finish":
+                        Modo.myModo.finish();
+                        break;
                     case Modo.INTENT_NOTIFICATION_PLAY:
                         Modo.myModo.MediaPlay();
                         break;
@@ -38,6 +41,12 @@ final public class NotificationReceiver extends android.content.BroadcastReceive
                         } else {
                             Modo.myModo.onClick_ButtonPrevTrack(null);
                         }
+                        break;
+                    case Modo.INTENT_NOTIFICATION_STOP:
+                        Modo.myModo.finish();
+                        break;
+                    default:
+                        android.util.Log.d("IntentReceiver", "Unhandled intent: " + intent.getAction());
                         break;
                 }
             }
