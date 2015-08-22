@@ -832,7 +832,7 @@ implements	OnSeekBarChangeListener,
                 Notification.Builder builder = new Notification.Builder(getApplicationContext());
                 builder.setVisibility(Notification.VISIBILITY_PUBLIC);
                 builder.setSmallIcon(R.drawable.modo_white);
-                builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.modo_white_2));
+                //builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.modo_white_2));
                 builder.setContentTitle(path.getName());
                 builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
                 builder.setSubText(FileBrowser.getDescription(path));

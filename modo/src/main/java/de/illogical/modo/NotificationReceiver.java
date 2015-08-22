@@ -43,6 +43,7 @@ final public class NotificationReceiver extends android.content.BroadcastReceive
                         }
                         break;
                     case Modo.INTENT_NOTIFICATION_STOP:
+                        Modo.myModo.MediaPause();
                         Modo.myModo.finish();
                         break;
                     default:
