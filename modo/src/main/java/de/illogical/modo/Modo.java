@@ -124,6 +124,7 @@ implements	OnSeekBarChangeListener,
     private boolean isFastForward = false;
     private int playTimeFirstClickOnTrackZero = 0;
     private boolean skipTrackUpdate =  false;
+    private int beepdelta = 0;
 
     // Preferences settings
     static int prefsSoundboost = 0; // Used by playback service.
@@ -299,7 +300,7 @@ implements	OnSeekBarChangeListener,
                         // restore progressbar
                         seekPlaytime.setMax(decoder.isTrackerFormat() ? decoder.tracks() - 1 : 100);
                         if (decoder.isTrackerFormat())
-                            seekPlaytime.setProgress((int)track); // mikmod
+                            seekPlaytime.setProgress(track); // mikmod
                         else
                             seekPlaytime.setProgress((int)(100 * decoder.playtime() / trackLength));
 
@@ -501,7 +502,7 @@ implements	OnSeekBarChangeListener,
         buttonPrevTrack = (ImageButton)findViewById(R.id.buttonPrevTrack);
         buttonNextTrack = (ImageButton)findViewById(R.id.buttonNextTrack);
         buttonPauseResume = (ImageButton)findViewById(R.id.buttonPauseResume);
-        buttonFilebrowser = (View)findViewById(R.id.buttonFilebrowser);
+        buttonFilebrowser = findViewById(R.id.buttonFilebrowser);
         
         Typeface font = Typeface.createFromAsset(getAssets(), "digital-7 (mono).ttf");
         textTrackLength.setTypeface(font);
@@ -665,7 +666,7 @@ implements	OnSeekBarChangeListener,
         // only terminate if not playing music
         if (buttonPauseResume.isEnabled() && isPause == false) { // isplaying!
             moveTaskToBack(true);
-            Toast.makeText(getApplicationContext(), R.string.info_service_continue, Toast.LENGTH_LONG).show();
+            Boast.makeText(getApplicationContext(), R.string.info_service_continue, Toast.LENGTH_LONG).show();
         } else {
             super.onBackPressed();
             finish();
@@ -710,7 +711,7 @@ implements	OnSeekBarChangeListener,
     }
     
     public void finish() {
-        Toast.makeText(getApplicationContext(), R.string.info_service_terminated, Toast.LENGTH_LONG).show();
+        Boast.makeText(getApplicationContext(), R.string.info_service_terminated, Toast.LENGTH_LONG).show();
         if (sp != null)
             sp.stopSelf();
         if (loadFile != null)
@@ -881,6 +882,7 @@ implements	OnSeekBarChangeListener,
 
         // Check for automatic exit of the player
         if (playlist.allPlayed() && prefsAutomaticAction == ACTION_EXIT) {
+            MediaPause();
             finish();
             return;
         }
@@ -940,9 +942,11 @@ implements	OnSeekBarChangeListener,
         }
 
         if (msg.what == MESSAGE_SHAKE) {
-            soundPool.play(soundBeeps[SOUND_INDEX_BEEP_LOW], 1f, 1f, 0, 0, 1f);
-            if (buttonNextTrack.isEnabled())
-                buttonNextTrack.performLongClick();
+            if (!isPause) {
+                soundPool.play(soundBeeps[SOUND_INDEX_BEEP_LOW], 1f, 1f, 0, 0, 1f);
+                if (buttonNextTrack.isEnabled())
+                    buttonNextTrack.performLongClick();
+            }
             return true;
         }
 
@@ -1023,22 +1027,28 @@ implements	OnSeekBarChangeListener,
         }
         return true;
     }
-    
+
     void updateSleepTimer(int deltaTime)
     {
         if (deltaTime < 0 || deltaTime > 1200)
             return;
         if (sleepTimer > 0) {
+            beepdelta += deltaTime;
             sleepTimer -= (isFastForward ? deltaTime / 2 : deltaTime);
             if (sleepTimer <= 0) {
                 sleepTimer = 0;
+                MediaPause();
                 finish();
-            } else if (sleepTimer < 11000 && deltaTime >= 1000) {
+            } else if (sleepTimer < 11000 && beepdelta >= 2000) {
+                beepdelta = 0;
                 soundPool.play(soundBeeps[SOUND_INDEX_BEEP_HIGH], 1f, 1f, 0, 1, 2f);
-            } else if (sleepTimer < 31000 && deltaTime >= 1000) {
+            } else if (sleepTimer < 31000 && beepdelta >= 2000) {
+                beepdelta = 0;
                 soundPool.play(soundBeeps[SOUND_INDEX_BEEP_LOW], 1f, 1f, 0, 0, 1f);
             }
             updateTitle();
+        } else {
+            beepdelta = 0;
         }
     }
     
@@ -1323,15 +1333,15 @@ implements	OnSeekBarChangeListener,
                 //prefsIsLoop = !prefsIsLoop;
                 updateShuffleLoopText();
                 if (prefsIs99) {
-                    Toast.makeText(getApplicationContext(), R.string.info_loop_99, Toast.LENGTH_SHORT).show();
+                    Boast.makeText(getApplicationContext(), R.string.info_loop_99, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), prefsIsLoop ? R.string.info_loop_on : R.string.info_loop_off, Toast.LENGTH_SHORT).show();
+                    Boast.makeText(getApplicationContext(), prefsIsLoop ? R.string.info_loop_on : R.string.info_loop_off, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.menu_shuffle:
                 prefsIsShuffle = !prefsIsShuffle;
                 updateShuffleLoopText();
-                Toast.makeText(getApplicationContext(), prefsIsShuffle ? R.string.info_shuffle_on : R.string.info_shuffle_off, Toast.LENGTH_SHORT).show();
+                Boast.makeText(getApplicationContext(), prefsIsShuffle ? R.string.info_shuffle_on : R.string.info_shuffle_off, Toast.LENGTH_SHORT).show();
                 if (playlist != null) {
                     synchronized (Modo.playlistSync) {
                         if (prefsIsShuffle)
@@ -1420,7 +1430,7 @@ implements	OnSeekBarChangeListener,
                     }
                 } else {
                     if (!isUserNotfied)
-                        Toast.makeText(getApplicationContext(), R.string.seek_warning_forward, Toast.LENGTH_LONG).show();
+                        Boast.makeText(getApplicationContext(), R.string.seek_warning_forward, Toast.LENGTH_LONG).show();
 
                     isUserNotfied = true;
                     isFastForward = true;
