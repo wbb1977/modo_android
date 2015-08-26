@@ -5,7 +5,7 @@
     <string name="seek_warning_forward">对不起。此格式并不支持跳转。只能快进。</string>
     <string name="button_filebrowser">浏览</string>
     <string name="text_track"> 0 / 0 </string>
-    <string name="loading_failed">:: !读取失败! ::</string>
+    <string name="loading_failed">[ !读取失败! ]</string>
     <string name="hint_loadfile">触击 \&quot;浏览\&quot; 以开始音乐之旅</string>
     <string name="app_description">播放8/16位电子音乐:)</string>
     <string name="reading_directory">正在读取文件夹&#8230;</string>
@@ -35,7 +35,7 @@
     <string name="menu_settings">设置</string>
     <string name="menu_about">关于</string>
     <string name="menu_help">帮助</string>
-    <string name="dialog_about">Modo v2.5\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal.\n\n尽享电子音乐！</string>
+    <string name="dialog_about">Modo v2.5\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal, Frapsman123, Aron Alliston.\n\n尽享电子音乐！</string>
     <string name="pref_sound_boost">音量</string>
     <string name="pref_sound_boost_summary">增大音量，但会导致采样率过高。</string>
     <string name="pref_sound_boost_modules">模块音量</string>
