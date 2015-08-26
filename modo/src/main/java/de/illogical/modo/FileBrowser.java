@@ -725,97 +725,97 @@ implements	OnItemClickListener,
 
         // YM Decoder supported files
         if (fname.endsWith(".ym"))
-            return R.drawable.file_abri_atari_ym2;
+            return R.drawable.file_atari_red;
 
         // GME Decoder supported files
         if (fname.endsWith(".kss"))
-            return R.drawable.file_abri_msx;
+            return R.drawable.file_msx;
 
         if (fname.endsWith(".hes"))
-            return R.drawable.file_abri_pcengine2;
+            return R.drawable.file_pcengine;
 
         if (fname.endsWith(".vgz"))
-            return R.drawable.file_abri_sega;
+            return R.drawable.file_sega;
 
         if (fname.endsWith(".vgm"))
-            return R.drawable.file_abri_sega;
+            return R.drawable.file_sega;
 
         if (fname.endsWith(".ay"))
-            return R.drawable.file_abri_ay2;
+            return R.drawable.file_ay;
 
         if (fname.endsWith(".ayt"))
-            return R.drawable.file_abri_ay2;
+            return R.drawable.file_ay;
 
         if (fname.endsWith(".gym"))
-            return R.drawable.file_abri_sega;
+            return R.drawable.file_sega;
 
         if (fname.endsWith(".nsf"))
-            return R.drawable.file_abri_nes3;
+            return R.drawable.file_nes;
 
         if (fname.endsWith(".nsfe"))
-            return R.drawable.file_abri_nes3;
+            return R.drawable.file_nes;
 
         if (fname.endsWith(".sap"))
-            return R.drawable.file_abri_atari_sap2;
+            return R.drawable.file_atari_green;
 
         if (fname.endsWith(".spc"))
-            return R.drawable.file_abri_snes;
+            return R.drawable.file_snes;
 
         if (fname.endsWith(".rsn"))
-            return R.drawable.file_abri_snes;
+            return R.drawable.file_snes;
 
         if (fname.endsWith(".gbs"))
-            return R.drawable.file_abri_gameboy;
+            return R.drawable.file_gameboy;
 
         // Mikmod
         if (fname.endsWith(".mod"))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.endsWith(".xm"))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.endsWith(".s3m"))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.endsWith(".it"))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.endsWith(".med"))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.endsWith(".okt"))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         //if (fname.endsWith(".umx"))
         //	return R.drawable.file_abri_amiga;
 
         if (fname.startsWith("mod."))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.startsWith("xm."))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.startsWith("s3m."))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.startsWith("it."))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.startsWith("med."))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         if (fname.startsWith("okt."))
-            return R.drawable.file_abri_amiga;
+            return R.drawable.file_amiga;
 
         //if (fname.startsWith("umx."))
         //	return R.drawable.file_abri_amiga;
 
         // sidplay2
         if (fname.endsWith(".sid"))
-            return R.drawable.file_abri_c64;
+            return R.drawable.file_c64;
 
         if (fname.endsWith(".mus"))
-            return R.drawable.file_abri_c64;
+            return R.drawable.file_c64;
 
         // unknown file
         return R.drawable.icon;
