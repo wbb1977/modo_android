@@ -370,7 +370,7 @@ implements	OnSeekBarChangeListener,
         }
 
         protected Integer doInBackground(Integer... params) {
-            try { Thread.sleep(5000); } catch (InterruptedException e ) {}
+            try { Thread.sleep(1000); } catch (InterruptedException e ) {}
             return 1;
         }
     }
@@ -879,6 +879,11 @@ implements	OnSeekBarChangeListener,
         // Always cancel first
         if (loadFile != null)
             loadFile.cancel(true);
+
+        if (loadNextFile != null) {
+            loadNextFile.cancel(true);
+            loadNextFile = null;
+        }
 
         // Check for automatic exit of the player
         if (playlist.allPlayed() && prefsAutomaticAction == ACTION_EXIT) {
