@@ -5,7 +5,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent" android:orientation="horizontal">
   <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="0.4">
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="2" android:drawableLeft="@drawable/file_abri_amiga" android:layout_marginLeft="10dip" android:textColor="@color/white_text" android:text="@string/welcome" android:drawablePadding="5dip" android:id="@+id/textFileInfo" android:lineSpacingMultiplier="1.5" android:layout_marginTop="5dip"></TextView>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="2" android:drawableLeft="@drawable/file_amiga" android:layout_marginLeft="10dip" android:textColor="@color/white_text" android:text="@string/welcome" android:drawablePadding="5dip" android:id="@+id/textFileInfo" android:lineSpacingMultiplier="1.5" android:layout_marginTop="5dip"></TextView>
     <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:id="@+id/linearLayout1" android:layout_height="3px" android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:background="@drawable/gradient_line"></LinearLayout>
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout10" android:gravity="center">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:typeface="monospace" android:textSize="20dip" android:textColor="@color/white_text" android:text="00" android:id="@+id/textPlaytimeMinutes" android:singleLine="true"></TextView>
