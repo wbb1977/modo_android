@@ -52,7 +52,7 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_about">About</string>
     <string name="menu_help">Help</string>
-    <string name="dialog_about">Modo v2.5\n\nby\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanish translation by Gorka Oteiza.\n\nFrench translation by Zod.\n\nChinese translation by SuperMarioX.\n\nPolish translation by Łukasz Wollnikowski.\n\nThanks to Abrimaal, Frapsman123, Aron Alliston.\n\nEnjoy some great tunes!</string>
+    <string name="dialog_about">Modo v2.5a\n\nby\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanish translation by Gorka Oteiza.\n\nFrench translation by Zod.\n\nChinese translation by SuperMarioX.\n\nPolish translation by Łukasz Wollnikowski.\n\nThanks to Abrimaal, Frapsman123, Aron Alliston.\n\nEnjoy some great tunes!</string>
     <string name="pref_sound_boost">Volume boost</string>
     <string name="pref_sound_boost_summary">Increases the volume, but can result in oversampling.</string>
     <string name="pref_sound_boost_modules">Volume boost modules</string>
@@ -79,6 +79,34 @@
     <string name="pref_sound_boost_summary_ym">File extension: .ym</string>
     <string name="pref_sound_boost_sid">Volume boost C64</string>
     <string name="pref_sound_boost_summary_sid">File extensions: .sid, .mus</string>
+    <string name="pref_fade">Fade in/out duration</string>
+    <string name="pref_fade_summary">Does not apply to tracker modules.</string>
+    <string-array name="arr_fade">
+        <item>Disable</item>
+        <item>1 second</item>
+        <item>2 sconds</item>
+        <item>3 seconds</item>
+        <item>4 second</item>
+        <item>5 sconds</item>
+        <item>6 seconds</item>
+        <item>7 second</item>
+        <item>8 sconds</item>
+        <item>9 seconds</item>
+        <item>10 seconds</item>
+    </string-array>
+    <string-array translatable="false" name="arr_fade_entries">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 
     <string-array name="arr_sound_boost">
         <item>No boost</item>

@@ -35,7 +35,7 @@
     <string name="menu_settings">设置</string>
     <string name="menu_about">关于</string>
     <string name="menu_help">帮助</string>
-    <string name="dialog_about">Modo v2.5\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal, Frapsman123, Aron Alliston.\n\n尽享电子音乐！</string>
+    <string name="dialog_about">Modo v2.5a\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal, Frapsman123, Aron Alliston.\n\n尽享电子音乐！</string>
     <string name="pref_sound_boost">音量</string>
     <string name="pref_sound_boost_summary">增大音量，但会导致采样率过高。</string>
     <string name="pref_sound_boost_modules">模块音量</string>
@@ -164,6 +164,23 @@
         <item>30秒</item>
         <item>60秒</item>
     </string-array>
+
+    <string name="pref_fade">Fade in/out</string>
+    <string name="pref_fade_summary">Does not apply to tracker modules.</string>
+    <string-array name="arr_fade">
+        <item>关闭</item>
+        <item>1秒</item>
+        <item>2秒</item>
+        <item>3秒</item>
+        <item>4秒</item>
+        <item>5秒</item>
+        <item>6秒</item>
+        <item>7秒</item>
+        <item>8秒</item>
+        <item>9秒</item>
+        <item>10秒</item>
+    </string-array>
+
 
     <string name="browser_one_level_up">上一级</string>
     <string name="browser_parent_directory">目录</string>
