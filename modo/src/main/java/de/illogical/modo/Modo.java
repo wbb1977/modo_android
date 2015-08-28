@@ -124,7 +124,7 @@ implements	OnSeekBarChangeListener,
     private boolean isFastForward = false;
     private int playTimeFirstClickOnTrackZero = 0;
     private boolean skipTrackUpdate =  false;
-    private int beepdelta = 0;
+    //private int beepdelta = 0;
 
     // Preferences settings
     static int prefsSoundboost = 0; // Used by playback service.
@@ -161,6 +161,7 @@ implements	OnSeekBarChangeListener,
     private int prefsStereoSeparation;
     private int prefsShakeLevel;
     private int prefsAutomaticAction;
+    private int prefsFadeSeconds;
     private Editor edit;
 
     // Seekbar
@@ -585,6 +586,7 @@ implements	OnSeekBarChangeListener,
     protected void onStart() {
         super.onStart();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefsFadeSeconds = Integer.valueOf(prefs.getString("fade","0"));
         prefsIsNotifyOnTrackChange = true; //prefs.getBoolean("notification", true);
         prefsDefaultTrackLength = Integer.valueOf(prefs.getString("stdplaytime", "180000"));
         prefSilence = Integer.valueOf(prefs.getString("silence", "4"));
@@ -833,7 +835,6 @@ implements	OnSeekBarChangeListener,
                 Notification.Builder builder = new Notification.Builder(getApplicationContext());
                 builder.setVisibility(Notification.VISIBILITY_PUBLIC);
                 builder.setSmallIcon(R.drawable.modo_white);
-                //builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.modo_white_2));
                 builder.setContentTitle(path.getName());
                 builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
                 builder.setSubText(FileBrowser.getDescription(path));
@@ -932,6 +933,11 @@ implements	OnSeekBarChangeListener,
             saveTrackInfo();
             updateStatusButtons();
             updatePlaytimeDisplayAfterTrackChange();
+
+            // Fade in / out
+            ServicePlayer.p.disableFadeInOut();
+            if (!decoder.isTrackerFormat())
+                ServicePlayer.p.setFadeInOut(prefsFadeSeconds, (int)trackLength);
         }
     }
     
@@ -942,7 +948,8 @@ implements	OnSeekBarChangeListener,
 
         if(msg.what == MESSAGE_AUDIOFOCUS_CHANGE) {
             onAudioFocusChange(msg.arg1);
-            sendNotification(R.string.now_playing); // update notification controls if another app returns or get the audio focus
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                sendNotification(R.string.now_playing); // update notification controls if another app returns or get the audio focus
             return true;
         }
 
@@ -993,12 +1000,12 @@ implements	OnSeekBarChangeListener,
         }
 
         // after trackChange, bad things can happen
-        if (delta > 2000) {
+        if (delta > 1200) {
             playtimeStamp = playtime;
             return true;
         }
 
-        if (delta >= 100 || forceUpdate) {
+        if (delta >= 1000 || forceUpdate) {
             playtimeStamp = playtime;
             forceUpdate = false;
             ymSeeking = false;
@@ -1038,23 +1045,24 @@ implements	OnSeekBarChangeListener,
         if (deltaTime < 0 || deltaTime > 1200)
             return;
         if (sleepTimer > 0) {
-            beepdelta += deltaTime;
+            //beepdelta += deltaTime;
             sleepTimer -= (isFastForward ? deltaTime / 2 : deltaTime);
             if (sleepTimer <= 0) {
                 sleepTimer = 0;
                 MediaPause();
                 finish();
-            } else if (sleepTimer < 11000 && beepdelta >= 2000) {
+            }
+            /*else if (sleepTimer < 11000 && beepdelta >= 2000) {
                 beepdelta = 0;
                 soundPool.play(soundBeeps[SOUND_INDEX_BEEP_HIGH], 1f, 1f, 0, 1, 2f);
             } else if (sleepTimer < 31000 && beepdelta >= 2000) {
                 beepdelta = 0;
                 soundPool.play(soundBeeps[SOUND_INDEX_BEEP_LOW], 1f, 1f, 0, 0, 1f);
-            }
+            }*/
             updateTitle();
-        } else {
+        } /*else {
             beepdelta = 0;
-        }
+        }*/
     }
     
     public void onClick_ButtonFilebrowser(View v) {
@@ -1140,18 +1148,14 @@ implements	OnSeekBarChangeListener,
             case AudioManager.AUDIOFOCUS_GAIN:
             case AudioManager.AUDIOFOCUS_GAIN_TRANSIENT:
             case AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK:
-                isPause = pauseStatusOnAudioFocusLost;
                 isFastForward = false;
                 if (!isPause)
                     ServicePlayer.p.resumePlayer();
                 break;
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                pauseStatusOnAudioFocusLost = isPause;
-                isFastForward = false;
                 break;
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
             case AudioManager.AUDIOFOCUS_LOSS:
-                pauseStatusOnAudioFocusLost = isPause;
                 isPause = true;
                 isFastForward = false;
                 ServicePlayer.p.pausePlayer();
@@ -1177,12 +1181,15 @@ implements	OnSeekBarChangeListener,
                 isFastForward = false;
                 isPause = false;
                 ServicePlayer.p.resumePlayer();
+                ServicePlayer.p.requestAudioFocus();
             } else {
                 isPause = !isPause;
-                if (isPause)
+                if (isPause) {
                     ServicePlayer.p.pausePlayer();
-                else
+                } else {
                     ServicePlayer.p.resumePlayer();
+                    ServicePlayer.p.requestAudioFocus();
+                }
             }
             updateStatusButtons();
             sendNotification(R.string.now_playing);

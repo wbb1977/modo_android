@@ -21,7 +21,14 @@ final public class Player extends Thread implements OnAudioFocusChangeListener {
 
     private Handler mHandler = null;
     private Message updateGuiMessage = null;
-    
+
+    private float fadeStep = 0.05f;
+    private int songlength = 0;
+    private int fadeInTime = 0;
+    private int fadeOutTime = 0;
+    private float vol = 1.0f;
+    private boolean isFade = false;
+
     // One audiotrack for the process
     static AudioTrack at = null;
 
@@ -58,9 +65,6 @@ final public class Player extends Thread implements OnAudioFocusChangeListener {
     void resumePlayer() {
         fastForward = false;
         pause = false;
-
-        int focusGranted = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-        audioFocusVolume = (focusGranted == AudioManager.AUDIOFOCUS_REQUEST_GRANTED ? 1.0f : 0.0f);
     }
 
     void stopPlayer() {
@@ -77,13 +81,44 @@ final public class Player extends Thread implements OnAudioFocusChangeListener {
         mHandler = h;
     }
 
+    void setFadeInOut(int seconds, int songlength) {
+        // check songlength does not even allow to fade in / out one second just disable
+        if (seconds <= 0 || songlength <= 3000) {
+            disableFadeInOut();
+            return;
+        }
+        isFade = true;
+        this.songlength = songlength;
+        // check songlength is not big enough to fade in and out => use one second to fade in / out.
+        if ((seconds * 1000 * 2 + 1000) > songlength)
+            seconds = 1;
+        fadeStep = 1.0f / (seconds * 5);
+        vol = 0 - fadeStep; // so fade in starts from silence
+        fadeInTime = seconds * 1000;
+        fadeOutTime = seconds * 1000;
+    }
+
+    void disableFadeInOut() {
+        isFade = false;
+    }
+
+    void fade(short[] samples, int percent) {
+        for (int i = 0, len = samples.length; i < len; ++i)
+            samples[i] = (short) (samples[i] * percent / 100);
+    }
+
+    void requestAudioFocus () {
+        int focusGranted = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+        audioFocusVolume = (focusGranted == AudioManager.AUDIOFOCUS_REQUEST_GRANTED ? 1.0f : 0.0f);
+    }
+
     public void run() {
         short[] samples = { 0, 0, 0, 0, 0, 0, 0 };
         int playtime = 0;
 
         int focusGranted = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         audioFocusVolume = (focusGranted == AudioManager.AUDIOFOCUS_REQUEST_GRANTED ? 1.0f : 0.0f);
-       
+
         while(abort == false) {       	
             if (pause) {
                 SystemClock.sleep(50);
@@ -115,8 +150,18 @@ final public class Player extends Thread implements OnAudioFocusChangeListener {
                         else if (sample < Short.MIN_VALUE)
                             samples[i] = Short.MIN_VALUE;
                         else
-                            samples[i] = (short)sample;
+                            samples[i] = (short) sample;
                     }
+                }
+
+                if (isFade && (songlength - playtime) <= fadeOutTime) {  // handle fade out
+                    vol = vol - (fadeStep * (fastForward ? 2 : 1));
+                    fade(samples, vol < 0.0f ? 0 : (int)(vol * 100));
+                } else if (isFade && playtime <= fadeInTime) { // handle fade in
+                    vol = vol + (fadeStep * (fastForward ? 2 : 1));
+                    fade(samples, vol > 1.0f ? 100 : (int)(vol * 100));
+                } else if (isFade) {
+                    vol = 1.0f; // restore vol for fade out
                 }
 
                 if (at.getState() == AudioTrack.STATE_INITIALIZED) {
