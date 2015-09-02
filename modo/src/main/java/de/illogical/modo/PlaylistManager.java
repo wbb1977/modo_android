@@ -64,6 +64,7 @@ final class PlaylistManager {
         }
     }
 
+    static boolean isAllowDups = true;
     static boolean isLoaded = false;
 
     static void loadFromSQL(Context c) {
@@ -243,7 +244,7 @@ final class PlaylistManager {
 
     static int addEntry(String playlist_name, String path, String zipEntry, int start) {
         if (playlists.containsKey(playlist_name)) {
-            return playlists.get(playlist_name).add(path, zipEntry, start);
+            return playlists.get(playlist_name).add(path, zipEntry, start, PlaylistManager.isAllowDups);
         }
         return 0;
     }

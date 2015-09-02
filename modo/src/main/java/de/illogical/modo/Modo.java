@@ -162,6 +162,7 @@ implements	OnSeekBarChangeListener,
     private int prefsShakeLevel;
     private int prefsAutomaticAction;
     private int prefsFadeSeconds;
+    private boolean prefsAllowDups;
     private Editor edit;
 
     // Seekbar
@@ -480,6 +481,13 @@ implements	OnSeekBarChangeListener,
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME);
         getSupportActionBar().setIcon(R.drawable.modo);
 
+        //
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefsIsShuffle = prefs.getBoolean("shuffle", false);
+        prefsIsLoop = prefs.getBoolean("loop", false);
+        prefsIs99 = prefs.getBoolean("loop99", false);
+        prefsIsMediabuttons = prefs.getBoolean("mediabuttons", false);
+
         PlaylistManager.loadFromSQL(getApplicationContext());
 
         mHandler = new Handler(this);
@@ -556,13 +564,6 @@ implements	OnSeekBarChangeListener,
 
         // Dirty hack for Media Buttons receiver, improve??
         myModo = this;
-        
-        //
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        prefsIsShuffle = prefs.getBoolean("shuffle", false);
-        prefsIsLoop = prefs.getBoolean("loop", false);
-        prefsIs99 = prefs.getBoolean("loop99", false);
-        prefsIsMediabuttons = prefs.getBoolean("mediabuttons", false);
 
         //
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -585,6 +586,7 @@ implements	OnSeekBarChangeListener,
         
     protected void onStart() {
         super.onStart();
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefsFadeSeconds = Integer.valueOf(prefs.getString("fade","0"));
         prefsIsNotifyOnTrackChange = true; //prefs.getBoolean("notification", true);
@@ -612,9 +614,11 @@ implements	OnSeekBarChangeListener,
         prefsFormatSoundboost[BOOST_GYM] = Integer.valueOf(prefs.getString("soundboost_gym", "0"));
         prefsFormatSoundboost[BOOST_SID] = Integer.valueOf(prefs.getString("soundboost_sid", "0"));
         prefsFormatSoundboost[BOOST_GBS] = Integer.valueOf(prefs.getString("soundboost_gbs", "0"));
-        
+        prefsAllowDups = prefs.getBoolean("allowdups", true);
+
+        PlaylistManager.isAllowDups = prefsAllowDups;
+
         if (prefs.getBoolean("showWelcome", true)) {
-        //if (true) {
             edit.putBoolean("showWelcome", false).commit();
             showWelcomeMessage();
         }

@@ -12,6 +12,13 @@ final class Playlist {
         String zipEntry;
         String displayname;
         int start;
+
+        public boolean equals(Object o) {
+            Entry e = (Entry)o;
+            if (zipEntry == null)
+                return e.zipEntry == null && e.path.equals(path) && e.start == start;
+            return e.zipEntry != null && e.zipEntry.equals(zipEntry) && e.path.equals(path) && e.start == start;
+        }
     }
 
     ArrayList<Entry> entries = new ArrayList<Playlist.Entry>(100);
@@ -49,6 +56,10 @@ final class Playlist {
     }
 
     int add(String path, String zipEntry, int start) {
+        return add(path, zipEntry, start, true);
+    }
+
+    int add(String path, String zipEntry, int start, boolean isAllowDups) {
         if (path == null)
             return 0;
         if (path.length() <= 0)
@@ -76,6 +87,10 @@ final class Playlist {
         e.zipEntry = zipEntry;
         e.path = path;
         e.start = start;
+
+        if (isAllowDups == false && entries.contains(e))
+            return 0;
+
         entries.add(e);
         shadowEntries.add(e);
         sort();
