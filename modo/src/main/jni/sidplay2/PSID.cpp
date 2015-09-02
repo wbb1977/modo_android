@@ -125,6 +125,7 @@ SidTune::LoadStatus SidTune::PSID_fileSupport(Buffer_sidtt<const uint_least8_t>&
            compatibility = SIDTUNE_COMPATIBILITY_PSID;
            // Deliberate run on
        case 2:
+       case 3:
            break;
        default:
            info.formatString = _sidtune_unknown_psid;
@@ -134,7 +135,7 @@ SidTune::LoadStatus SidTune::PSID_fileSupport(Buffer_sidtt<const uint_least8_t>&
     }
     else if (endian_big32((const uint_least8_t*)pHeader->id)==RSID_ID)
     {
-       if (endian_big16(pHeader->version) != 2)
+       if (!(endian_big16(pHeader->version) == 2 || endian_big16(pHeader->version) == 3))
        {
            info.formatString = _sidtune_unknown_rsid;
            return LOAD_ERROR;
@@ -163,7 +164,71 @@ SidTune::LoadStatus SidTune::PSID_fileSupport(Buffer_sidtt<const uint_least8_t>&
     info.songs         = endian_big16(pHeader->songs);
     info.startSong     = endian_big16(pHeader->start);
     info.sidChipBase1  = 0xd400;
-    info.sidChipBase2  = 0;
+    info.sidChipBase2  = 0x0;
+
+    if (endian_big16(pHeader->version) == 3) {
+       info.sidChipBase2 = endian_big16(pHeader->reserved) >> 8; // ignores the third base from v4
+       // By this stupid way it is bulletproof that a valid base address is used.
+       switch (info.sidChipBase2) {
+           case 0x42: info.sidChipBase2 = 0xd420; break;
+           case 0x44: info.sidChipBase2 = 0xd440; break;
+           case 0x46: info.sidChipBase2 = 0xd460; break;
+           case 0x48: info.sidChipBase2 = 0xd480; break;
+           case 0x4A: info.sidChipBase2 = 0xd4a0; break;
+           case 0x4C: info.sidChipBase2 = 0xd4c0; break;
+           case 0x4E: info.sidChipBase2 = 0xd4e0; break;
+
+           case 0x50: info.sidChipBase2 = 0xd500; break;
+           case 0x52: info.sidChipBase2 = 0xd520; break;
+           case 0x54: info.sidChipBase2 = 0xd540; break;
+           case 0x56: info.sidChipBase2 = 0xd560; break;
+           case 0x58: info.sidChipBase2 = 0xd580; break;
+           case 0x5A: info.sidChipBase2 = 0xd5a0; break;
+           case 0x5C: info.sidChipBase2 = 0xd5c0; break;
+           case 0x5E: info.sidChipBase2 = 0xd5e0; break;
+
+           case 0x60: info.sidChipBase2 = 0xd600; break;
+           case 0x62: info.sidChipBase2 = 0xd620; break;
+           case 0x64: info.sidChipBase2 = 0xd640; break;
+           case 0x66: info.sidChipBase2 = 0xd660; break;
+           case 0x68: info.sidChipBase2 = 0xd680; break;
+           case 0x6A: info.sidChipBase2 = 0xd6a0; break;
+           case 0x6C: info.sidChipBase2 = 0xd6c0; break;
+           case 0x6E: info.sidChipBase2 = 0xd6e0; break;
+
+           case 0x70: info.sidChipBase2 = 0xd700; break;
+           case 0x72: info.sidChipBase2 = 0xd720; break;
+           case 0x74: info.sidChipBase2 = 0xd740; break;
+           case 0x76: info.sidChipBase2 = 0xd760; break;
+           case 0x78: info.sidChipBase2 = 0xd780; break;
+           case 0x7A: info.sidChipBase2 = 0xd7a0; break;
+           case 0x7C: info.sidChipBase2 = 0xd7c0; break;
+           case 0x7E: info.sidChipBase2 = 0xd7e0; break;
+
+           case 0xe0: info.sidChipBase2 = 0xde00; break;
+           case 0xe2: info.sidChipBase2 = 0xde20; break;
+           case 0xe4: info.sidChipBase2 = 0xde40; break;
+           case 0xe6: info.sidChipBase2 = 0xde60; break;
+           case 0xe8: info.sidChipBase2 = 0xde80; break;
+           case 0xeA: info.sidChipBase2 = 0xdea0; break;
+           case 0xeC: info.sidChipBase2 = 0xdec0; break;
+           case 0xeE: info.sidChipBase2 = 0xdee0; break;
+
+           case 0xf0: info.sidChipBase2 = 0xdf00; break;
+           case 0xf2: info.sidChipBase2 = 0xdf20; break;
+           case 0xf4: info.sidChipBase2 = 0xdf40; break;
+           case 0xf6: info.sidChipBase2 = 0xdf60; break;
+           case 0xf8: info.sidChipBase2 = 0xdf80; break;
+           case 0xfA: info.sidChipBase2 = 0xdfa0; break;
+           case 0xfC: info.sidChipBase2 = 0xdfc0; break;
+           case 0xfE: info.sidChipBase2 = 0xdfe0; break;
+
+           default:
+               info.sidChipBase2 = 0x00;
+               break;
+        }
+    }
+
     info.compatibility = compatibility;
     
     speed              = endian_big32(pHeader->speed);
@@ -218,6 +283,7 @@ SidTune::LoadStatus SidTune::PSID_fileSupport(Buffer_sidtt<const uint_least8_t>&
 
         info.relocStartPage = pHeader->relocStartPage;
         info.relocPages     = pHeader->relocPages;
+
 #endif // SIDTUNE_PSID2NG
     }
 

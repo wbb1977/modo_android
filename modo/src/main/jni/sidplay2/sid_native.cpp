@@ -48,7 +48,7 @@ static void init()
 
 	// setup sidplay2 buddy residsid_tuneinfo.songs
 	sid_residBuilder = new ReSIDBuilder("ReSID_modo");
-	sid_residBuilder->create(1);
+	sid_residBuilder->create(2);
 	sid_residBuilder->sampling(SID2_DEFAULT_SAMPLING_FREQ);
 	sid_residBuilder->filter(true);
 	sid_residBuilder->filter((sid_filter_t*)NULL);
