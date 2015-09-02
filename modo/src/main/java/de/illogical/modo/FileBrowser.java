@@ -458,7 +458,6 @@ implements	OnItemClickListener,
         } else {
             Modo.setPlaylist(fileAdapter.getVisibleFiles(), selected, currentDirectory instanceof ModoFile ? true : false, position);
             Intent modoplay  = new Intent(selected.getAbsolutePath());
-            Log.d(TAG, "selected: " + selected.getAbsolutePath());
             setResult(RESULT_OK, modoplay);
             finish();
         }
