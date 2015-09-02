@@ -47,6 +47,7 @@ final class SidDecoder implements Decoder {
     private int fastForward = 1;
     private int silence = 0;
     private int firstSample = 0;
+    private int secondSample = 0;
     private int isLoadingOkay = 0;
     private int silencePeriod = 20;
     private int playlistTrack = -1;
@@ -141,12 +142,13 @@ final class SidDecoder implements Decoder {
         fastForward = 1;
 
         // libsidplay2 keeps the last sample played
-        if (samples[0] == firstSample)
+        if (samples[0] == firstSample && samples[1] == secondSample)
             ++silence;
         else
             silence = 0;
 
         firstSample = samples[0];
+        secondSample = samples[1];
 
         return samples;
     }
