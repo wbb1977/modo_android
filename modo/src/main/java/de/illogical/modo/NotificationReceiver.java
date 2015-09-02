@@ -43,6 +43,8 @@ final public class NotificationReceiver extends android.content.BroadcastReceive
                         }
                         break;
                     case Modo.INTENT_NOTIFICATION_STOP:
+                        // Get rid of any other subactivity. does not start the app as it is SINGLE Task, just gets the focus
+                        context.startActivity(new Intent(context, Modo.class));
                         Modo.myModo.MediaPause();
                         Modo.myModo.finish();
                         break;
