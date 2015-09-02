@@ -32,7 +32,7 @@
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_about">Über</string>
     <string name="menu_help">Hilfe</string>
-    <string name="dialog_about">Modo v2.5a\n\nvon\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanische Übersetzung von Gorka Oteiza.\n\nFranzösische Übersetzung von Zod.\n\nPolnische Übersetzung von Łukasz Wollnikowski.\n\nDank an Abrimaal, Frapsman123, Aron Alliston.\n\nViel Spass beim Hören!</string>
+    <string name="dialog_about">Modo v2.5b\n\nvon\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanische Übersetzung von Gorka Oteiza.\n\nFranzösische Übersetzung von Zod.\n\nPolnische Übersetzung von Łukasz Wollnikowski.\n\nDank an Abrimaal, Frapsman123, Aron Alliston.\n\nViel Spass beim Hören!</string>
     <string name="pref_sound_boost">Verstärkung</string>
     <string name="pref_sound_boost_summary">Erhöht die Lautstärke, kann die Tonqualität beeinträchtigen.</string>    
     <string name="pref_sound_boost_modules">Verstärkung Module</string>
@@ -157,6 +157,8 @@
         <item>30 Sekunden</item>
         <item>60 Sekunden</item>
     </string-array>
+    <string name="pref_allowdups">Doppelte Playlist-Einträge möglich</string>
+    <string name="pref_allowdups_summary">Ermöglicht es, die gleiche Datei bzw. ein Track mehrmals zu einer Playlist hinzuzufügen.</string>
     <string name="pref_fade">Musik ein- und abblenden</string>
     <string name="pref_fade_summary">Kein Effekt bei Tracker-Modulen.</string>
     <string-array name="arr_fade">

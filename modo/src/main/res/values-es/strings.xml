@@ -32,7 +32,7 @@
     <string name="menu_settings">Configuración</string>
     <string name="menu_about">Acerca de</string>
     <string name="menu_help">Ayuda</string>
-    <string name="dialog_about">Modo v2.5a\n\npor\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTraducción al Castellano por Gorka Oteiza\n\nTraducción frances de Zod\n\nGracias a Abrimaal, Frapsman123, Aron Alliston\n\nDisfruta de estupendas melodías!</string>
+    <string name="dialog_about">Modo v2.5b\n\npor\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTraducción al Castellano por Gorka Oteiza\n\nTraducción frances de Zod\n\nGracias a Abrimaal, Frapsman123, Aron Alliston\n\nDisfruta de estupendas melodías!</string>
     <string name="pref_sound_boost">Potenciador del Volumen</string>
     <string name="pref_sound_boost_summary">Incrementa el volumen, pero puede producir sobremuestreo / mala calidad.</string>
     <string name="pref_sound_boost_modules">Módulos de incremento de volumen</string>
@@ -146,6 +146,8 @@
     </string-array>
     <string name="pref_scanfiles">Analizar ficheros</string>
     <string name="pref_scanfiles_summary">El explorador de ficheros muestra el nombre del juego o el primer título. Todavía no se analizan los ficheros Zip.</string>
+    <string name="pref_allowdups">Allow duplicate entries</string>
+    <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
     <string name="pref_fade">Fade in/out</string>
     <string name="pref_fade_summary">Does not apply to tracker modules.</string>
     <string-array name="arr_fade">

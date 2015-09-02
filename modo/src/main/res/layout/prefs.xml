@@ -38,6 +38,12 @@
             android:summary="@string/pref_flatzip_summary"
             android:defaultValue="false">
         </CheckBoxPreference>
+        <CheckBoxPreference
+            android:key="allowdups"
+            android:title="@string/pref_allowdups"
+            android:summary="@string/pref_allowdups_summary"
+            android:defaultValue="true">
+        </CheckBoxPreference>
         <de.illogical.modo.PrefStereo
             android:key="stereo"
             android:defaultValue="128"

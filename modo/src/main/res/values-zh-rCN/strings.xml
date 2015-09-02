@@ -35,7 +35,7 @@
     <string name="menu_settings">设置</string>
     <string name="menu_about">关于</string>
     <string name="menu_help">帮助</string>
-    <string name="dialog_about">Modo v2.5a\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal, Frapsman123, Aron Alliston.\n\n尽享电子音乐！</string>
+    <string name="dialog_about">Modo v2.5b\n\nBastian Pflieger\n\n制作&lt;wb@illogical.de&gt;\n\n西班牙语化Gorka Oteiza.\n\n法语化Zod.\n\n汉化 新手汉化组.\n\n感谢Abrimaal, Frapsman123, Aron Alliston.\n\n尽享电子音乐！</string>
     <string name="pref_sound_boost">音量</string>
     <string name="pref_sound_boost_summary">增大音量，但会导致采样率过高。</string>
     <string name="pref_sound_boost_modules">模块音量</string>
@@ -164,7 +164,8 @@
         <item>30秒</item>
         <item>60秒</item>
     </string-array>
-
+    <string name="pref_allowdups">Allow duplicate entries</string>
+    <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
     <string name="pref_fade">Fade in/out</string>
     <string name="pref_fade_summary">Does not apply to tracker modules.</string>
     <string-array name="arr_fade">
