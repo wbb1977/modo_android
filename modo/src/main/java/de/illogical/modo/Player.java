@@ -150,7 +150,7 @@ final public class Player extends Thread implements OnAudioFocusChangeListener {
                         else if (sample < Short.MIN_VALUE)
                             samples[i] = Short.MIN_VALUE;
                         else
-                            samples[i] = (short) sample;
+                            samples[i] = (short)sample;
                     }
                 }
 
@@ -159,7 +159,7 @@ final public class Player extends Thread implements OnAudioFocusChangeListener {
                     fade(samples, vol < 0.0f ? 0 : (int)(vol * 100));
                 } else if (isFade && playtime <= fadeInTime) { // handle fade in
                     vol = vol + (fadeStep * (fastForward ? 2 : 1));
-                    fade(samples, vol > 1.0f ? 100 : (int)(vol * 100));
+                    fade(samples,  vol > 1.0f ? 100 : (int)(vol * 100));
                 } else if (isFade) {
                     vol = 1.0f; // restore vol for fade out
                 }
