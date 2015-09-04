@@ -503,6 +503,8 @@ implements	OnSeekBarChangeListener,
         textSleeptimer = (TextView)findViewById(R.id.textSleeptimer);
         textPlaylistname = (TextView)findViewById(R.id.textPlaylistname);
         textFileInfo = (TextView)findViewById(R.id.textFileInfo);
+        textFileInfo.setHorizontallyScrolling(true);
+        textFileInfo.setHorizontalFadingEdgeEnabled(true);
         textTrackLength = (TextView)findViewById(R.id.mytextTrackLength);
         textPlaytimeMinutes = (TextView)findViewById(R.id.textPlaytimeMinutes);
         textPlaytimeSeconds = (TextView)findViewById(R.id.textPlaytimeSeconds);
@@ -595,7 +597,7 @@ implements	OnSeekBarChangeListener,
         prefsIsInterpolation = prefs.getBoolean("interpolation", true);
         prefsStereoSeparation = prefs.getInt("stereo", 128);
         prefsShakeLevel = Integer.valueOf(prefs.getString("shakelevel", "0"));
-        seekPlaytime.getRootView().setBackgroundColor(prefs.getInt("overlay_color", 0xaa000000));
+        //seekPlaytime.getRootView().setBackgroundColor(prefs.getInt("overlay_color", 0xaa000000));
         prefsIsMediabuttons = prefs.getBoolean("mediabuttons", false);
         prefsIsStereoAY = prefs.getBoolean("aystereo", true);
         prefsAutomaticAction = Integer.valueOf(prefs.getString("automaticaction", "0"));
@@ -1270,11 +1272,11 @@ implements	OnSeekBarChangeListener,
         return true;
     }
 
-    protected void showAbout() {
+    protected void showAbout(int res) {
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setIcon(R.drawable.modo);
         b.setCancelable(true);
-        b.setMessage(R.string.dialog_about);
+        b.setMessage(res);
         b.setPositiveButton(R.string.okay, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
@@ -1370,10 +1372,11 @@ implements	OnSeekBarChangeListener,
                 startActivity(new Intent(this, Prefs.class));
                 break;
             case R.id.menu_about:
-                showAbout();
+                showAbout(R.string.dialog_about);
                 break;
             case R.id.menu_help:
-                startActivity(new Intent(this, Help.class));
+                showAbout(R.string.help_text);
+                //startActivity(new Intent(this, Help.class));
                 break;
             case R.id.menu_sleeptimer_plus_5min:
                 sleepTimer += 60000 * 10 - 1000;

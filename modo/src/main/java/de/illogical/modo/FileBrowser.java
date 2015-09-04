@@ -345,7 +345,7 @@ implements	OnItemClickListener,
         filegrid.setDividerHeight(0);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        filegrid.getRootView().setBackgroundColor(prefs.getInt("overlay_color", 0xaa000000));
+        //filegrid.getRootView().setBackgroundColor(prefs.getInt("overlay_color", 0xaa000000));
                
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
@@ -501,7 +501,7 @@ implements	OnItemClickListener,
         filegrid.setAdapter(null);
 
         currentDirectory = directory;
-        setTitle(directory.getAbsolutePath());
+        //setTitle(directory.getAbsolutePath());
         getSupportActionBar().setTitle(currentDirectory.getAbsolutePath());
 
         rf = new ReadFiles();

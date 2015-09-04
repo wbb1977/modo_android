@@ -2,7 +2,7 @@ package de.illogical.modo;
 
 import java.util.HashMap;
 
-import com.att.preference.colorpicker.ColorPickerPreference;
+//import com.att.preference.colorpicker.ColorPickerPreference;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -26,8 +26,8 @@ implements OnSharedPreferenceChangeListener {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.layout.prefs);
 
-        root = findViewById(android.R.id.content).getRootView();
-        root.setBackgroundColor(getPreferenceScreen().getSharedPreferences().getInt("overlay_color", 0xaa000000));
+        //root = findViewById(android.R.id.content).getRootView();
+        //root.setBackgroundColor(getPreferenceScreen().getSharedPreferences().getInt("overlay_color", 0xaa000000));
 
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
@@ -63,9 +63,9 @@ implements OnSharedPreferenceChangeListener {
             ListPreference lp = (ListPreference)p;
             //p.setSummary(Html.fromHtml(String.format("<i>%s</i><br>%s", lp.getEntry(), descriptions.get(key))));
             p.setSummary("[ " + lp.getEntry() + " ]\n" + descriptions.get(key));
-        } else if (p instanceof ColorPickerPreference){
-            p.setSummary(descriptions.get(key));
-            root.setBackgroundColor(((ColorPickerPreference) p).getValue());
+        //} else if (p instanceof ColorPickerPreference){
+        //    p.setSummary(descriptions.get(key));
+            //root.setBackgroundColor(((ColorPickerPreference) p).getValue());
         } else if (p instanceof PrefStereo) {
             p.setSummary("[ " + p.getSharedPreferences().getInt(key, 128) * 100 / 128 + "% ]\n" + descriptions.get(key));
         } else {

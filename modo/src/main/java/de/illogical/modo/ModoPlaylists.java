@@ -216,8 +216,8 @@ implements
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        vPlaylists.getRootView().setBackgroundColor(prefs.getInt("overlay_color", 0xaa000000));		
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //vPlaylists.getRootView().setBackgroundColor(prefs.getInt("overlay_color", 0xaa000000));
     }
 
     protected void onSaveInstanceState(Bundle outState) {
