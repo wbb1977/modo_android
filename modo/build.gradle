@@ -25,6 +25,6 @@ android {
 }
 
 dependencies {
-    compile project(':colorPicker')
+//    compile project(':colorPicker')
     compile 'com.android.support:appcompat-v7:22.0.0'
 }
