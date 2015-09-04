@@ -68,7 +68,7 @@
         <ListPreference android:key="silence"
                         android:title="@string/pref_silence"
                         android:summary="@string/pref_silence_summary"
-                        android:defaultValue="4"
+                        android:defaultValue="8"
                         android:entries="@array/arr_silence"
                         android:entryValues="@array/arr_silence_entries">
         </ListPreference>
@@ -86,6 +86,7 @@
                         android:entries="@array/arr_shake"
                         android:entryValues="@array/arr_shake_entries">
         </ListPreference>
+    <!--
         <com.att.preference.colorpicker.ColorPickerPreference
             android:key="overlay_color"
             android:title="@string/pref_overlay_color"
@@ -93,6 +94,7 @@
             android:defaultValue="0xaa000000"
             alphaSlider="true">
         </com.att.preference.colorpicker.ColorPickerPreference>
+        -->
         <!--
         <ListPreference android:key="soundboost"
                         android:title="@string/pref_sound_boost"

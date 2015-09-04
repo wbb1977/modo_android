@@ -163,8 +163,8 @@
         <item>30 sekund</item>
         <item>60 sekund</item>
     </string-array>
-    <string name="pref_allowdups">Allow duplicate entries</string>
-    <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
+    <string name="pref_allowdups">Zezwalaj na duplikaty</string>
+    <string name="pref_allowdups_summary">Gdy włączone, można dodać wielokrotnie utwór do (tej samej) playlisty.</string>
     <string name="pref_fade">Wyciszanie początku i końca</string>
     <string name="pref_fade_summary">Nie dotyczy modułów trackerowych.</string>
     <string-array name="arr_fade">
@@ -223,7 +223,7 @@
     <string name="welcome">Witaj!</string>
     <string name="welcome_msg">Witaj!\n\nChcesz abym dodaj przykładową playlistę z kilkoma utworami dla szybkiego startu?</string>
     <string name="examples_playlist_name">Przykładowa Playlista</string>
-    <string name="pref_flatzip">Otwórz ZIP jako jeden folder</string>
+    <string name="pref_flatzip">ZIP jako jeden folder</string>
     <string name="pref_flatzip_summary">Wyświetl wszystkie wpisy w pliku ZIP naraz. Limit do 2000 plików.</string>
     <string name="dialog_no_directory_atm">Dodawanie katalogu do playlisty jest obecnie nie wspierane.</string>
     <string name="dialog_add_files_title">Dodaj pliki do</string>

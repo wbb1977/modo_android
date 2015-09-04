@@ -1,34 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- android:Theme -->
+
   <style parent="Theme.AppCompat" name="Theme.Modo">
-       <item name="android:windowBackground">@color/dark_transparent</item>
-       <item name="android:windowShowWallpaper">true</item>
-       <item name="android:listViewStyle">@style/listViewPrefs</item>
-       
+        <item name="android:windowBackground">@color/dark_transparent</item>
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:listViewStyle">@style/listViewPrefs</item>
         <!-- Support library compatibility -->
-        <item name="actionBarStyle">@style/MyActionBar</item>
-       
-  </style>
-  
-<style name="listViewPrefs" parent="@android:style/Widget.ListView">
-    <item name="android:cacheColorHint">#00000000</item>
-</style>
+        <item name="colorPrimary">@color/modo_purple</item>
+        <item name="colorPrimaryDark">@color/modo_statusbar</item>
+        <item name="actionBarPopupTheme">@style/mypopup</item>
+    </style>
 
-<!-- ActionBar styles -->
-<style name="MyActionBar"
-       parent="@style/Widget.AppCompat.ActionBar">
-    <!-- Support library compatibility -->
-    <item name="titleTextStyle">@style/MyActionBarTitleText</item>
-</style>
+    <style name="mypopup" parent="ThemeOverlay.AppCompat">
+        <item name="android:background">@color/modo_statusbar</item>
+    </style>
 
-<!-- ActionBar title text -->
-<style name="MyActionBarTitleText"
-       parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-	<item name="android:singleLine">true</item>
-	<item name="android:fadingEdge">horizontal</item>
-</style>
 
+    <style name="listViewPrefs" parent="@android:style/Widget.ListView">
+        <item name="android:cacheColorHint">#00000000</item>
+    </style>
 </resources>
 
 
