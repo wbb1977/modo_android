@@ -137,14 +137,21 @@
     <string name="pref_interpolation">混合插补</string>
     <string name="pref_mediabuttons">忽略媒体按键</string>
     <string name="pref_mediabuttons_summary">如果和其他音乐应用产生冲突的话就开启</string>
-    <string name="pref_stereo">立体声分离度</string>
+    <!--<string name="pref_stereo">立体声分离度</string>-->
     <string name="pref_stereo_max">立体声</string>
     <string name="pref_stereo_min">单声道</string>
-    <string name="pref_stereo_summary">只用于tracker格式 / Nsf / Vgm。单声道(0\%%)至立体声(100\%%).</string>
+    <string name="pref_stereo_modules">Stereo separation Modules</string>
+    <string name="pref_stereo_modules_summary">Applies to tracker formats.</string>
+    <string name="pref_monoapu">Mono APU</string>
+    <string name="pref_monoapu_summary">Convert output from stereo chips to mono.</string>
+    <string name="pref_cat_playback">Playback</string>
+    <string name="pref_cat_mixer">Mixer</string>
+    <string name="pref_cat_misc">Miscellaneous</string>
+    <string name="pref_cat_boost">Volume boost</string>
+    <!--<string name="pref_stereo_summary">只用于tracker格式 / Nsf / Vgm。单声道(0\%%)至立体声(100\%%).</string>-->
+
     <string name="pref_shake">摇一摇</string>
     <string name="pref_shake_summary">设置读取下一首歌所需的摇晃强度</string>
-    <string name="pref_AY_stereo">AY立体声</string>
-    <string name="pref_AY_stereo_summary">用立体声播放.ay文件</string>
 
     <string-array name="arr_shake">
         <item>关闭</item>

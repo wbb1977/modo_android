@@ -2,34 +2,41 @@ package de.illogical.modo;
 
 import java.util.HashMap;
 
-//import com.att.preference.colorpicker.ColorPickerPreference;
-
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
+
+import com.lb.material_preferences_library.PreferenceActivity;
 
 final public class Prefs extends PreferenceActivity
 implements OnSharedPreferenceChangeListener {
 
     private HashMap<String, String> descriptions = new HashMap<String, String>(10);
-    private View root;
+
+    @Override
+    protected int getPreferencesXmlId() {
+        return R.layout.prefs;
+    }
 
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.layout.prefs);
 
-        //root = findViewById(android.R.id.content).getRootView();
-        //root.setBackgroundColor(getPreferenceScreen().getSharedPreferences().getInt("overlay_color", 0xaa000000));
+        getSupportActionBar().hide();
+        getToolbar().setTitle("Settings");
 
+        //addPreferencesFromResource(R.layout.prefs);
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+
 
         for (int i = 0, count = getPreferenceScreen().getPreferenceCount(); i < count; ++i) {
             Preference p = getPreferenceScreen().getPreference(i);
@@ -61,11 +68,7 @@ implements OnSharedPreferenceChangeListener {
 
         if (p instanceof ListPreference) {
             ListPreference lp = (ListPreference)p;
-            //p.setSummary(Html.fromHtml(String.format("<i>%s</i><br>%s", lp.getEntry(), descriptions.get(key))));
             p.setSummary("[ " + lp.getEntry() + " ]\n" + descriptions.get(key));
-        //} else if (p instanceof ColorPickerPreference){
-        //    p.setSummary(descriptions.get(key));
-            //root.setBackgroundColor(((ColorPickerPreference) p).getValue());
         } else if (p instanceof PrefStereo) {
             p.setSummary("[ " + p.getSharedPreferences().getInt(key, 128) * 100 / 128 + "% ]\n" + descriptions.get(key));
         } else {

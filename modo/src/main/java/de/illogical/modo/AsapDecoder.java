@@ -38,6 +38,11 @@ final class AsapDecoder implements Decoder {
     private byte[] author = new byte[256];
     private int silencePeriod = 20;
     private int playlistTrack = -1;
+    private boolean isConvertStereoToMono = false;
+
+    void setMonoOutput(boolean isConvertStereoToMono) {
+        this.isConvertStereoToMono = isConvertStereoToMono;
+    }
 
     void setSilenceDetection(int seconds) {
         silencePeriod = seconds * 5;
@@ -152,13 +157,11 @@ final class AsapDecoder implements Decoder {
     public short[] getSamples() {
         if (channels == 1) { // mono
             asapGetSamples(samplesMono);
-            // Mix the mono data into stereo data
-            for (int i = 0, st = 0, len = samplesMono.length; i < len; ++i) {
-                samplesStereo[st++] = samplesMono[i];
-                samplesStereo[st++] = samplesMono[i];
-            }
+            Mixer.convertToStereo(samplesMono, samplesStereo);// Mix the mono data into stereo data
         } else { // stereo
             asapGetSamples(samplesStereo);
+            if (isConvertStereoToMono)
+                Mixer.convertToMono(samplesStereo);
         }
 
         if (samplesStereo[1] == 0)

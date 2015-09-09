@@ -32,6 +32,12 @@ final class NezplugDecoder implements Decoder {
     static private String title;
     static private String copyright;
 
+    private boolean isConvertStereoToMono = false;
+
+    void setMonoOutput(boolean isConvertStereoToMono) {
+        this.isConvertStereoToMono = isConvertStereoToMono;
+    }
+
     void setSilenceDetection(int seconds) {
         silencePeriod = seconds * 5;
     }
@@ -167,6 +173,9 @@ final class NezplugDecoder implements Decoder {
             ++silence;
         else
             silence = 0;
+
+        if (isConvertStereoToMono)
+            Mixer.convertToMono(samplesStereo);
 
         return samplesStereo;
     }

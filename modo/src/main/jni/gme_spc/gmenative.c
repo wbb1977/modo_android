@@ -4,11 +4,9 @@
 #include "dll.hpp"
 #include "uncompress.h"
 #include <zlib.h>
-//#include <android/log.h>
 
 static Music_Emu* emu = NULL;
 static short localSamples[18000];
-static double depth = 1.0;
 int ay_stereo = 1; // 1 = pure AY channels (A,B,C), 0 = all into center (mono)
 
 // RSN related
@@ -23,23 +21,7 @@ static int rsnSize[RSN_ENTRIES];
 static int rsnCount;
 static char *rsnInfo;
 
-void Java_de_illogical_modo_SpcDecoder_spcSetStereoAY(JNIEnv* env, jclass clazz, jint stereo)
-{
-	ay_stereo = stereo;
-	// Hacked Ay_Emu "setVoice" to take this into account
-}
 
-void Java_de_illogical_modo_SpcDecoder_spcSetStereoSeparation(JNIEnv* env, jclass clazz, jint d)
-{
-	depth = d/100.0;
-	if (depth < 0.0)
-		depth = 0.0;
-	if (depth > 1.0)
-		depth = 1.0;
-	if (emu != NULL)
-		gme_set_stereo_depth(emu, depth);
-//	__android_log_print(ANDROID_LOG_VERBOSE, "gme", "%i %f", d, depth);
-}
 void Java_de_illogical_modo_SpcDecoder_spcReset(JNIEnv* env, jclass clazz)
 {
 	if (emu != NULL)
@@ -114,37 +96,6 @@ void Java_de_illogical_modo_SpcDecoder_spcGetTrackInfo(JNIEnv* env, jclass clazz
 	gme_free_info(trackinfo);
 }
 
-/*
-jobjectArray Java_de_illogical_modo_SpcDecoder_spcGetTrackInfo(JNIEnv* env, jclass clazz, jint track)
-{
-	gme_err_t err = NULL;
-	struct gme_info_t* trackinfo;
-	
-	if (emu == NULL)
-	{
-		return NULL;
-	}
-
-	err = gme_track_info(emu, &trackinfo, track);
-	
-	if (err == NULL)
-	{
-		jobjectArray info = (*env)->NewObjectArray(env, 7, (*env)->FindClass(env, "java/lang/String"), NULL);
-		(*env)->SetObjectArrayElement(env, info, 0, ((*env)->NewStringUTF(env, trackinfo->system)));
-		(*env)->SetObjectArrayElement(env, info, 1, ((*env)->NewStringUTF(env, trackinfo->game)));
-		(*env)->SetObjectArrayElement(env, info, 2, ((*env)->NewStringUTF(env, trackinfo->song)));
-		(*env)->SetObjectArrayElement(env, info, 3, ((*env)->NewStringUTF(env, trackinfo->author)));
-		(*env)->SetObjectArrayElement(env, info, 4, ((*env)->NewStringUTF(env, trackinfo->copyright)));
-		(*env)->SetObjectArrayElement(env, info, 5, ((*env)->NewStringUTF(env, trackinfo->comment)));
-		(*env)->SetObjectArrayElement(env, info, 6, ((*env)->NewStringUTF(env, trackinfo->dumper)));
-		gme_free_info(trackinfo);
-		return info;
-	}
-
-	return NULL;
-}
-*/
-
 jlong Java_de_illogical_modo_SpcDecoder_spcTrackLength(JNIEnv* env, jclass clazz, jint track)
 {
 	gme_err_t err = NULL;
@@ -187,7 +138,6 @@ jint Java_de_illogical_modo_SpcDecoder_spcSetTrack(JNIEnv* env, jclass clazz, ji
 	}
 
 	gme_start_track(emu, track);
-	gme_set_stereo_depth(emu, depth);
 	return 1;
 }
 
@@ -210,7 +160,6 @@ jint Java_de_illogical_modo_SpcDecoder_spcLoadFile(JNIEnv* env, jclass clazz, js
 	else
 	{
 		gme_start_track(emu, 0);
-		gme_set_stereo_depth(emu, depth);
 	}
 	
 	return emu != NULL;
@@ -251,7 +200,6 @@ jint Java_de_illogical_modo_SpcDecoder_spcLoadFromZip(JNIEnv* env, jclass clazz,
 	else
 	{
 		gme_start_track(emu, 0);
-		gme_set_stereo_depth(emu, depth);
 	}
 
 	if (emu != NULL)
@@ -423,7 +371,6 @@ jint Java_de_illogical_modo_SpcDecoder_spcPlayRSN(JNIEnv* env, jclass clazz, jin
 	else
 	{
 		gme_start_track(emu, 0);
-		gme_set_stereo_depth(emu, depth);
 	}
 
 	return emu != NULL;

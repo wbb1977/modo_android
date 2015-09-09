@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,7 +29,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-final public class ModoPlaylists extends ActionBarActivity
+final public class ModoPlaylists extends AppCompatActivity
 implements
     OnItemLongClickListener,
     OnItemClickListener,
@@ -145,11 +146,11 @@ implements
                 String newName = input.getText().toString().trim();
                 if (newName.length() > 0) {
                     if (PlaylistManager.newPlaylist(newName) <= 0)
-                        Toast.makeText(c, R.string.dialog_new_playlist_fail, Toast.LENGTH_LONG).show();
+                        Boast.makeText(c, R.string.dialog_new_playlist_fail, Toast.LENGTH_LONG).show();
                     else
                         Modo.myModo.backup.dataChanged();
                 } else {
-                    Toast.makeText(c, R.string.dialog_new_playlist_fail2, Toast.LENGTH_LONG).show();
+                    Boast.makeText(c, R.string.dialog_new_playlist_fail2, Toast.LENGTH_LONG).show();
                 }
                 selectedIndex = -1;
                 updateList();
@@ -179,10 +180,10 @@ implements
                             Modo.myModo.backup.dataChanged();
                         }
                     } else {
-                        Toast.makeText(c, R.string.dialog_rename_playlist_fail, Toast.LENGTH_LONG).show();
+                        Boast.makeText(c, R.string.dialog_rename_playlist_fail, Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(c, R.string.dialog_rename_playlist_fail2, Toast.LENGTH_LONG).show();
+                    Boast.makeText(c, R.string.dialog_rename_playlist_fail2, Toast.LENGTH_LONG).show();
                 }
                 selectedIndex = -1;
                 updateList();

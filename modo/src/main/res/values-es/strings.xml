@@ -99,10 +99,20 @@
 	<string name="menu_tablet">Prueba Modo para Tablet</string>
 	<string name="pref_interpolation_summary">Se aplica solo a los formatos tracker. Requiere más tiempo de CPU, mejor calidad de sonido.</string>
 	<string name="pref_interpolation">Mezclador de interpolación</string> 
-	<string name="pref_stereo">Separación Estéreo</string>
+	<!--<string name="pref_stereo">Separación Estéreo</string>-->
 	<string name="pref_stereo_max">Estéreo</string>
 	<string name="pref_stereo_min">Mono</string>
-	<string name="pref_stereo_summary">Se aplica solo a los formatos tracker, Nsf y Vgm. Mono (0\%%) a Estéreo (100\%%).</string>
+	<!--<string name="pref_stereo_summary">Se aplica solo a los formatos tracker, Nsf y Vgm. Mono (0\%%) a Estéreo (100\%%).</string>-->
+
+    <string name="pref_stereo_modules">Stereo separation Modules</string>
+    <string name="pref_stereo_modules_summary">Applies to tracker formats.</string>
+    <string name="pref_monoapu">Mono APU</string>
+    <string name="pref_monoapu_summary">Convert output from stereo chips to mono.</string>
+    <string name="pref_cat_playback">Playback</string>
+    <string name="pref_cat_mixer">Mixer</string>
+    <string name="pref_cat_misc">Miscellaneous</string>
+    <string name="pref_cat_boost">Volume boost</string>
+
 	<string name="menu_sleep_timer_plus">Auto Apagado +10min</string>
 	<string name="menu_sleep_timer_cancel">Parar Auto Apagado</string>
 	<string name="browser_one_level_up">Subir Un Nivel</string>
@@ -131,8 +141,6 @@
 		<item>30 segundos</item>
 		<item>60 segundos</item>
 	</string-array>
-	<string name="pref_AY_stereo">Estéreo AY</string>
-    <string name="pref_AY_stereo_summary">Habilitar para reproducir ficheros .ay en estéreo.</string>
 	<string name="please_wait">Por favor, espere&#8230;\n\u00A0\u00A0</string>
 	<string name="hint_loadfile_v">Pulsa el icono del disco para comenzar.</string>
     <string name="pref_seekbar">Deshabilitar la barra de búsqueda.</string>

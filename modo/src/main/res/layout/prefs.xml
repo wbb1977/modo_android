@@ -2,23 +2,59 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:key="modo"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <PreferenceCategory android:title="@string/pref_cat_playback">
+        <ListPreference android:key="stdplaytime"
+            android:title="@string/pref_default_playtime"
+            android:summary="@string/pref_default_playtime_summary"
+            android:defaultValue="180000"
+            android:entries="@array/arr_stdplaytime"
+            android:entryValues="@array/arr_stdplaytime_entries">
+        </ListPreference>
+        <ListPreference android:key="silence"
+            android:title="@string/pref_silence"
+            android:summary="@string/pref_silence_summary"
+            android:defaultValue="8"
+            android:entries="@array/arr_silence"
+            android:entryValues="@array/arr_silence_entries">
+        </ListPreference>
+        <ListPreference android:key="fade"
+            android:title="@string/pref_fade"
+            android:summary="@string/pref_fade_summary"
+            android:defaultValue="0"
+            android:entries="@array/arr_fade"
+            android:entryValues="@array/arr_fade_entries">
+        </ListPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_cat_mixer">
+        <de.illogical.modo.PrefStereo
+            android:key="stereo"
+            android:defaultValue="128"
+            android:dialogLayout="@layout/prefstereo"
+            android:title="@string/pref_stereo_modules"
+            android:summary="@string/pref_stereo_modules_summary">
+        </de.illogical.modo.PrefStereo>
+        <CheckBoxPreference
+            android:key="interpolation"
+            android:title="@string/pref_interpolation"
+            android:summary="@string/pref_interpolation_summary"
+            android:defaultValue="true">
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:key="monoapu"
+            android:title="@string/pref_monoapu"
+            android:summary="@string/pref_monoapu_summary"
+            android:defaultValue="false">
+        </CheckBoxPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_cat_misc">
         <CheckBoxPreference
             android:key="mediabuttons"
             android:title="@string/pref_mediabuttons"
             android:summary="@string/pref_mediabuttons_summary"
             android:defaultValue="false">            
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:key="interpolation"
-            android:title="@string/pref_interpolation"
-            android:summary="@string/pref_interpolation_summary"
-            android:defaultValue="true">            
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:key="aystereo"
-            android:title="@string/pref_AY_stereo"
-            android:summary="@string/pref_AY_stereo_summary"
-            android:defaultValue="true">            
         </CheckBoxPreference>
         <CheckBoxPreference
             android:key="scanfiles"
@@ -44,40 +80,12 @@
             android:summary="@string/pref_allowdups_summary"
             android:defaultValue="true">
         </CheckBoxPreference>
-        <de.illogical.modo.PrefStereo
-            android:key="stereo"
-            android:defaultValue="128"
-            android:dialogLayout="@layout/prefstereo"
-            android:title="@string/pref_stereo"
-            android:summary="@string/pref_stereo_summary">
-        </de.illogical.modo.PrefStereo>
         <ListPreference android:key="automaticaction"
                         android:title="@string/pref_action_player"
                         android:summary="@string/pref_action_player_summary"
                         android:defaultValue="0"
                         android:entries="@array/arr_action"
                         android:entryValues="@array/arr_action_entries">
-        </ListPreference>
-        <ListPreference android:key="stdplaytime"
-                        android:title="@string/pref_default_playtime"
-                        android:summary="@string/pref_default_playtime_summary"
-                        android:defaultValue="180000"
-                        android:entries="@array/arr_stdplaytime"
-                        android:entryValues="@array/arr_stdplaytime_entries">
-        </ListPreference>
-        <ListPreference android:key="silence"
-                        android:title="@string/pref_silence"
-                        android:summary="@string/pref_silence_summary"
-                        android:defaultValue="8"
-                        android:entries="@array/arr_silence"
-                        android:entryValues="@array/arr_silence_entries">
-        </ListPreference>
-        <ListPreference android:key="fade"
-                        android:title="@string/pref_fade"
-                        android:summary="@string/pref_fade_summary"
-                        android:defaultValue="0"
-                        android:entries="@array/arr_fade"
-                        android:entryValues="@array/arr_fade_entries">
         </ListPreference>
         <ListPreference android:key="shakelevel"
                         android:title="@string/pref_shake"
@@ -86,27 +94,9 @@
                         android:entries="@array/arr_shake"
                         android:entryValues="@array/arr_shake_entries">
         </ListPreference>
-    <!--
-        <com.att.preference.colorpicker.ColorPickerPreference
-            android:key="overlay_color"
-            android:title="@string/pref_overlay_color"
-            android:summary="@string/pref_overlay_color_summary"
-            android:defaultValue="0xaa000000"
-            alphaSlider="true">
-        </com.att.preference.colorpicker.ColorPickerPreference>
-        -->
-        <!--
-        <ListPreference android:key="soundboost"
-                        android:title="@string/pref_sound_boost"
-                        android:summary="@string/pref_sound_boost_summary"
-                        android:defaultValue="0"
-                        android:entries="@array/arr_sound_boost"
-                        android:entryValues="@array/arr_sound_boost_entries">
-        </ListPreference>
- -->
-     <PreferenceCategory 
-        android:title="Volume boost">
+    </PreferenceCategory>
 
+     <PreferenceCategory android:title="@string/pref_cat_boost">
         <ListPreference android:key="soundboost_modules"
                         android:title="@string/pref_sound_boost_modules"
                         android:summary="@string/pref_sound_boost_summary_modules"
@@ -191,5 +181,5 @@
                         android:entries="@array/arr_sound_boost"
                         android:entryValues="@array/arr_sound_boost_entries">
         </ListPreference>
-  </PreferenceCategory>	  		  		  		  	
+    </PreferenceCategory>
 </PreferenceScreen>

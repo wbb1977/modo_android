@@ -29,6 +29,7 @@ final class SidDecoder implements Decoder {
     native private static int sidGetTrackLengths(int md5, int[] trackLengths);
     native private static String sidGetMD5();
     native private static void sidSetTempo(int tempo);
+    native private static int sidIsStereo();
 
     // track info
     native private static int sidCreditsCount();
@@ -51,6 +52,11 @@ final class SidDecoder implements Decoder {
     private int isLoadingOkay = 0;
     private int silencePeriod = 20;
     private int playlistTrack = -1;
+    private boolean isConvertStereoToMono = false;
+
+    void setMonoOutput(boolean isConvertStereoToMono) {
+        this.isConvertStereoToMono = isConvertStereoToMono;
+    }
 
     void setSilenceDetection(int seconds) {
         silencePeriod = seconds * 5;
@@ -149,6 +155,9 @@ final class SidDecoder implements Decoder {
 
         firstSample = samples[0];
         secondSample = samples[1];
+
+        if (sidIsStereo() == 1 && isConvertStereoToMono)
+            Mixer.convertToMono(samples);
 
         return samples;
     }

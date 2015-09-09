@@ -130,14 +130,21 @@
 	<string name="pref_interpolation">Interpolation</string>
 	<string name="pref_mediabuttons">Ignorer le bouton de média</string>
  	<string name="pref_mediabuttons_summary">Activer si des problèmes apparaissent avec d\'autres logiciels.</string>	    	    
-	<string name="pref_stereo">Stereo</string>
+	<!--<string name="pref_stereo">Stereo</string>-->
+    <string name="pref_stereo_modules">Stereo separation Modules</string>
+    <string name="pref_stereo_modules_summary">Applies to tracker formats.</string>
+    <string name="pref_monoapu">Mono APU</string>
+    <string name="pref_monoapu_summary">Convert output from stereo chips to mono.</string>
+    <string name="pref_cat_playback">Playback</string>
+    <string name="pref_cat_mixer">Mixer</string>
+    <string name="pref_cat_misc">Miscellaneous</string>
+    <string name="pref_cat_boost">Volume boost</string>
+
 	<string name="pref_stereo_max">Stereo</string>
 	<string name="pref_stereo_min">Mono</string>
 	<string name="pref_shake">Shake</string>
 	<string name="pref_shake_summary">Régler l\'intensité pour le chargement du module suivant.</string>
-	<string name="pref_AY_stereo">AY Stereo</string>
-    <string name="pref_AY_stereo_summary">Enable to play .ay files in stereo.</string>
-	<string name="pref_stereo_summary"> Uniquement pour les modules tracker ainsi que les fichiers NSF et VGM. Mono (0\%%) à Stereo (100\%%).</string>	
+	<!--<string name="pref_stereo_summary"> Uniquement pour les modules tracker ainsi que les fichiers NSF et VGM. Mono (0\%%) à Stereo (100\%%).</string>-->
     <string-array name="arr_shake">
         <item>Désactivé</item>
         <item>Faible</item>

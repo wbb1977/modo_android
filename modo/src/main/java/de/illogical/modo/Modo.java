@@ -16,7 +16,6 @@ package de.illogical.modo;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.session.MediaController;
 import android.os.Build;
 import android.support.v7.app.*;
 import java.io.File;
@@ -53,7 +52,6 @@ import android.os.Message;
 import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,7 +64,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 final public class Modo
-extends ActionBarActivity
+extends AppCompatActivity
 implements	OnSeekBarChangeListener,
             OnLongClickListener,
             OnAudioFocusChangeListener,
@@ -148,21 +146,19 @@ implements	OnSeekBarChangeListener,
     boolean prefsIsMediabuttons; // ModoReceiver access this directly! do better!!
     private int prefsDefaultTrackLength;
     private int prefSilence;
-    private boolean prefsIsStereoAY;
     private boolean prefsIsShuffle;
     private boolean prefsIsLoop;
     private boolean prefsIs99; // It could be done better, instead of these two, just use one. But this feature was added later. sorry.
-    private boolean prefsIsNotifyOnTrackChange;
     private boolean prefsIsInterpolation;
-    //private boolean prefsIsAutomaticExit;
     private boolean prefsIsSeekbarDisabled;
     static boolean prefsIsScanFiles;
     static boolean prefsIsZipFlat;
-    private int prefsStereoSeparation;
+    private int prefsStereoSeparation_Modules;
+    private boolean prefsIsMonoAPU;
     private int prefsShakeLevel;
     private int prefsAutomaticAction;
     private int prefsFadeSeconds;
-    private boolean prefsAllowDups;
+    private boolean prefsIsAllowDups;
     private Editor edit;
 
     // Seekbar
@@ -191,6 +187,7 @@ implements	OnSeekBarChangeListener,
     private MenuItem menu_shuffle;
     private MenuItem menu_loop;
     private MenuItem menu_add;
+    private Bitmap modo_white;
 
     // System Services & helpers
     private NotificationManager mNotificationManager;
@@ -220,8 +217,6 @@ implements	OnSeekBarChangeListener,
     private NezplugDecoder nezplugDecoder = new NezplugDecoder();
     private RsnDecoder rsnDecoder = new RsnDecoder();
     private SpcDecoder spcDecoder = new SpcDecoder();
-    private AytDecoder aytDecoder = new AytDecoder();
-    //private XmpDecoder xmpDecoder = new XmpDecoder();
 
     // Used if load failure happened. Loads next file after 5 seconds timeout.
     private LoadNextFileAfterLoadError loadNextFile = null;
@@ -267,9 +262,21 @@ implements	OnSeekBarChangeListener,
             ServicePlayer.p.setHandler(mHandler);
 
             if (!sp.isForeground()) {
+                /*
                 Notification n = new Notification(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? R.drawable.modo_white : R.drawable.modo, getText(R.string.enjoy_some_retro_music), System.currentTimeMillis());
                 PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 2, new Intent(Modo.this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);//Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                 n.setLatestEventInfo(getApplicationContext(), getText(R.string.service_started), getText(R.string.enjoy_some_retro_music), contentIntent);
+                sp.startForeground(1, n);
+                sp.setIsForeground(true);
+                */
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+                builder.setSmallIcon(R.drawable.modo_white);
+                builder.setContentTitle(getText(R.string.enjoy_some_retro_music));
+                builder.setContentText(getText(R.string.service_started));
+                PendingIntent contentIntent = PendingIntent.getActivity(Modo.this, 2, new Intent(Modo.this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
+                builder.setContentIntent(contentIntent);
+                Notification n = builder.build();
                 sp.startForeground(1, n);
                 sp.setIsForeground(true);
             }
@@ -568,22 +575,22 @@ implements	OnSeekBarChangeListener,
         myModo = this;
 
         //
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(INTENT_NOTIFICATION_NEXT);
-            filter.addAction(INTENT_NOTIFICATION_PREV);
-            filter.addAction(INTENT_NOTIFICATION_PLAY);
-            filter.addAction(INTENT_NOTIFICATION_PAUSE);
-            filter.addAction(INTENT_NOTIFICATION_STOP);
-            notificationReceiver = new NotificationReceiver();
-            registerReceiver(notificationReceiver, filter);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(INTENT_NOTIFICATION_NEXT);
+        filter.addAction(INTENT_NOTIFICATION_PREV);
+        filter.addAction(INTENT_NOTIFICATION_PLAY);
+        filter.addAction(INTENT_NOTIFICATION_PAUSE);
+        filter.addAction(INTENT_NOTIFICATION_STOP);
+        notificationReceiver = new NotificationReceiver();
+        registerReceiver(notificationReceiver, filter);
 
-            intentNext = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
-            intentPrev = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PREV), PendingIntent.FLAG_UPDATE_CURRENT);
-            intentPause = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
-            intentPlay = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PLAY), PendingIntent.FLAG_UPDATE_CURRENT);
-            intentStop = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
-        }
+        intentNext = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
+        intentPrev = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PREV), PendingIntent.FLAG_UPDATE_CURRENT);
+        intentPause = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+        intentPlay = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_PLAY), PendingIntent.FLAG_UPDATE_CURRENT);
+        intentStop = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
+
+        modo_white = BitmapFactory.decodeResource(getResources(), R.drawable.modo_white);
     }
         
     protected void onStart() {
@@ -591,15 +598,13 @@ implements	OnSeekBarChangeListener,
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefsFadeSeconds = Integer.valueOf(prefs.getString("fade","0"));
-        prefsIsNotifyOnTrackChange = true; //prefs.getBoolean("notification", true);
         prefsDefaultTrackLength = Integer.valueOf(prefs.getString("stdplaytime", "180000"));
         prefSilence = Integer.valueOf(prefs.getString("silence", "4"));
         prefsIsInterpolation = prefs.getBoolean("interpolation", true);
-        prefsStereoSeparation = prefs.getInt("stereo", 128);
+        prefsStereoSeparation_Modules = prefs.getInt("stereo", 128);
+        prefsIsMonoAPU = prefs.getBoolean("monoapu", false);
         prefsShakeLevel = Integer.valueOf(prefs.getString("shakelevel", "0"));
-        //seekPlaytime.getRootView().setBackgroundColor(prefs.getInt("overlay_color", 0xaa000000));
         prefsIsMediabuttons = prefs.getBoolean("mediabuttons", false);
-        prefsIsStereoAY = prefs.getBoolean("aystereo", true);
         prefsAutomaticAction = Integer.valueOf(prefs.getString("automaticaction", "0"));
         prefsIsSeekbarDisabled = prefs.getBoolean("seekbar_disabled", false);
         prefsIsScanFiles = prefs.getBoolean("scanfiles", false);
@@ -616,9 +621,9 @@ implements	OnSeekBarChangeListener,
         prefsFormatSoundboost[BOOST_GYM] = Integer.valueOf(prefs.getString("soundboost_gym", "0"));
         prefsFormatSoundboost[BOOST_SID] = Integer.valueOf(prefs.getString("soundboost_sid", "0"));
         prefsFormatSoundboost[BOOST_GBS] = Integer.valueOf(prefs.getString("soundboost_gbs", "0"));
-        prefsAllowDups = prefs.getBoolean("allowdups", true);
+        prefsIsAllowDups = prefs.getBoolean("allowdups", true);
 
-        PlaylistManager.isAllowDups = prefsAllowDups;
+        PlaylistManager.isAllowDups = prefsIsAllowDups;
 
         if (prefs.getBoolean("showWelcome", true)) {
             edit.putBoolean("showWelcome", false).commit();
@@ -633,12 +638,13 @@ implements	OnSeekBarChangeListener,
         
         synchronized (sync) {
             mikmodDecoder.isInterpolationMixingEnabled(prefsIsInterpolation);
-            mikmodDecoder.setStereoSeparation(prefsStereoSeparation);
-            //xmpDecoder.setStereoSeparation(prefsStereoSeparation);
-            gmeDecoder.setStereoSeparation(prefsStereoSeparation);
-            spcDecoder.setStereoSeparation(prefsStereoSeparation);
-            spcDecoder.setStereoAY(prefsIsStereoAY ? 1 : 0);
-            aytDecoder.setStereoSeparation(prefsStereoSeparation);
+            mikmodDecoder.setStereoSeparation(prefsStereoSeparation_Modules);
+            spcDecoder.setMonoOutput(prefsIsMonoAPU);
+            rsnDecoder.setMonoOutput(prefsIsMonoAPU);
+            gmeDecoder.setMonoOutput(prefsIsMonoAPU);
+            asapDecoder.setMonoOutput(prefsIsMonoAPU);
+            sidDecoder.setMonoOutput(prefsIsMonoAPU);
+            nezplugDecoder.setMonoOutput(prefsIsMonoAPU);
         }
         
         if (isRealMachine)
@@ -831,38 +837,39 @@ implements	OnSeekBarChangeListener,
     }
     
     void sendNotification(int resid) {
-        sendNotification(resid, -1);
-    }
-
-    void sendNotification(int resid, int progress) {
-        if (prefsIsNotifyOnTrackChange) {
-            if (resid == R.string.now_playing && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                // Try for Android 5
-                Notification.Builder builder = new Notification.Builder(getApplicationContext());
-                builder.setVisibility(Notification.VISIBILITY_PUBLIC);
-                builder.setSmallIcon(R.drawable.modo_white);
-                builder.setContentTitle(path.getName());
-                builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
-                builder.setSubText(FileBrowser.getDescription(path));
-                builder.addAction(android.R.drawable.ic_media_previous, "", intentPrev);
-                if (isFastForward || isPause)
-                    builder.addAction(android.R.drawable.ic_media_play, "", intentPlay);
-                else
-                    builder.addAction(android.R.drawable.ic_media_pause, "", intentPause);
-                builder.addAction(android.R.drawable.ic_media_next, "", intentNext);
-                builder.addAction(android.R.drawable.ic_delete, "", intentStop);
-                builder.setStyle(new Notification.MediaStyle().setShowActionsInCompactView(0, 1, 2));
-                PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
-                builder.setContentIntent(contentIntent);
-                builder.setShowWhen(false);
-                Notification n = builder.build();
-                mNotificationManager.notify(1, n);
-            } else {
-                Notification n = new Notification(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? R.drawable.modo_white : R.drawable.modo, path.getName(), System.currentTimeMillis());
-                PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
-                n.setLatestEventInfo(this, path.getName(), getText(resid), contentIntent);
-                mNotificationManager.notify(1, n);
-            }
+        if (resid == R.string.now_playing) {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+            builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+            builder.setSmallIcon(R.drawable.modo_white);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+                builder.setLargeIcon(modo_white);
+            builder.setContentTitle(path.getName());
+            builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
+            builder.setSubText(FileBrowser.getDescription(path));
+            builder.addAction(android.R.drawable.ic_media_previous, "", intentPrev);
+            if (isFastForward || isPause)
+                builder.addAction(android.R.drawable.ic_media_play, "", intentPlay);
+            else
+                builder.addAction(android.R.drawable.ic_media_pause, "", intentPause);
+            builder.addAction(android.R.drawable.ic_media_next, "", intentNext);
+            builder.addAction(android.R.drawable.ic_delete, "", intentStop);
+            builder.setStyle(new NotificationCompat.MediaStyle().setShowActionsInCompactView(0, 1, 2));
+            PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
+            builder.setContentIntent(contentIntent);
+            builder.setShowWhen(false);
+            builder.setWhen(0);
+            Notification n = builder.build();
+            mNotificationManager.notify(1, n);
+        } else {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+            builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+            builder.setSmallIcon(R.drawable.modo_white);
+            builder.setContentTitle(path.getName());
+            builder.setContentText(getText(resid));
+            PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
+            builder.setContentIntent(contentIntent);
+            Notification n = builder.build();
+            mNotificationManager.notify(1, n);
         }
     }
 
@@ -929,7 +936,7 @@ implements	OnSeekBarChangeListener,
 
             if (isLoadingOkay) {
                 decoder.setTrack(track);
-                if (decoder instanceof GmeDecoder || decoder instanceof RsnDecoder || decoder instanceof SpcDecoder || decoder instanceof AytDecoder)
+                if (decoder instanceof GmeDecoder || decoder instanceof RsnDecoder || decoder instanceof SpcDecoder)
                     textFileDetails.setText(decoder.getTrackInfo());
                 ServicePlayer.p.noFastForward();
             }
@@ -941,9 +948,9 @@ implements	OnSeekBarChangeListener,
             updatePlaytimeDisplayAfterTrackChange();
 
             // Fade in / out
-            ServicePlayer.p.disableFadeInOut();
+            Mixer.disableFadeInOut();
             if (!decoder.isTrackerFormat())
-                ServicePlayer.p.setFadeInOut(prefsFadeSeconds, (int)trackLength);
+                Mixer.setFadeInOut(prefsFadeSeconds, (int)trackLength);
         }
     }
     
@@ -1572,8 +1579,6 @@ implements	OnSeekBarChangeListener,
             asapDecoder.reset();
             nezplugDecoder.reset();
             spcDecoder.reset();
-            aytDecoder.reset();
-            //xmpDecoder.reset();
         }
     }
 
@@ -1585,7 +1590,6 @@ implements	OnSeekBarChangeListener,
         asapDecoder.setSilenceDetection(prefSilence);
         rsnDecoder.setSilenceDetection(prefSilence);
         spcDecoder.setSilenceDetection(prefSilence);
-        aytDecoder.setSilenceDetection(prefSilence);
     }
 
     void updateSoundBoost() {
@@ -1656,10 +1660,6 @@ implements	OnSeekBarChangeListener,
         if (fname.endsWith(".nsfe"))
             return gmeDecoder;
 
-        // Spectrum Turbosound
-        if (fname.endsWith(".ayt"))
-            return aytDecoder;
-
         // SPC Decoder, fork of GME with fast SPC
         if (fname.endsWith(".ay"))
             return spcDecoder;
@@ -1714,9 +1714,6 @@ implements	OnSeekBarChangeListener,
 
         if (fname.startsWith("okt."))
             return mikmodDecoder;
-
-        //if (fname.startsWith("umx."))
-        //	return xmpDecoder;
 
         // C64
         if (fname.endsWith(".sid"))

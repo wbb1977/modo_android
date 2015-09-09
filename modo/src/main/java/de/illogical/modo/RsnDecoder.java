@@ -14,6 +14,11 @@ final class RsnDecoder implements Decoder {
     private int playlistTrack = -1;
     private int rsnCount = 0;
     private String rsnInfoText = "";
+    private boolean isConvertStereoToMono = false;
+
+    void setMonoOutput(boolean isConvertStereoToMono) {
+        this.isConvertStereoToMono = isConvertStereoToMono;
+    }
 
     void setSilenceDetection(int seconds) {
         silencePeriod = seconds * 5;
@@ -98,6 +103,9 @@ final class RsnDecoder implements Decoder {
             ++silence;
         else
             silence = 0;
+
+        if (isConvertStereoToMono)
+            Mixer.convertToMono(samples);
 
         return samples;
     }

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +30,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-final public class ModoPlaylistEntries extends ActionBarActivity
+final public class ModoPlaylistEntries extends AppCompatActivity
 implements
     OnItemLongClickListener,
     OnItemClickListener,
@@ -219,7 +220,7 @@ implements
             ab.setPositiveButton(android.R.string.yes, new DialogRemoveYes());
             ab.create().show();
         } else {
-            Toast.makeText(this, R.string.dialog_remove_entry_fail, Toast.LENGTH_LONG).show();
+            Boast.makeText(this, R.string.dialog_remove_entry_fail, Toast.LENGTH_LONG).show();
         }
     }
 

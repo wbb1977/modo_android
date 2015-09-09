@@ -424,7 +424,7 @@ implements	OnItemClickListener,
             savePos();
             populateFilelist(currentDirectory.getParentFile());
         } else {
-            Toast.makeText(getApplicationContext(), "You did something I was not prepared for. Write me a mail. Thank you!", Toast.LENGTH_LONG).show();
+            Boast.makeText(getApplicationContext(), "You did something I was not prepared for. Write me a mail. Thank you!", Toast.LENGTH_LONG).show();
         }
     }
     
@@ -443,7 +443,7 @@ implements	OnItemClickListener,
             fileAdapter.invertSelection(position);
             updateMenu();
         } else {
-            Toast.makeText(this, R.string.dialog_no_directory_atm, Toast.LENGTH_LONG).show();
+            Boast.makeText(this, R.string.dialog_no_directory_atm, Toast.LENGTH_LONG).show();
         }
         return true;
     }
@@ -637,9 +637,6 @@ implements	OnItemClickListener,
         if (fname.endsWith(".ay"))
             return "ZX Spectrum / Amstrad CPC";
 
-        if (fname.endsWith(".ayt"))
-            return "ZX Spectrum TS";
-
         if (fname.endsWith(".gym"))
             return "Sega Mega Drive";
 
@@ -740,9 +737,6 @@ implements	OnItemClickListener,
             return R.drawable.file_sega;
 
         if (fname.endsWith(".ay"))
-            return R.drawable.file_ay;
-
-        if (fname.endsWith(".ayt"))
             return R.drawable.file_ay;
 
         if (fname.endsWith(".gym"))
@@ -883,9 +877,6 @@ implements	OnItemClickListener,
             if (fname.endsWith(".ay"))
                 return true;
 
-            if (fname.endsWith(".ayt"))
-                return true;
-
             if (fname.endsWith(".gym"))
                 return true;
 
@@ -993,9 +984,6 @@ implements	OnItemClickListener,
             return true;
 
         if (fname.endsWith(".ay"))
-            return true;
-
-        if (fname.endsWith(".ayt"))
             return true;
 
         if (fname.endsWith(".gym"))

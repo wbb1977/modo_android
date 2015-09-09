@@ -133,12 +133,8 @@
 	<string name="pref_interpolation">Interpolationsmixer</string>
  	<string name="pref_mediabuttons">Media Buttons ignorieren</string>	    
  	<string name="pref_mediabuttons_summary">Aktivieren um mögliche Konflikte mit anderen Apps zu vermeiden.</string>	    
- 	<string name="pref_stereo">Stereo-Trennung</string>
 	<string name="pref_stereo_max">Stereo</string>
 	<string name="pref_stereo_min">Mono</string>
-	<string name="pref_stereo_summary">Nur für Tracker-Module / Nsf / Vgm. Mono (0\%%) bis Stereo (100\%%).</string>
-	<string name="pref_AY_stereo">AY Stereo</string>
-	<string name="pref_AY_stereo_summary">Abspielen von .ay Dateien in Stereo.</string>
 	<string name="pref_shake">Schütteln</string>
 	<string name="pref_shake_summary">Intensität festlegen um die nächste Datei zu laden.</string>
     <string-array name="arr_shake">
@@ -157,6 +153,14 @@
         <item>30 Sekunden</item>
         <item>60 Sekunden</item>
     </string-array>
+    <string name="pref_stereo_modules">Stereo-Trennung Module</string>
+    <string name="pref_stereo_modules_summary">Nur für Tracker-Formate.</string>
+    <string name="pref_monoapu">Mono APU</string>
+    <string name="pref_monoapu_summary">Wandelt die Stereo-Ausgabe verschiedener Chips in Mono um.</string>
+    <string name="pref_cat_playback">Wiedergabe</string>
+    <string name="pref_cat_mixer">Mixer</string>
+    <string name="pref_cat_misc">Verschiedenes</string>
+    <string name="pref_cat_boost">Volume boost options</string>
     <string name="pref_allowdups">Doppelte Playlist-Einträge möglich</string>
     <string name="pref_allowdups_summary">Ermöglicht es, die gleiche Datei bzw. ein Track mehrmals zu einer Playlist hinzuzufügen.</string>
     <string name="pref_fade">Musik ein- und abblenden</string>

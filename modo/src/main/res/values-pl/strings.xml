@@ -136,14 +136,20 @@
     <string name="pref_interpolation">Mixer interpolacji</string>
     <string name="pref_mediabuttons">Ignoruj przyciski mediów</string>
     <string name="pref_mediabuttons_summary">Włącz jeżeli inne aplikacje muzyczne powodują problemy.</string>
-    <string name="pref_stereo">Separacja stereo</string>
+    <!--<string name="pref_stereo">Separacja stereo</string>-->
     <string name="pref_stereo_max">Stereo</string>
     <string name="pref_stereo_min">Mono</string>
-    <string name="pref_stereo_summary">Obecnie dotyczy tylko formatów trackerowych / NSF / Vgm. Mono (0\%%) do Stereo (100\%%).</string>
+    <string name="pref_stereo_modules">Stereo separation Modules</string>
+    <string name="pref_stereo_modules_summary">Applies to tracker formats.</string>
+    <string name="pref_monoapu">Mono APU</string>
+    <string name="pref_monoapu_summary">Convert output from stereo chips to mono.</string>
+    <string name="pref_cat_playback">Playback</string>
+    <string name="pref_cat_mixer">Mixer</string>
+    <string name="pref_cat_misc">Miscellaneous</string>
+    <string name="pref_cat_boost">Volume boost</string>
+    <!--<string name="pref_stereo_summary">Obecnie dotyczy tylko formatów trackerowych / NSF / Vgm. Mono (0\%%) do Stereo (100\%%).</string>-->
     <string name="pref_shake">Wstrząs</string>
     <string name="pref_shake_summary">Ustaw poziom intensywności w celu załadowania kolejnego pliku muzycznego.</string>
-    <string name="pref_AY_stereo">AY Stereo</string>
-    <string name="pref_AY_stereo_summary">Włącz aby odtwarzać pliki .ay w stereo.</string>
 
     <string-array name="arr_shake">
         <item>Nieaktywny</item>

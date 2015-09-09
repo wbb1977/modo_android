@@ -31,8 +31,6 @@ final class SpcDecoder implements Decoder {
     static native int spcSeek(long milli);
     static native void spcGetTrackInfo(int track, int what, byte[] s);
     static native int spcGetTrackInfoLength(int track, int what);
-    static native void spcSetStereoSeparation(int depth);
-    static native void spcSetStereoAY(int stereo);
 
     private short[] samples = new short[17640];
     private int currentTrack = 0;
@@ -43,18 +41,14 @@ final class SpcDecoder implements Decoder {
     private int silencePeriod = 20;
     private int playlistTrack = -1;
     private boolean isAyStereo = false;
+    private boolean isConvertStereoToMono = false;
 
-    public void setStereoAY(int stereo) {
-        spcSetStereoAY(stereo);
+    void setMonoOutput(boolean isConvertStereoToMono) {
+        this.isConvertStereoToMono = isConvertStereoToMono;
     }
+
     void setSilenceDetection(int seconds) {
         silencePeriod = seconds * 5;
-    }
-
-    public void setStereoSeparation(int sep) {
-        // libkmikmod: 128 max stereo, 0 mono
-        // libgme: 1.0 max stereo, 0.0 mono, /100.0 in C
-        spcSetStereoSeparation(sep * 100/128);
     }
 
     public void reset() {
@@ -127,6 +121,9 @@ final class SpcDecoder implements Decoder {
             ++silence;
         else
             silence = 0;
+
+        if (isConvertStereoToMono)
+            Mixer.convertToMono(samples);
 
         return samples;
     }

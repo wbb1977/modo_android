@@ -6,8 +6,8 @@
     android:versionName="2.5b" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="21">
+        android:minSdkVersion="13"
+        android:targetSdkVersion="22">
     </uses-sdk>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -47,10 +47,6 @@
         </activity>
         <activity
             android:name="de.illogical.modo.Prefs"
-            android:theme="@style/Theme.Modo" >
-        </activity>
-        <activity
-            android:name="de.illogical.modo.Help"
             android:theme="@style/Theme.Modo" >
         </activity>
         <activity android:label="@string/menu_playlists" android:name="de.illogical.modo.ModoPlaylists" android:theme="@style/Theme.Modo">

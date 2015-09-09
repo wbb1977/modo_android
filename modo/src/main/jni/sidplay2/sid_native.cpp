@@ -232,6 +232,14 @@ extern "C" jint Java_de_illogical_modo_SidDecoder_sidLoadFromZip(JNIEnv* env, jc
 	return 0;
 }
 
+extern "C" jint Java_de_illogical_modo_SidDecoder_sidIsStereo(JNIEnv* env, jclass clazz)
+{
+	if (sid_tune == NULL)
+		return 0;
+
+	return sid_tune->isStereo();
+}
+
 extern "C" jint Java_de_illogical_modo_SidDecoder_sidTracks(JNIEnv* env, jclass clazz, jshortArray samples)
 {
 	if (sid_tune == NULL)

@@ -8,7 +8,7 @@
    LOCAL_SHARED_LIBRARIES := libunrar libunzip
    LOCAL_LDLIBS := -lz
    LOCAL_MODULE    := gme_spc
-   LOCAL_SRC_FILES := gme_ayturbo.c gmenative.c Blip_Buffer.cpp \
+   LOCAL_SRC_FILES := gmenative.c Blip_Buffer.cpp \
    	Ay_Apu.cpp Ay_Cpu.cpp Ay_Emu.cpp \
 	Classic_Emu.cpp Data_Reader.cpp Dual_Resampler.cpp Effects_Buffer.cpp \
 	Fir_Resampler.cpp gme.cpp \

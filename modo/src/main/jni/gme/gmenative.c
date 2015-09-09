@@ -3,22 +3,13 @@
 #include <zlib.h>
 #include "gme.h"
 #include "uncompress.h"
-//#include <android/log.h>
 
-static double depth = 0.0;
 static Music_Emu* emu = NULL;
 static short localSamples[18000];
 
-void Java_de_illogical_modo_GmeDecoder_gmeSetStereoSeparation(JNIEnv* env, jclass clazz, jint d)
-{
-	depth = d/100.0;
-	if (depth < 0.0)
-		depth = 0.0;
-	if (depth > 1.0)
-		depth = 1.0;
-	if (emu != NULL)
-		gme_set_stereo_depth(emu, depth);
-}
+extern const gme_type_t gme_kss_type;
+extern const gme_type_t gme_nsf_type;
+extern const gme_type_t gme_nsfe_type;
 
 void Java_de_illogical_modo_GmeDecoder_gmeReset(JNIEnv* env, jclass clazz)
 {
@@ -45,6 +36,24 @@ jlong Java_de_illogical_modo_GmeDecoder_gmePlaytime(JNIEnv* env, jclass clazz)
 	}
 
 	return gme_tell(emu);
+}
+
+jint Java_de_illogical_modo_GmeDecoder_gmeIsStereoFormat(JNIEnv* env, jclass clazz, jint track) {
+	if (emu == NULL)
+	{
+		return -1;
+	}
+
+	if (gme_type(emu) == gme_nsf_type)
+		return 0;
+
+	if (gme_type(emu) == gme_nsfe_type)
+		return 0;
+
+	if (gme_type(emu) == gme_kss_type)
+		return 0;
+
+	return 1;
 }
 
 jint Java_de_illogical_modo_GmeDecoder_gmeGetTrackInfoLength(JNIEnv* env, jclass clazz, jint track, jint what) {
@@ -169,7 +178,6 @@ jint Java_de_illogical_modo_GmeDecoder_gmeSetTrack(JNIEnv* env, jclass clazz, ji
 
 	gme_ignore_silence(emu, 1);
 	gme_start_track(emu, track);
-	gme_set_stereo_depth(emu, depth);
 	return 1;
 }
 
@@ -192,7 +200,6 @@ jint Java_de_illogical_modo_GmeDecoder_gmeLoadFile(JNIEnv* env, jclass clazz, js
 	else
 	{
 		gme_start_track(emu, 0);
-		gme_set_stereo_depth(emu, depth);
 	}
 	
 	return emu != NULL;
@@ -319,7 +326,6 @@ jint Java_de_illogical_modo_GmeDecoder_gmeLoadFromZip(JNIEnv* env, jclass clazz,
 	else
 	{
 		gme_start_track(emu, 0);
-		gme_set_stereo_depth(emu, depth);
 	}
 
 	if (emu != NULL)

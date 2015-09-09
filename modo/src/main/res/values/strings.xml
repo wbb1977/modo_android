@@ -186,18 +186,21 @@
     <string name="info_service_continue">Modo - pause music to terminate service!</string>
     <string name="menu_tablet">Check out Modo for tablet</string>
     <string name="pref_interpolation_summary">Applies only to tracker formats. Requires more CPU time, better sound output.</string>
-    <string name="pref_interpolation">Interpolation mixer</string>
+    <string name="pref_interpolation">Interpolation</string>
     <string name="pref_mediabuttons">Ignore Media Buttons</string>
     <string name="pref_mediabuttons_summary">Enable if other music apps cause problems.</string>
-    <string name="pref_stereo">Stereo separation</string>
-    <string name="pref_stereo_max">Stereo</string>
-    <string name="pref_stereo_min">Mono</string>
-    <string name="pref_stereo_summary">Applies currently only to tracker formats / Nsf / Vgm. Mono (0\%%) to Stereo (100\%%).</string>
     <string name="pref_shake">Shake</string>
     <string name="pref_shake_summary">Set the intensity level to load next song file.</string>
-    <string name="pref_AY_stereo">AY Stereo</string>
-    <string name="pref_AY_stereo_summary">Enable to play .ay files in stereo.</string>
-
+    <string name="pref_stereo_max">Stereo</string>
+    <string name="pref_stereo_min">Mono</string>
+    <string name="pref_stereo_modules">Stereo separation Modules</string>
+    <string name="pref_stereo_modules_summary">Applies only to tracker formats.</string>
+    <string name="pref_monoapu">Mono APU</string>
+    <string name="pref_monoapu_summary">Convert output from stereo chips to mono.</string>
+    <string name="pref_cat_playback">Playback</string>
+    <string name="pref_cat_mixer">Mixer</string>
+    <string name="pref_cat_misc">Miscellaneous</string>
+    <string name="pref_cat_boost">Volume boost</string>
     <string-array name="arr_shake">
         <item>Disabled</item>
         <item>Soft</item>
