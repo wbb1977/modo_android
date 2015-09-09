@@ -32,7 +32,7 @@ implements OnSharedPreferenceChangeListener {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().hide();
-        getToolbar().setTitle("Settings");
+        getToolbar().setTitle(R.string.menu_settings);
 
         //addPreferencesFromResource(R.layout.prefs);
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);

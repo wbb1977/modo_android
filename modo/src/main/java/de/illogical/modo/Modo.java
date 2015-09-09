@@ -842,10 +842,15 @@ implements	OnSeekBarChangeListener,
             builder.setVisibility(Notification.VISIBILITY_PUBLIC);
             builder.setSmallIcon(R.drawable.modo_white);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
-                builder.setLargeIcon(modo_white);
+                builder.setLargeIcon(modo_white); // otherwise there is just a black big square
             builder.setContentTitle(path.getName());
-            builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
-            builder.setSubText(FileBrowser.getDescription(path));
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.GINGERBREAD_MR1) {
+                // just two lines of space in notification
+                builder.setContentText(decoder instanceof MikModDecoder ? FileBrowser.getDescription(path) : track + 1 + " / " + tracks + " - " + FileBrowser.getDescription(path));
+            } else {
+                builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
+                builder.setSubText(FileBrowser.getDescription(path));
+            }
             builder.addAction(android.R.drawable.ic_media_previous, "", intentPrev);
             if (isFastForward || isPause)
                 builder.addAction(android.R.drawable.ic_media_play, "", intentPlay);

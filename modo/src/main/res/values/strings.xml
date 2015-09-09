@@ -82,7 +82,7 @@
     <string name="pref_allowdups">Allow duplicate entries</string>
     <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
     <string name="pref_fade">Fade in/out duration</string>
-    <string name="pref_fade_summary">Does not apply to tracker modules.</string>
+    <string name="pref_fade_summary">Does not apply to tracker formats.</string>
     <string-array name="arr_fade">
         <item>Disable</item>
         <item>1 second</item>
