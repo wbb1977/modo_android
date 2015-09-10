@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "de.illogical.modo"
         minSdkVersion 8
-        targetSdkVersion 22
+        targetSdkVersion 23
 
     }
     sourceSets.main {

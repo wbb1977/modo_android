@@ -130,21 +130,18 @@
 	<string name="pref_interpolation">Interpolation</string>
 	<string name="pref_mediabuttons">Ignorer le bouton de média</string>
  	<string name="pref_mediabuttons_summary">Activer si des problèmes apparaissent avec d\'autres logiciels.</string>	    	    
-	<!--<string name="pref_stereo">Stereo</string>-->
-    <string name="pref_stereo_modules">Stereo separation Modules</string>
-    <string name="pref_stereo_modules_summary">Applies to tracker formats.</string>
+    <string name="pref_stereo_modules">Stereo séparation Modules</string>
+    <string name="pref_stereo_modules_summary">Ne s\'applique que sur les formats de type tracker.</string>
     <string name="pref_monoapu">Mono APU</string>
-    <string name="pref_monoapu_summary">Convert output from stereo chips to mono.</string>
-    <string name="pref_cat_playback">Playback</string>
+    <string name="pref_monoapu_summary">Convertir une sortie Stéréo en sortie Mono.</string>
+    <string name="pref_cat_playback">Lecture</string>
     <string name="pref_cat_mixer">Mixer</string>
-    <string name="pref_cat_misc">Miscellaneous</string>
+    <string name="pref_cat_misc">Divers</string>
     <string name="pref_cat_boost">Volume boost</string>
-
 	<string name="pref_stereo_max">Stereo</string>
 	<string name="pref_stereo_min">Mono</string>
 	<string name="pref_shake">Shake</string>
 	<string name="pref_shake_summary">Régler l\'intensité pour le chargement du module suivant.</string>
-	<!--<string name="pref_stereo_summary"> Uniquement pour les modules tracker ainsi que les fichiers NSF et VGM. Mono (0\%%) à Stereo (100\%%).</string>-->
     <string-array name="arr_shake">
         <item>Désactivé</item>
         <item>Faible</item>
@@ -163,8 +160,8 @@
     </string-array>
     <string name="pref_allowdups">Allow duplicate entries</string>
     <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
-    <string name="pref_fade">Fade in/out</string>
-    <string name="pref_fade_summary">Does not apply to tracker modules.</string>
+    <string name="pref_fade">Durée du fondu d\'entrée/sortie</string>
+    <string name="pref_fade_summary">Ne s\'applique pas sur les formats de type tracker.</string>
     <string-array name="arr_fade">
         <item>Désactivé</item>
         <item>1 seconde</item>
