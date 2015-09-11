@@ -32,7 +32,7 @@
     <string name="menu_settings">Configuración</string>
     <string name="menu_about">Acerca de</string>
     <string name="menu_help">Ayuda</string>
-    <string name="dialog_about">Modo v2.5b\n\npor\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTraducción al Castellano por Gorka Oteiza\n\nTraducción frances de Zod\n\nGracias a Abrimaal, Frapsman123, Aron Alliston\n\nDisfruta de estupendas melodías!</string>
+    <string name="dialog_about">Modo v2.5b\n\npor\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTraducción al Castellano por Gorka Oteiza.\n\nTraducción al Francés por Zod.\n\nTraducción al Chino por SuperMarioX.\n\nTraducción al Polaco por Łukasz Wollnikowski.\n\nGracias a Abrimaal, Frapsman123, Aron Alliston.\n\nDisfruta de estupendas melodías!</string>
     <string name="pref_sound_boost">Potenciador del Volumen</string>
     <string name="pref_sound_boost_summary">Incrementa el volumen, pero puede producir sobremuestreo / mala calidad.</string>
     <string name="pref_sound_boost_modules">Módulos de incremento de volumen</string>
@@ -98,20 +98,20 @@
     <string name="info_service_continue">Modo - dale al pause en la música para terminar el servicio!</string>
 	<string name="menu_tablet">Prueba Modo para Tablet</string>
 	<string name="pref_interpolation_summary">Se aplica solo a los formatos tracker. Requiere más tiempo de CPU, mejor calidad de sonido.</string>
-	<string name="pref_interpolation">Mezclador de interpolación</string> 
+	<string name="pref_interpolation">Interpolación</string>
 	<!--<string name="pref_stereo">Separación Estéreo</string>-->
 	<string name="pref_stereo_max">Estéreo</string>
 	<string name="pref_stereo_min">Mono</string>
 	<!--<string name="pref_stereo_summary">Se aplica solo a los formatos tracker, Nsf y Vgm. Mono (0\%%) a Estéreo (100\%%).</string>-->
 
-    <string name="pref_stereo_modules">Stereo separation Modules</string>
-    <string name="pref_stereo_modules_summary">Applies to tracker formats.</string>
+    <string name="pref_stereo_modules">Módulos de separación Estéreo</string>
+    <string name="pref_stereo_modules_summary">Sólo se aplica a formatos tracker.</string>
     <string name="pref_monoapu">Mono APU</string>
-    <string name="pref_monoapu_summary">Convert output from stereo chips to mono.</string>
-    <string name="pref_cat_playback">Playback</string>
-    <string name="pref_cat_mixer">Mixer</string>
-    <string name="pref_cat_misc">Miscellaneous</string>
-    <string name="pref_cat_boost">Volume boost</string>
+    <string name="pref_monoapu_summary">Convierte la salida de chips estéreo a mono.</string>
+    <string name="pref_cat_playback">Reproducción</string>
+    <string name="pref_cat_mixer">Mezclador</string>
+    <string name="pref_cat_misc">Varios</string>
+    <string name="pref_cat_boost">Potenciador de volumen</string>
 
 	<string name="menu_sleep_timer_plus">Auto Apagado +10min</string>
 	<string name="menu_sleep_timer_cancel">Parar Auto Apagado</string>
@@ -154,10 +154,10 @@
     </string-array>
     <string name="pref_scanfiles">Analizar ficheros</string>
     <string name="pref_scanfiles_summary">El explorador de ficheros muestra el nombre del juego o el primer título. Todavía no se analizan los ficheros Zip.</string>
-    <string name="pref_allowdups">Allow duplicate entries</string>
-    <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
-    <string name="pref_fade">Fade in/out</string>
-    <string name="pref_fade_summary">Does not apply to tracker modules.</string>
+    <string name="pref_allowdups">Permitir entradas duplicadas</string>
+    <string name="pref_allowdups_summary">Si está habilitado, se puede añadir una pista varias veces a una lista de reproducción.</string>
+    <string name="pref_fade">Duración del fundido de entrada/salida</string>
+    <string name="pref_fade_summary">No se aplica a formatos tracker.</string>
     <string-array name="arr_fade">
         <item>Deshabilitado</item>
         <item>1 segundo</item>

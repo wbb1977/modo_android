@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Modo - Computer Music Player</string>
-    <string name="seek_warning_forward">Impossible d\'avancer la lecture pour ce type de format, augmentation de la vitesse de lecture.</string>
+    <string name="seek_warning_forward">Impossible d\'avancer la lecture pour ce type de format, Passage en lecture accélerée.</string>
     <string name="button_filebrowser">Rechercher</string>
     <string name="text_track"> 0 / 0 </string>
     <string name="loading_failed">[ !Erreur lors du chargement! ]</string>
     <string name="hint_loadfile">Touchez \&quot;Rechercher\&quot; pour commencer.</string>
-    <string name="app_description">Écouter ses fichiers 8/16bit :)</string>
+    <string name="app_description">Computer Music 8/16bit :)</string>
     <string name="reading_directory">Chargement&#8230;</string>
     <string name="text_file_details">Détails/Commentaires</string>
-    <string name="now_playing">En écoute</string>
+    <string name="now_playing">Actuellement en écoute</string>
     <string-array name="arr_stdplaytime">
 		<item>1min</item>
 		<item>2min</item>
@@ -34,9 +34,9 @@
     <string name="menu_help">Aide</string>
     <string name="dialog_about">Modo v2.5b\n\npar\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTraduction espagnole par Gorka Oteiza.\n\nTraduction française par Sub.\n\nRemerciements à Abrimaal, Frapsman123, Aron Alliston.\n\nBonne écoute!</string>
     <string name="pref_sound_boost">Augmenter le volume</string>
-    <string name="pref_sound_boost_summary">Augmente le volume, perte de qualité possible.</string>   
+    <string name="pref_sound_boost_summary">Augmente le volume, pouvant altérer la qualité du son.</string>   
 	<string name="pref_sound_boost_modules">Volume modules</string>
-	<string name="pref_sound_boost_summary_modules">Augmente le volume, perte de qualité possible.\nExtensions concernées: .mod, .xm, .it, .med, .okt, .s3m</string>
+	<string name="pref_sound_boost_summary_modules">Extensions concernées: .mod, .xm, .it, .med, .okt, .s3m</string>
 	<string name="pref_sound_boost_nsf"> Volume Famicom</string>
 	<string name="pref_sound_boost_summary_nsf">Extensions concernées: .nsf, .nsfe</string>
 	<string name="pref_sound_boost_spc"> Volume Snes</string>
@@ -81,12 +81,12 @@
         \n\n\n=== Démarrage rapide ===
         \n\nPour arrêter une écoute,appuyez sur pause puis sur la touche retour de votre appareil.
         \n\n1. Copier vos fichiers musicaux dans un dossier de votre appareil.
-        \n2. Sur MODo recherchez vos fichiers en appuyant sur la touche Rechercher.
+        \n2. Sur MODo recherchez vos fichiers en appuyant sur la touche "Rechercher".
         \n3. Selectionner un fichier pour démarrer l\'écoute.
         \n4. Les touches Suivant/Précédent vous permettent de selectionner le fichier suivant ou précédent dans le même dossier.
         \n\n\n=== Remarques ===
         \n\n\n= C64 SID &amp; MUS =
-        \n\n* La lecture des fichiers SID utilisent beaucoup de mémoire processeur,(surtout RSID) il est donc possible que votre lecture subisse des ralentissements si votre appareil a de faibles capacités.
+        \n\n* La lecture des fichiers SID utilisent beaucoup de mémoire processeur,(notamment RSID) il est donc possible que votre lecture subisse des ralentissements si votre appareil a de faibles capacités.
         \n\n\n= Tracker Modules =
         \n\n* Si un module se répète à la fin,Le logiciel le répétera alors trois fois avant de charger le prochain fichier,Il n\'y a actuellement, aucune option pour changer cela.
         \n\n* Si vous tentez d\'avancer la lecture, le fichier peut ne pas se lire correctement, ceci est dû au saut de paterns.
@@ -101,7 +101,7 @@
         \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>
     <string name="filebrowser_directory">Dossier</string>
     <string name="pref_default_playtime_summary">Temps d\'écoute si non spécifié par le fichier.</string>
-    <string name="enjoy_some_retro_music">Prêt pour un peu de musique rétro!</string>        
+    <string name="enjoy_some_retro_music">Prêt !</string>        
     <string name="browser_header">&lt;b&gt;Retour&lt;/b&gt;\nDossier Parent</string>
     <string name="service_started">Lecteur actif</string>
     <string name="pref_overlay_color_summary">Changer la couleur du fond et sa transparence.</string>
@@ -158,8 +158,8 @@
         <item>30 secondes</item>
         <item>60 secondes</item>
     </string-array>
-    <string name="pref_allowdups">Allow duplicate entries</string>
-    <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
+    <string name="pref_allowdups">Fichiers doubles sur Playlists</string>
+    <string name="pref_allowdups_summary">Si activé, offre la possibilité d\'ajouter plusieurs fois un même fichier dans une même playlist.</string>
     <string name="pref_fade">Durée du fondu d\'entrée/sortie</string>
     <string name="pref_fade_summary">Ne s\'applique pas sur les formats de type tracker.</string>
     <string-array name="arr_fade">
@@ -200,8 +200,8 @@
 	<string name="menu_new_playlist">Créer</string>
 	<string name="menu_rename_playlist">Renommer</string>
 	<string name="menu_delete_playlist">Supprimer</string>
-	<string name="dialog_new_playlist_fail">Impossible de créer là playlist, une du même nom existe.</string>
-	<string name="dialog_new_playlist_fail2">Impossible de créer une playlist sans nom.</string>
+	<string name="dialog_new_playlist_fail">Impossible de créer là playlist, déjà éxistante.</string>
+	<string name="dialog_new_playlist_fail2">Impossible de créer une playlist anonyme.</string>
 	<string name="dialog_rename_playlist_fail">Nom de playlist déjà utilisé.</string>
 	<string name="dialog_rename_playlist_fail2">Veuillez entrer un nom.</string>
 	<string name="dialog_rename_playlist_title">Renommer</string>
