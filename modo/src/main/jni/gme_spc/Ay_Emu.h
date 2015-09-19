@@ -7,6 +7,7 @@
 #include "Classic_Emu.h"
 #include "Ay_Apu.h"
 #include "Ay_Cpu.h"
+#include "SAA_Apu.h"
 
 class Ay_Emu : private Ay_Cpu, public Classic_Emu {
 	typedef Ay_Cpu cpu;
@@ -37,6 +38,7 @@ public:
 	};
 	Ay_Apu* active_apu;
 	int apu_addr;
+	int saa_reg;
 protected:
 	blargg_err_t track_info_( track_info_t*, int track ) const;
 	blargg_err_t load_mem_( byte const*, long );
@@ -62,8 +64,12 @@ private:
 		byte padding1 [0x100];
 		byte ram [0x10000 + 0x100];
 	} mem;
+
 	Ay_Apu apu;
 	Ay_Apu apu2;
+	SAA_Apu apusaa;
+	int ay_stereo;
+
 	friend void ay_cpu_out( Ay_Cpu*, cpu_time_t, unsigned addr, int data );
 	void cpu_out_misc( cpu_time_t, unsigned addr, int data );
 };

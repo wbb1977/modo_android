@@ -6,8 +6,9 @@
 #include <zlib.h>
 
 static Music_Emu* emu = NULL;
-static short localSamples[18000];
-int ay_stereo = 1; // 1 = pure AY channels (A,B,C), 0 = all into center (mono)
+//static short localSamples[18000];
+static short localSamples[100000];
+//int ay_stereo = 1; // 1 = pure AY channels (A,B,C), 0 = all into center (mono)
 
 // RSN related
 #define MAX_SPC_MODULE_SIZE 67000
@@ -208,6 +209,7 @@ jint Java_de_illogical_modo_SpcDecoder_spcLoadFromZip(JNIEnv* env, jclass clazz,
 	return 0;
 }
 
+extern int saa_mode;
 jint Java_de_illogical_modo_SpcDecoder_spcGetSamples(JNIEnv* env, jclass clazz, jshortArray samples)
 {
 	if (emu == NULL)
@@ -220,7 +222,7 @@ jint Java_de_illogical_modo_SpcDecoder_spcGetSamples(JNIEnv* env, jclass clazz, 
 	
 	// Fill in local playback, no more than 50k, returns NULL on success
 	gme_err_t err = gme_play(emu, sampleCount, localSamples);
-	
+
 	// copy local buffer to java array
 	(*env)->SetShortArrayRegion(env, samples, 0, sampleCount, localSamples);
 

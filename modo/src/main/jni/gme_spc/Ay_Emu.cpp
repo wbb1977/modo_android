@@ -4,6 +4,7 @@
 
 #include "blargg_endian.h"
 #include <string.h>
+#include <stdio.h>
 
 /* Copyright (C) 2006 Shay Green. This module is free software; you
 can redistribute it and/or modify it under the terms of the GNU Lesser
@@ -18,13 +19,11 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA */
 
 #include "blargg_source.h"
 
-long const spectrum_clock = 3494400; //3546900;
+long const spectrum_clock = 3494400; //3546900 seems a little to fast if compared to the real ZX
 long const cpc_clock      = 2000000;
 
 unsigned const ram_start = 0x4000;
 int const osc_count = Ay_Apu::osc_count + 1;
-
-extern int ay_stereo; // ONE BIG UGLY HACK
 
 Ay_Emu::Ay_Emu()
 {
@@ -41,6 +40,8 @@ Ay_Emu::Ay_Emu()
 	};
 	set_voice_types( types );
 	set_silence_lookahead( 6 );
+	
+	ay_stereo = 1;
 }
 
 Ay_Emu::~Ay_Emu() { }
@@ -136,6 +137,7 @@ blargg_err_t Ay_Emu::load_mem_( byte const* in, long size )
 	set_voice_count( osc_count );
 	apu.volume( gain() );
 	apu2.volume( gain() );
+	apusaa.volume( gain() );
 	
 	return setup_buffer( spectrum_clock );
 }
@@ -144,6 +146,7 @@ void Ay_Emu::update_eq( blip_eq_t const& eq )
 {
 	apu.treble_eq( eq );
 	apu2.treble_eq( eq );
+	apusaa.treble_eq( eq );
 }
 
 void Ay_Emu::set_voice( int i, Blip_Buffer* center, Blip_Buffer* left, Blip_Buffer* right )
@@ -154,24 +157,29 @@ void Ay_Emu::set_voice( int i, Blip_Buffer* center, Blip_Buffer* left, Blip_Buff
 	else
 	{
 		// UHH NICE :)=
-		if (ay_stereo != 1) {
+		if ( ay_stereo != 1 ) {
 			apu.osc_output(i, center);
 			apu2.osc_output(i, center);
+			apusaa.osc_output(i, center);
 			return;
 		}
 
-		if (i == 0) {
+		if ( i == 0 ) {
 			apu.osc_output(i, left);  // Channel A
 			apu2.osc_output(i, left);
-		} else if (i == 1) {
+			apusaa.osc_output(i, left);
+		} else if ( i == 1 ) {
 			apu.osc_output(i, center); // Channel B
 			apu2.osc_output(i, center);
-		} else if (i == 2) {
+			apusaa.osc_output(i, center);
+		} else if ( i == 2 ) {
 			apu.osc_output(i, right);  // Channel C
 			apu2.osc_output(i, right);
+			apusaa.osc_output(i, right);
 		} else {
 			apu.osc_output(i, center); // just to make sure
 			apu2.osc_output(i, center); // just to make sure
+			apusaa.osc_output(i, center);
 		}
 	}
 }
@@ -293,6 +301,7 @@ blargg_err_t Ay_Emu::start_track_( int track )
 	last_beeper = 0;
 	apu.reset();
 	apu2.reset();
+	apusaa.reset();
 	next_play = play_period;
 	
 	// start with first AY
@@ -406,7 +415,7 @@ void Ay_Emu::cpu_out_misc( cpu_time_t time, unsigned addr, int data )
 		}
 	}
 	
-	debug_printf( "Unmapped OUT: $%04X <- $%02X\n", addr, data );
+	//printf( "=>Unmapped OUT: $%04X <- $%02X\n", addr, data );
 	return;
 	
 enable_cpc:
@@ -421,7 +430,23 @@ enable_cpc:
 void ay_cpu_out( Ay_Cpu* cpu, cpu_time_t time, unsigned addr, int data )
 {
 	Ay_Emu& emu = STATIC_CAST(Ay_Emu&,*cpu);
-	
+
+	//printf( "OUT1: $%04X <- $%02X   %i %i\n", addr, data, time, addr );
+
+	if ( addr == 0x1FF )
+	{
+		emu.spectrum_mode = true;
+		emu.saa_reg = data;
+		return;
+	}
+
+	if ( addr == 0xFF )
+	{
+		emu.spectrum_mode = true;
+		emu.apusaa.write(time, emu.saa_reg, data);
+		return;
+	}
+
 	// Turbosound doc: OUT 65533,255 selects first AY, OUT 65533,254 selects second
 	if ( emu.spectrum_mode && addr == 65533 && data >= 254 )
 	{
@@ -507,6 +532,7 @@ blargg_err_t Ay_Emu::run_clocks( blip_time_t& duration, int )
 	
 	apu.end_frame( duration );
 	apu2.end_frame( duration );
+	apusaa.end_frame( duration );
 	
 	return 0;
 }

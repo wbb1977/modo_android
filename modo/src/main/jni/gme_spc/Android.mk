@@ -6,10 +6,12 @@
    LOCAL_CFLAGS += -D_UNIX -DRARDLL  -DBLARGG_LITTLE_ENDIAN -DHAVE_STDINT_H -fno-rtti -fno-exceptions
    LOCAL_C_INCLUDES +=  $(NDK_APP_PROJECT_PATH)/jni/unrar $(NDK_APP_PROJECT_PATH)/jni/unzip
    LOCAL_SHARED_LIBRARIES := libunrar libunzip
-   LOCAL_LDLIBS := -lz
+   LOCAL_LDLIBS := -lz -llog
    LOCAL_MODULE    := gme_spc
    LOCAL_SRC_FILES := gmenative.c Blip_Buffer.cpp \
    	Ay_Apu.cpp Ay_Cpu.cpp Ay_Emu.cpp \
+	SAA_Apu.cpp SAAAmp.cpp SAAEnv.cpp SAAFreq.cpp SAAImpl.cpp SAANoise.cpp \
+	SAASndC.cpp SAASound.cpp \
 	Classic_Emu.cpp Data_Reader.cpp Dual_Resampler.cpp Effects_Buffer.cpp \
 	Fir_Resampler.cpp gme.cpp \
 	Gme_File.cpp Multi_Buffer.cpp Music_Emu.cpp \

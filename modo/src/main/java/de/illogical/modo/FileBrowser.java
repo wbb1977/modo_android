@@ -705,6 +705,12 @@ implements	OnItemClickListener,
         if (fname.endsWith(".mus"))
             return "C64 Music";
 
+        if (fname.endsWith(".cop"))
+            return "Sam Coupe";
+
+        if (fname.endsWith(".sng"))
+            return "Same Coupe";
+
         return "??";
     }
 
