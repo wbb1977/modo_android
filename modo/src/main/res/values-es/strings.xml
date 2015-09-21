@@ -32,7 +32,15 @@
     <string name="menu_settings">Configuración</string>
     <string name="menu_about">Acerca de</string>
     <string name="menu_help">Ayuda</string>
-    <string name="dialog_about">Modo v2.5b\n\npor\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nTraducción al Castellano por Gorka Oteiza.\n\nTraducción al Francés por Zod.\n\nTraducción al Chino por SuperMarioX.\n\nTraducción al Polaco por Łukasz Wollnikowski.\n\nGracias a Abrimaal, Frapsman123, Aron Alliston.\n\nDisfruta de estupendas melodías!</string>
+    <string name="dialog_about"><![CDATA[
+        Modo v2.6<br><br>
+        Bastian Pflieger<br>&lt;wb@illogical.de&gt;<br><br>
+        Traducción al Castellano por Gorka Oteiza.Traducción al Francés por Zod.<br><br>
+        Traducción al Chino por SuperMarioX.<br><br>
+        Traducción al Polaco por Łukasz Wollnikowski.<br><br>
+        Gracias a Abrimaal, Frapsman123, Aron Alliston, Shay Green.<br><br>
+        Disfruta de estupendas melodías!]]>
+    </string>
     <string name="pref_sound_boost">Potenciador del Volumen</string>
     <string name="pref_sound_boost_summary">Incrementa el volumen, pero puede producir sobremuestreo / mala calidad.</string>
     <string name="pref_sound_boost_modules">Módulos de incremento de volumen</string>
@@ -66,14 +74,18 @@
         <item>+3</item>
     </string-array>
     <string name="help_title">Modo - Readme.txt</string>
-    <string name="help_text">=== Acerca de ===\n\nPuedes reproducir los siguientes formatos de fichero:\n\nMódulos de Tracker:\n\t.mod .xm .it .s3m .med .okt\n\nCommodore C64:\n\t.sid .mus\n\nNintendo Game Boy / NES / SNES:\n\t.gbs .nsf .nsfe .spc .rsn\n\nSega Master System / Mega Drive / Genesis:\n\t.gym .vgm .vgz\n\nAtari / Amstrad CPC / Spectrum:\n\t.sap .ay .ym\n\n\n=== Inicio Rápido ===\n\nPara terminar el servicio de reproducción de música, pon en Pausa la música y pulsa el botón Atrás.\n\n1. Copia algunos ficheros de música a tu dispositivo.\n2. Navega hasta el directorio donde esté la música.\n3. Selecciona un fichero para empezar.\n4. Mantén pulsado el botón Anterior/Siguiente para reproducir el fichero anterior/siguiente en el directorio actual.\n\n\n=== Observaciones ===\n\n\n= C64 SID &amp; MUS =\n\n* El reproductor tiene incorporado el soporte para la longitud del fichero de música en HVSC #63. No se puede utilizar un fichero externo. Voy a actualizar la base de datos de longitud de las canciones que está incroporada, según vaya haciendo falta. He decidido hacerlo así, ya que interpretar la base de datos desde el fichero original al arranque de la aplicación es algo muy lento. He convertido la base de datos a un pequeño fichero personalizado, para un acceso rápido y sencillo desde el propio reproductor.\n\n* La emulación SID requiere mucha CPU (especialmente RSID), así que es posible que haya pequeños cortes si se reproduce como música de fondo y tienes un dispositivo poco potente.\n\n\n= Módulos de Tracker  =\n\n* Si un módulo se escucha con repetición al final, el reproductor repite esa parte tres veces y luego carga el siguiente fichero. Actualmente no hay forma de cambiar esto por parte del usuario.\n\n* Si realizas una búsqeuda dentro de un fichero, el sonido puede parecer que esté corrupto. Esto es debido a que se saltan patrones y es el resultado de cómo funciona ese formato de fichero en concreto.\n\nEso es todo por el momento. Disfruta de estupendas melodías. \n\nPuedes contactar conmigo en cualquier momento. \n&lt;wb@illogical.de&gt;\n\nBastian Pflieger\n1 de diciembre de 2011
-        \n\n\n\n
-        \nGme - http://code.google.com/p/game-music-emu
-        \nAsap - http://asap.sourceforge.net
-        \nStSound - http://leonard.oxg.free.fr/stsound.html
-        \nMikMod - http://mikmod.sourceforge.net
-        \nSidPlay2 - http://sidplay2.sourceforge.net
-        \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>
+    <string name="help_text"><![CDATA[
+        === Acerca de ===<br><br>Puedes reproducir los siguientes formatos de fichero:<br><br>Módulos de Tracker:<br>\t.mod .xm .it .s3m .med .okt<br><br>Commodore C64:<br>\t.sid .mus<br><br>Nintendo Game Boy / NES / SNES:<br>\t.gbs .nsf .nsfe .spc .rsn<br><br>Sega Master System / Mega Drive / Genesis:<br>\t.gym .vgm .vgz<br><br>Atari / Amstrad CPC / Spectrum:<br>\t.sap .ay .ym<br><br><br>=== Inicio Rápido ===<br><br>Para terminar el servicio de reproducción de música, pon en Pausa la música y pulsa el botón Atrás.<br><br>1. Copia algunos ficheros de música a tu dispositivo.<br>2. Navega hasta el directorio donde esté la música.<br>3. Selecciona un fichero para empezar.<br>4. Mantén pulsado el botón Anterior/Siguiente para reproducir el fichero anterior/siguiente en el directorio actual.<br><br><br>=== Observaciones ===<br><br><br>= C64 SID &amp; MUS =<br><br>* El reproductor tiene incorporado el soporte para la longitud del fichero de música en HVSC #63. No se puede utilizar un fichero externo. Voy a actualizar la base de datos de longitud de las canciones que está incroporada, según vaya haciendo falta. He decidido hacerlo así, ya que interpretar la base de datos desde el fichero original al arranque de la aplicación es algo muy lento. He convertido la base de datos a un pequeño fichero personalizado, para un acceso rápido y sencillo desde el propio reproductor.<br><br>* La emulación SID requiere mucha CPU (especialmente RSID), así que es posible que haya pequeños cortes si se reproduce como música de fondo y tienes un dispositivo poco potente.<br><br><br>= Módulos de Tracker  =<br><br>* Si un módulo se escucha con repetición al final, el reproductor repite esa parte tres veces y luego carga el siguiente fichero. Actualmente no hay forma de cambiar esto por parte del usuario.<br><br>* Si realizas una búsqeuda dentro de un fichero, el sonido puede parecer que esté corrupto. Esto es debido a que se saltan patrones y es el resultado de cómo funciona ese formato de fichero en concreto.<br><br>Eso es todo por el momento. Disfruta de estupendas melodías. <br><br>Puedes contactar conmigo en cualquier momento. <br>&lt;wb@illogical.de&gt;<br><br>Bastian Pflieger<br>1 de diciembre de 2011
+        <br><br>=== Credits ===<br><br>
+        &bull; Shay Green - Gme:<br>http://code.google.com/p/game-music-emu<br><br>
+        &bull; Chris Moeller - Gme NES Chips/VGM:<br>https://github.com/kode54/Game_Music_Emu<br><br>
+        &bull; Piotr Fusik - Asap:<br>http://asap.sourceforge.net<br><br>
+        &bull; Arnaud Carré - StSound:<br>http://leonard.oxg.free.fr/stsound.html<br><br>
+        &bull; MikMod:<br>http://mikmod.sourceforge.net<br><br>
+        &bull; SidPlay2:<br>http://sidplay2.sourceforge.net<br><br>
+        &bull; OffGao - Nezplug++:<br>http://offgao.no-ip.org/program/nezplug++.html<br><br>
+        &bull; Dave Hooper - SaaSound:<br>http://simonowen.com/sam/saasound/<br><br>]]>
+    </string>
     <string name="filebrowser_directory">Directorio</string>
     <string name="pref_default_playtime_summary">Se usa como longitud de la pista si no se dispone de información de la pista. No se aplica a los formatos Tracker.</string>
     <string name="enjoy_some_retro_music">Preparado para un poco de música retro!</string>        

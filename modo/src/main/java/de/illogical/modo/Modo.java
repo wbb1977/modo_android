@@ -52,6 +52,7 @@ import android.os.Message;
 import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -1288,7 +1289,7 @@ implements	OnSeekBarChangeListener,
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setIcon(R.drawable.modo);
         b.setCancelable(true);
-        b.setMessage(res);
+        b.setMessage(Html.fromHtml(getText(res).toString()));
         b.setPositiveButton(R.string.okay, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();

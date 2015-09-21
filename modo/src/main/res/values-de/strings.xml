@@ -32,7 +32,19 @@
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_about">Über</string>
     <string name="menu_help">Hilfe</string>
-    <string name="dialog_about">Modo v2.5b\n\nvon\n\nBastian Pflieger\n&lt;wb@illogical.de&gt;\n\nSpanische Übersetzung von Gorka Oteiza.\n\nFranzösische Übersetzung von Zod.\n\nPolnische Übersetzung von Łukasz Wollnikowski.\n\nDank an Abrimaal, Frapsman123, Aron Alliston.\n\nViel Spass beim Hören!</string>
+    <string name="dialog_about"><![CDATA[
+        <b>Modo v2.5b</b><br><br>
+        <small>Bastian Pflieger<br>
+        &lt;wb@illogical.de&gt;<br><br>
+        Spanische Übersetzung von Gorka Oteiza.<br>
+        Französische Übersetzung von Zod.<br>
+        Chinesische Übersetzung von SuperMarioX.<br>
+        Polnische Übersetzung von Łukasz Wollnikowski.<br><bR>
+        Dank an
+        Abrimaal, Frapsman123, Aron Alliston, Shay Green.<br><br>
+        </small>
+        <b>Viel Spass beim Hören!</b>]]>
+    </string>
     <string name="pref_sound_boost">Verstärkung</string>
     <string name="pref_sound_boost_summary">Erhöht die Lautstärke, kann die Tonqualität beeinträchtigen.</string>    
     <string name="pref_sound_boost_modules">Verstärkung Module</string>
@@ -65,43 +77,51 @@
         <item>+2</item>
         <item>+3</item>
     </string-array>
-    <string name="help_title">Modo - Liesmich.txt</string>
-    <string name="help_text">=== Über ===
-        \n\nEs werden die folgenden Musikformate unterstützt:
-        \n\nTracker-Module:
-        \n\t.mod .xm .it .s3m .med .okt
-        \n\nCommodore C64:
-        \n\t.sid .mus
-        \n\nNintendo Game Boy / NES / SNES:
-        \n\t.gbs .nsf .nsfe .spc .rsn
-        \n\nSega Master System / Mega Drive / Genesis:
-        \n\t.gym .vgm .vgz
-        \n\nAtari / Amstrad CPC / Spectrum:
-        \n\t.sap .ay .ym
-        \n\n\n=== Schnellstart ===
-        \n\nUm die App und den Abspieldienst zu beenden, die Musik pausieren und den Zurück-Knopf am Handy drücken.
-        \n\n1. Musikdateien auf das Handy kopieren.
-        \n2. App starten und das Verzeichnis mit den Musikdateien auswählen.
-        \n3. Beliebige Musikdatei antippen.
-        \n4. Den Rücklauf/Vorlauf-Knopf halten um die nächste/vorherige Musikdatei im Verzeichnis anzuhören.
-        \n\n\n=== Anmerkungen ===
-        \n\n\n= C64 SID &amp; MUS =
-        \n\n* Es ist die HVSC#63 Datenbank für die Wiedergabezeiten direkt in den Player integriert. Man kann im Moment keine externe Datenbank verwenden.
-        \n\n* SID-Emulation ist sehr CPU intensiv. Es kann zu Störungen in der Wiedergabe kommen, falls das Handy eine zu schwache CPU verwendet oder viele andere Hintergrundprozesse aktiv sind.
-        \n\n\n= Tracker-Module =
-        \n\n* Falls ein Modul am Ende auf ein vorheriges Pattern zurückspringt, wird dies dreimal durchgeführt, danach wird die nächste Datei geladen. Es gibt im Moment keine Einstellmöglichkeit um dies zu ändern.
-        \n\n* Falls direkt zu einem bestimmten Pattern gesprungen wird, kann sich die Soundausgabe kurz etwas ungewohnt anhöhren. Dies ist einfach ein Nebeneffekt der Tracker-Formate.
-        \n\n\nDas wäre erstmal alles für den Moment. Jetzt viel Spass beim Hören von alten aber schönen Melodien :)
-        \n\nFür Vorschläge oder Kritik bitte einfach eine Mail an &lt;wb@illogical.de&gt;
-        \n\nBastian Pflieger
-        \n1. Dezember 2011
-        \n\n\n\n
-        \nGme - http://code.google.com/p/game-music-emu
-        \nAsap - http://asap.sourceforge.net
-        \nStSound - http://leonard.oxg.free.fr/stsound.html
-        \nMikMod - http://mikmod.sourceforge.net
-        \nSidPlay2 - http://sidplay2.sourceforge.net
-        \nNezplug++ - http://offgao.no-ip.org/program/nezplug++.html</string>        
+    <string name="help_text"><![CDATA[
+        <b>Über</b><br><br>
+        <small>
+        Es werden die folgenden Musikformate unterstützt:<br><br>
+        &bull; Tracker-Module:<br><i>.mod .xm .it .s3m .med .okt</i><br><br>
+        &bull; Commodore C64:<br><i>.sid .mus</i><br><br>
+        &bull; Nintendo Game Boy / NES / SNES:<br><i>.gbs .nsf .nsfe .spc .rsn</i><br><br>
+        &bull; Sega Master System / Mega Drive / Genesis:<br><i>.gym .vgm .vgz</i><br><br>
+        &bull; Atari / Amstrad CPC / Spectrum:<br><i>.sap .ay .ym</i><br>
+        </small><br>
+        <br><b>Schnellstart</b><br>
+        <small>
+        <br><b>Um die App und den Abspieldienst zu beenden, die Musik pausieren und den Zurück-Knopf am Handy drücken.</b>
+        <br>
+        <br>&bull; Musikdateien auf das Handy kopieren.
+        <br>&bull; App starten und das Verzeichnis mit den Musikdateien auswählen.
+        <br>&bull; Beliebige Musikdatei antippen.
+        <br>&bull; Den Rücklauf/Vorlauf-Knopf halten um die nächste/vorherige Musikdatei im Verzeichnis anzuhören.<br>
+        </small><br>
+        <br><b>Anmerkungen</b><br><br>
+        <small>
+        <b>C64 SID &amp; MUS</b>
+        <br><br>&bull; Es ist die HVSC#63 Datenbank für die Wiedergabezeiten direkt in den Player integriert. Man kann im Moment keine externe Datenbank verwenden.
+        <br><br>&bull; SID-Emulation ist sehr CPU intensiv. Es kann zu Störungen in der Wiedergabe kommen, falls das Handy eine zu schwache CPU verwendet oder viele andere Hintergrundprozesse aktiv sind.
+        <br><br><b>Tracker-Module</b>
+        <br><br>&bull; Falls ein Modul am Ende auf ein vorheriges Pattern zurückspringt, wird dies dreimal durchgeführt, danach wird die nächste Datei geladen. Es gibt im Moment keine Einstellmöglichkeit um dies zu ändern.
+        <br><br>&bull; Falls direkt zu einem bestimmten Pattern gesprungen wird, kann sich die Soundausgabe kurz etwas ungewohnt anhöhren. Dies ist einfach ein Nebeneffekt der Tracker-Formate.
+        <br><br>Das wäre erstmal alles für den Moment. Jetzt viel Spass beim Hören von alten aber schönen Melodien :)
+        <br><br>Für Vorschläge oder Kritik bitte einfach eine Mail an &lt;wb@illogical.de&gt;.
+        <br>&lt;wb@illogical.de&gt;
+        <br><br>Bastian Pflieger<br>December 1, 2011
+        <br><br>
+        </small>
+        <br><b>Credits</b><br><br>
+        <small>
+        &bull; Shay Green - Gme:<br>http://code.google.com/p/game-music-emu<br><br>
+        &bull; Chris Moeller - Gme NES Chips/VGM:<br>https://github.com/kode54/Game_Music_Emu<br><br>
+        &bull; Piotr Fusik - Asap:<br>http://asap.sourceforge.net<br><br>
+        &bull; Arnaud Carré - StSound:<br>http://leonard.oxg.free.fr/stsound.html<br><br>
+        &bull; MikMod:<br>http://mikmod.sourceforge.net<br><br>
+        &bull; SidPlay2:<br>http://sidplay2.sourceforge.net<br><br>
+        &bull; OffGao - Nezplug++:<br>http://offgao.no-ip.org/program/nezplug++.html<br><br>
+        &bull; Dave Hooper - SaaSound:<br>http://simonowen.com/sam/saasound/<br><br>
+        </small>]]>
+    </string>
     <string name="filebrowser_directory">Verzeichnis</string>
     <string name="pref_default_playtime_summary">Wird als Spieldauer verwendet, falls keine Vorgabe in der Musikdatei. Nicht für Tracker-Module.</string>
     <string name="enjoy_some_retro_music">Viel Spass beim Hören von 8/16bit Musik.</string>        
