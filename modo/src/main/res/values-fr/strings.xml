@@ -32,7 +32,17 @@
     <string name="menu_settings">Réglages</string>
     <string name="menu_about">À propos</string>
     <string name="menu_help">Aide</string>
-    <string name="dialog_about"><![CDATA[Modo v2.6<br><br>Bastian Pflieger<br>&lt;wb@illogical.de&gt;<br><br>Traduction espagnole par Gorka Oteiza.<br><br>Traduction française par Sub.<br><br>Remerciements à Abrimaal, Frapsman123, Aron Alliston, Shay Green.<br><br>Bonne écoute!]]></string>
+    <string name="dialog_about"><![CDATA[
+        <b>Modo v2.6</b><br><br>
+        <small>Bastian Pflieger<br>
+        &lt;wb@illogical.de&gt;<br><br>
+        Traduction espagnole par Gorka Oteiza.<br>
+        Traduction française par Sub.<br><br>
+        Remerciements à
+        Abrimaal, Frapsman123, Aron Alliston, Shay Green.<br><br>
+        </small>
+        <b>Bonne écoute!!</b>]]>
+    </string>
     <string name="pref_sound_boost">Augmenter le volume</string>
     <string name="pref_sound_boost_summary">Augmente le volume, pouvant altérer la qualité du son.</string>   
 	<string name="pref_sound_boost_modules">Volume modules</string>
@@ -67,33 +77,39 @@
     </string-array>
     <string name="help_title">Modo - Readme.txt</string>
     <string name="help_text"><![CDATA[
-        === À propos ===
-        <br><br>MODo prend en charge les formats suivants:
-        <br><br>Tracker modules:
-        <br>\t.mod .xm .it .s3m .med .okt
-        <br><br>Commodore C64:
-        <br>\t.sid .mus
-        <br><br>Nintendo Game Boy / NES / SNES:
-        <br>\t.gbs .nsf .nsfe .spc .rsn
-        <br><br>Sega Master System / Mega Drive / Genesis:
-        <br>\t.gym .vgm .vgz
-        <br><br>Atari / Amstrad CPC / Spectrum:
-        <br>\t.sap .ay .ym
-        <br><br><br>=== Démarrage rapide ===
-        <br><br>Pour arrêter une écoute,appuyez sur pause puis sur la touche retour de votre appareil.
-        <br><br>1. Copier vos fichiers musicaux dans un dossier de votre appareil.
-        <br>2. Sur MODo recherchez vos fichiers en appuyant sur la touche "Rechercher".
-        <br>3. Selectionner un fichier pour démarrer l\'écoute.
-        <br>4. Les touches Suivant/Précédent vous permettent de selectionner le fichier suivant ou précédent dans le même dossier.
-        <br><br><br>=== Remarques ===
-        <br><br><br>= C64 SID &amp; MUS =
-        <br><br>* La lecture des fichiers SID utilisent beaucoup de mémoire processeur,(notamment RSID) il est donc possible que votre lecture subisse des ralentissements si votre appareil a de faibles capacités.
-        <br><br><br>= Tracker Modules =
-        <br><br>* Si un module se répète à la fin,Le logiciel le répétera alors trois fois avant de charger le prochain fichier,Il n\'y a actuellement, aucune option pour changer cela.
-        <br><br>* Si vous tentez d\'avancer la lecture, le fichier peut ne pas se lire correctement, ceci est dû au saut de paterns.
-        <br><br><br>C\'est tout pour le moment. Bonne écoute.
-        <br><br>Vous pouvez me contacter à tous moments.<br>&lt;wb@illogical.de&gt;<br><br>Bastian Pflieger<br>December 1, 2011
-        <br><br>=== Credits ===<br><br>
+        <b>À propos</b><br><br>
+        <small>
+        MODo prend en charge les formats suivants:<br><br>
+        &bull; Tracker modules:<br><i>.mod .xm .it .s3m .med .okt</i><br><br>
+        &bull; Commodore C64:<br><i>.sid .mus</i><br><br>
+        &bull; Nintendo Game Boy / NES / SNES:<br><i>.gbs .nsf .nsfe .spc .rsn</i><br><br>
+        &bull; Sega Master System / Mega Drive / Genesis:<br><i>.gym .vgm .vgz</i><br><br>
+        &bull; Atari / Amstrad CPC / Spectrum:<br><i>.sap .ay .ym</i><br>
+        </small><br>
+        <br><b>Démarrage rapide</b><br>
+        <small>
+        <br><b>Pour arrêter une écoute,appuyez sur pause puis sur la touche retour de votre appareil.</b>
+        <br>
+        <br>&bull; Copier vos fichiers musicaux dans un dossier de votre appareil.
+        <br>&bull; Sur MODo recherchez vos fichiers en appuyant sur la touche "Rechercher".
+        <br>&bull; Selectionner un fichier pour démarrer l\'écoute.
+        <br>&bull; Les touches Suivant/Précédent vous permettent de selectionner le fichier suivant ou précédent dans le même dossier.<br>
+        </small><br>
+        <br><b>Remarques</b><br><br>
+        <small>
+        <b>C64 SID &amp; MUS</b>
+        <br><br>&bull; La lecture des fichiers SID utilisent beaucoup de mémoire processeur,(notamment RSID) il est donc possible que votre lecture subisse des ralentissements si votre appareil a de faibles capacités.
+        <br><br><b>Tracker Modules</b>
+        <br><br>&bull; Si un module se répète à la fin,Le logiciel le répétera alors trois fois avant de charger le prochain fichier,Il n\'y a actuellement, aucune option pour changer cela.
+        <br><br>&bull; Si vous tentez d\'avancer la lecture, le fichier peut ne pas se lire correctement, ceci est dû au saut de paterns.
+        <br><br>C\'est tout pour le moment. Bonne écoute.
+        <br><br>Vous pouvez me contacter à tous moments.
+        <br>&lt;wb@illogical.de&gt;
+        <br><br>Bastian Pflieger<br>December 1, 2011
+        <br><br>
+        </small>
+        <br><b>Credits</b><br><br>
+        <small>
         &bull; Shay Green - Gme:<br>http://code.google.com/p/game-music-emu<br><br>
         &bull; Chris Moeller - Gme NES Chips/VGM:<br>https://github.com/kode54/Game_Music_Emu<br><br>
         &bull; Piotr Fusik - Asap:<br>http://asap.sourceforge.net<br><br>
@@ -101,7 +117,8 @@
         &bull; MikMod:<br>http://mikmod.sourceforge.net<br><br>
         &bull; SidPlay2:<br>http://sidplay2.sourceforge.net<br><br>
         &bull; OffGao - Nezplug++:<br>http://offgao.no-ip.org/program/nezplug++.html<br><br>
-        &bull; Dave Hooper - SaaSound:<br>http://simonowen.com/sam/saasound/<br><br>]]>
+        &bull; Dave Hooper - SaaSound:<br>http://simonowen.com/sam/saasound/<br><br>
+        </small>]]>
     </string>
     <string name="filebrowser_directory">Dossier</string>
     <string name="pref_default_playtime_summary">Temps d\'écoute si non spécifié par le fichier.</string>
