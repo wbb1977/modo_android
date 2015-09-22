@@ -178,6 +178,7 @@ jint Java_de_illogical_modo_GmeDecoder_gmeSetTrack(JNIEnv* env, jclass clazz, ji
 
 	gme_ignore_silence(emu, 1);
 	gme_start_track(emu, track);
+	gme_set_stereo_depth(emu, 1.0);
 	return 1;
 }
 
@@ -200,6 +201,7 @@ jint Java_de_illogical_modo_GmeDecoder_gmeLoadFile(JNIEnv* env, jclass clazz, js
 	else
 	{
 		gme_start_track(emu, 0);
+		gme_set_stereo_depth(emu, 1.0);
 	}
 	
 	return emu != NULL;
@@ -326,6 +328,7 @@ jint Java_de_illogical_modo_GmeDecoder_gmeLoadFromZip(JNIEnv* env, jclass clazz,
 	else
 	{
 		gme_start_track(emu, 0);
+		gme_set_stereo_depth(emu, 1.0);
 	}
 
 	if (emu != NULL)

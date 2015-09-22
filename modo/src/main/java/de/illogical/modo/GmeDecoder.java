@@ -126,7 +126,8 @@ final class GmeDecoder implements Decoder {
         else
             silence = 0;
 
-        if (isConvertStereoToMono && gmeIsStereoFormat() == 1)
+        //if (isConvertStereoToMono && gmeIsStereoFormat() == 1)
+        if (isConvertStereoToMono)
             Mixer.convertToMono(samples);
 
         return samples;
