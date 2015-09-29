@@ -74,9 +74,6 @@ implements	OnSeekBarChangeListener,
 
     private static final String TAG = "Modo";
 
-    // For the Android emulator set this to false to disable accelmeter (app wont start), fixed in 4.4
-    final static boolean isRealMachine = true;
-
     // Sync JNI calls / decoder calls via this
     public final static Object sync = new Object();
     final static Object playlistSync = new Object();
@@ -547,11 +544,9 @@ implements	OnSeekBarChangeListener,
         audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);	
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        if (isRealMachine) {
-            mSensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-            mSensorListener = new ShakeEventListener();
-            mSensorListener.setOnShakeListener(this);
-        }
+        mSensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        mSensorListener = new ShakeEventListener();
+        mSensorListener.setOnShakeListener(this);
 
         cc = new ComponentName(getPackageName(), ModoReceiver.class.getName());
 
@@ -648,26 +643,22 @@ implements	OnSeekBarChangeListener,
             nezplugDecoder.setMonoOutput(prefsIsMonoAPU);
         }
         
-        if (isRealMachine)
-        {
-            mSensorManager.unregisterListener(mSensorListener);
-            if (prefsShakeLevel > 0) {
-                switch (prefsShakeLevel) {
-                    case 1: mSensorListener.setForce(10, 2, 300);
-                            break;
-                    case 2: mSensorListener.setForce(30, 2, 300);
-                            break;
-                    case 3: mSensorListener.setForce(60, 2, 300);
-                            break;
-                    default: mSensorListener.setForce(10, 2, 300);
-                             break;
-
-                }
-                mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.unregisterListener(mSensorListener);
+        if (prefsShakeLevel > 0) {
+            switch (prefsShakeLevel) {
+                case 1: mSensorListener.setForce(10, 2, 300);
+                        break;
+                case 2: mSensorListener.setForce(30, 2, 300);
+                        break;
+                case 3: mSensorListener.setForce(60, 2, 300);
+                        break;
+                default: mSensorListener.setForce(10, 2, 300);
+                         break;
 
             }
+            mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_UI);
         }
-        
+
         //Log.e(TAG, "OnStart");
     }
 
@@ -676,7 +667,7 @@ implements	OnSeekBarChangeListener,
         buttonFilebrowser.setEnabled(true);
         audioManager.registerMediaButtonEventReceiver(cc);
     }
-    
+
     public void onBackPressed() {
         // only terminate if not playing music
         if (buttonPauseResume.isEnabled() && isPause == false) { // isplaying!
@@ -694,8 +685,7 @@ implements	OnSeekBarChangeListener,
 
         backup.dataChanged();
 
-        if (isRealMachine)
-            mSensorManager.unregisterListener(mSensorListener);
+        mSensorManager.unregisterListener(mSensorListener);
 
         if (sp != null)
             sp.sendNoMoreGUIUpdates();
@@ -859,7 +849,10 @@ implements	OnSeekBarChangeListener,
                 builder.addAction(android.R.drawable.ic_media_pause, "", intentPause);
             builder.addAction(android.R.drawable.ic_media_next, "", intentNext);
             builder.addAction(android.R.drawable.ic_delete, "", intentStop);
-            builder.setStyle(new NotificationCompat.MediaStyle().setShowActionsInCompactView(0, 1, 2));
+            if (isPause && isLoadingOkay)
+                builder.setStyle(new NotificationCompat.MediaStyle().setShowActionsInCompactView(1, 3));
+            else
+                builder.setStyle(new NotificationCompat.MediaStyle().setShowActionsInCompactView(0, 1, 2));
             PendingIntent contentIntent = PendingIntent.getActivity(this, 2, new Intent(this, Modo.class), PendingIntent.FLAG_CANCEL_CURRENT);
             builder.setContentIntent(contentIntent);
             builder.setShowWhen(false);
