@@ -5,13 +5,20 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import de.illogical.modo.Playlist.Entry;
+
+import android.*;
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -272,7 +279,18 @@ implements
         updateMenuStatus();
     }
 
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            onItemClick(null, null, requestCode, 0);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED)
+            Boast.makeText(getApplicationContext(), R.string.permission_request, Toast.LENGTH_LONG).show();
+    }
+
     public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, index);
+            return;
+        }
         selectedIndex = -1;
         adapter.setSelectedIndex(-1);
         Modo.myModo.setPlaylist(playlist, index);

@@ -13,10 +13,14 @@
 
 package de.illogical.modo;
 
+import android.Manifest;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.*;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -73,6 +77,10 @@ implements	OnSeekBarChangeListener,
             ShakeEventListener.OnShakeListener {
 
     private static final String TAG = "Modo";
+
+    // Permissions for reading sdcard
+    final static int REQUEST_FROM_FILEBROWSER = 10;
+    final static int REQUEST_FROM_FILELOADER = 20;
 
     // Sync JNI calls / decoder calls via this
     public final static Object sync = new Object();
@@ -413,7 +421,6 @@ implements	OnSeekBarChangeListener,
                     int uncompressedSize = decoder.loadFromZip(((ModoFile) path).getSrc().getAbsolutePath(), ((ModoFile) path).getZipEntry());
                     ((ModoFile)path).setLength(uncompressedSize);
                     isLoadingOkay = uncompressedSize > 0;
-
                 } else {
                     isLoadingOkay = decoder.loadFile(path.getAbsolutePath()) > 0;
                 }
@@ -875,6 +882,10 @@ implements	OnSeekBarChangeListener,
 
     // only call if service is bound: sp != null, startTrack currently not used
     protected void prepareNextFile(int startTrack) {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_FROM_FILELOADER);
+            return;
+        }
 
         ServicePlayer.p.pausePlayer();
 
@@ -1076,8 +1087,22 @@ implements	OnSeekBarChangeListener,
             beepdelta = 0;
         }*/
     }
-    
+
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if (requestCode == REQUEST_FROM_FILEBROWSER && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            onClick_ButtonFilebrowser(null);
+        if (requestCode == Modo.REQUEST_FROM_FILELOADER && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            prepareNextFile(0);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED)
+            Boast.makeText(getApplicationContext(), R.string.permission_request, Toast.LENGTH_LONG).show();
+    }
+
     public void onClick_ButtonFilebrowser(View v) {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_FROM_FILEBROWSER);
+            return;
+        }
+
         buttonFilebrowser.setEnabled(false);
         buttonNextTrack.setEnabled(false);
         buttonPrevTrack.setEnabled(false);
