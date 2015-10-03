@@ -255,5 +255,5 @@
     <string name="pref_flatzip_summary">Wyświetl wszystkie wpisy w pliku ZIP naraz. Limit do 2000 plików.</string>
     <string name="dialog_no_directory_atm">Dodawanie katalogu do playlisty jest obecnie nie wspierane.</string>
     <string name="dialog_add_files_title">Dodaj pliki do</string>
-
+    <string name="permission_request">Permission to read sdcard is required to load music.</string>
 </resources>

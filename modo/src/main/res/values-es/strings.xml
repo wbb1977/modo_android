@@ -249,5 +249,5 @@
 	<string name="pref_flatzip_summary">Muestra todas las entradas en ficheros ZIP de una sola vez. Límite de 2000 ficheros.</string>    
 	<string name="dialog_no_directory_atm">Añadir un directorio a una lista de reproducción no está soportado en estos momentos.</string>
 	<string name="dialog_add_files_title">Añadir ficheros a</string>
-				
+    <string name="permission_request">Permission to read sdcard is required to load music.</string>
 </resources>

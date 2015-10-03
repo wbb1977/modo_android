@@ -238,5 +238,6 @@
     <string name="pref_flatzip">浏览zip文件</string>
     <string name="pref_flatzip_summary">显示zip文件里的音乐。限制不超2000个文件。</string>    
     <string name="dialog_no_directory_atm">不支持添加一个目录作为播放列表。</string>
-    <string name="dialog_add_files_title">添加文件到</string>		
+    <string name="dialog_add_files_title">添加文件到</string>
+    <string name="permission_request">Permission to read sdcard is required to load music.</string>
 </resources>

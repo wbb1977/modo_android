@@ -244,6 +244,7 @@
 	<string name="pref_flatzip">Flache Zip-Dateien</string>
     <string name="pref_flatzip_summary">Zeigt alle Dateien im Archiv auf einmal. Limitiert auf 2000 Dateien.</string>    
     <string name="dialog_no_directory_atm">Verzeichnisse in der Playlist werden momentan nicht unterstützt.</string>
-    <string name="dialog_add_files_title">Dateiein hinzufügen</string>		
+    <string name="dialog_add_files_title">Dateiein hinzufügen</string>
+    <string name="permission_request">Lesezugriff auf SD-Karte wird benötigt um Musik abzuspielen.</string>
 </resources>
 
