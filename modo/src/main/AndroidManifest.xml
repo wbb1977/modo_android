@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.illogical.modo"
     android:installLocation="auto"
-    android:versionCode="20"
-    android:versionName="2.6" >
+    android:versionCode="21"
+    android:versionName="2.6a" >
 
     <uses-sdk
         android:minSdkVersion="8"

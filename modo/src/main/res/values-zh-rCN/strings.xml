@@ -35,7 +35,7 @@
     <string name="menu_settings">设置</string>
     <string name="menu_about">关于</string>
     <string name="menu_help">帮助</string>
-    <string name="dialog_about"><![CDATA[Modo v2.6<br><br>Bastian Pflieger<br><br>制作&lt;wb@illogical.de&gt;<br><br>西班牙语化Gorka Oteiza.<br><br>法语化Zod.<br><br>汉化 新手汉化组.<br><br>感谢Abrimaal, Frapsman123, Aron Alliston, Shay Green.<br><br>尽享电子音乐！]]></string>
+    <string name="dialog_about"><![CDATA[Modo v2.6a<br><br>Bastian Pflieger<br><br>制作&lt;wb@illogical.de&gt;<br><br>西班牙语化Gorka Oteiza.<br><br>法语化Zod.<br><br>汉化 新手汉化组.<br><br>感谢Abrimaal, Frapsman123, Aron Alliston, Shay Green.<br><br>尽享电子音乐！]]></string>
     <string name="pref_sound_boost">音量</string>
     <string name="pref_sound_boost_summary">增大音量，但会导致采样率过高。</string>
     <string name="pref_sound_boost_modules">模块音量</string>
