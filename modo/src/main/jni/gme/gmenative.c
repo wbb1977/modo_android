@@ -4,12 +4,24 @@
 #include "gme.h"
 #include "uncompress.h"
 
+static double depth = 1.0;
 static Music_Emu* emu = NULL;
 static short localSamples[18000];
 
 extern const gme_type_t gme_kss_type;
 extern const gme_type_t gme_nsf_type;
 extern const gme_type_t gme_nsfe_type;
+
+void Java_de_illogical_modo_GmeDecoder_gmeSetStereoSeparation(JNIEnv* env, jclass clazz, jint d)
+{
+	depth = d/100.0;
+	if (depth < 0.0)
+		depth = 0.0;
+	if (depth > 1.0)
+		depth = 1.0;
+	if (emu != NULL)
+		gme_set_stereo_depth(emu, depth);
+}
 
 void Java_de_illogical_modo_GmeDecoder_gmeReset(JNIEnv* env, jclass clazz)
 {
@@ -178,7 +190,7 @@ jint Java_de_illogical_modo_GmeDecoder_gmeSetTrack(JNIEnv* env, jclass clazz, ji
 
 	gme_ignore_silence(emu, 1);
 	gme_start_track(emu, track);
-	gme_set_stereo_depth(emu, 1.0);
+	gme_set_stereo_depth(emu, depth);
 	return 1;
 }
 
@@ -201,7 +213,7 @@ jint Java_de_illogical_modo_GmeDecoder_gmeLoadFile(JNIEnv* env, jclass clazz, js
 	else
 	{
 		gme_start_track(emu, 0);
-		gme_set_stereo_depth(emu, 1.0);
+		gme_set_stereo_depth(emu, depth);
 	}
 	
 	return emu != NULL;
@@ -328,7 +340,7 @@ jint Java_de_illogical_modo_GmeDecoder_gmeLoadFromZip(JNIEnv* env, jclass clazz,
 	else
 	{
 		gme_start_track(emu, 0);
-		gme_set_stereo_depth(emu, 1.0);
+		gme_set_stereo_depth(emu, depth);
 	}
 
 	if (emu != NULL)

@@ -194,6 +194,17 @@ implements	OnSeekBarChangeListener,
     private MenuItem menu_loop;
     private MenuItem menu_add;
     private Bitmap modo_white;
+    private Bitmap file_ay;
+    private Bitmap file_ym;
+    private Bitmap file_sid;
+    private Bitmap file_module;
+    private Bitmap file_sap;
+    private Bitmap file_vgm;
+    private Bitmap file_spc;
+    private Bitmap file_gbs;
+    private Bitmap file_nsf;
+    private Bitmap file_msx;
+    private Bitmap file_pcengine;
 
     // System Services & helpers
     private NotificationManager mNotificationManager;
@@ -594,6 +605,17 @@ implements	OnSeekBarChangeListener,
         intentStop = PendingIntent.getBroadcast(this, 2, new Intent(INTENT_NOTIFICATION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
 
         modo_white = BitmapFactory.decodeResource(getResources(), R.drawable.modo_white);
+        file_ay = BitmapFactory.decodeResource(getResources(), R.drawable.file_ay);
+        file_ym = BitmapFactory.decodeResource(getResources(), R.drawable.file_atari_red);
+        file_sid = BitmapFactory.decodeResource(getResources(), R.drawable.file_c64);
+        file_module = BitmapFactory.decodeResource(getResources(), R.drawable.file_amiga);
+        file_sap = BitmapFactory.decodeResource(getResources(), R.drawable.file_atari_green);
+        file_vgm = BitmapFactory.decodeResource(getResources(), R.drawable.file_sega);
+        file_spc = BitmapFactory.decodeResource(getResources(), R.drawable.file_snes);
+        file_gbs = BitmapFactory.decodeResource(getResources(), R.drawable.file_gameboy);
+        file_nsf = BitmapFactory.decodeResource(getResources(), R.drawable.file_nes);
+        file_msx = BitmapFactory.decodeResource(getResources(), R.drawable.file_msx);
+        file_pcengine = BitmapFactory.decodeResource(getResources(), R.drawable.file_pcengine);
     }
         
     protected void onStart() {
@@ -642,6 +664,7 @@ implements	OnSeekBarChangeListener,
         synchronized (sync) {
             mikmodDecoder.isInterpolationMixingEnabled(prefsIsInterpolation);
             mikmodDecoder.setStereoSeparation(prefsStereoSeparation_Modules);
+            gmeDecoder.setStereoSeparation(prefsStereoSeparation_Modules);
             spcDecoder.setMonoOutput(prefsIsMonoAPU);
             rsnDecoder.setMonoOutput(prefsIsMonoAPU);
             gmeDecoder.setMonoOutput(prefsIsMonoAPU);
@@ -839,15 +862,14 @@ implements	OnSeekBarChangeListener,
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
             builder.setVisibility(Notification.VISIBILITY_PUBLIC);
             builder.setSmallIcon(R.drawable.modo_white);
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
-                builder.setLargeIcon(modo_white); // otherwise there is just a black big square
             builder.setContentTitle(path.getName());
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.GINGERBREAD_MR1) {
                 // just two lines of space in notification
                 builder.setContentText(decoder instanceof MikModDecoder ? FileBrowser.getDescription(path) : track + 1 + " / " + tracks + " - " + FileBrowser.getDescription(path));
             } else {
                 builder.setContentText(decoder instanceof MikModDecoder ? "" : track + 1 + " / " + tracks);
-                builder.setSubText(FileBrowser.getDescription(path));
+                builder.setLargeIcon(getBitmapForFile(path));
+                builder.setColor(getResources().getColor(R.color.modo_statusbar));
             }
             builder.addAction(android.R.drawable.ic_media_previous, "", intentPrev);
             if (isFastForward || isPause)
@@ -1649,6 +1671,100 @@ implements	OnSeekBarChangeListener,
             if (fname.endsWith(".sid")) { prefsSoundboost = prefsFormatSoundboost[BOOST_SID]; return; }
             if (fname.endsWith(".mus")) { prefsSoundboost = prefsFormatSoundboost[BOOST_SID]; return; }
         }
+    }
+
+    Bitmap getBitmapForFile(File path) {
+        String fname = path.getName().toLowerCase(Locale.getDefault());
+
+        if (fname.indexOf(File.separatorChar) > 0)
+            fname = fname.substring(fname.lastIndexOf(File.separatorChar) + 1);
+
+        // YM Decoder supported files
+        if (fname.endsWith(".ym"))
+            return file_ym;
+
+        // GME Decoder supported files
+        if (fname.endsWith(".kss"))
+            return file_msx;
+
+        if (fname.endsWith(".hes"))
+            return file_pcengine;
+
+        if (fname.endsWith(".vgz"))
+            return file_vgm;
+
+        if (fname.endsWith(".vgm"))
+            return file_vgm;
+
+        if (fname.endsWith(".ay"))
+            return file_ay;
+
+        if (fname.endsWith(".gym"))
+            return file_vgm;
+
+        if (fname.endsWith(".nsf"))
+            return file_nsf;
+
+        if (fname.endsWith(".nsfe"))
+            return file_nsf;
+
+        if (fname.endsWith(".sap"))
+            return file_sap;
+
+        if (fname.endsWith(".spc"))
+            return file_spc;
+
+        if (fname.endsWith(".rsn"))
+            return file_spc;
+
+        if (fname.endsWith(".gbs"))
+            return file_gbs;
+
+        // Mikmod
+        if (fname.endsWith(".mod"))
+            return file_module;
+
+        if (fname.endsWith(".xm"))
+            return file_module;
+
+        if (fname.endsWith(".s3m"))
+            return file_module;
+
+        if (fname.endsWith(".it"))
+            return file_module;
+
+        if (fname.endsWith(".med"))
+            return file_module;
+
+        if (fname.endsWith(".okt"))
+            return file_module;
+
+        if (fname.startsWith("mod."))
+            return file_module;
+
+        if (fname.startsWith("xm."))
+            return file_module;
+
+        if (fname.startsWith("s3m."))
+            return file_module;
+
+        if (fname.startsWith("it."))
+            return file_module;
+
+        if (fname.startsWith("med."))
+            return file_module;
+
+        if (fname.startsWith("okt."))
+            return file_module;
+
+        // sidplay2
+        if (fname.endsWith(".sid"))
+            return file_sid;
+
+        if (fname.endsWith(".mus"))
+            return file_sid;
+
+        return modo_white;
     }
 
     Decoder getDecoderForFile(File path) {

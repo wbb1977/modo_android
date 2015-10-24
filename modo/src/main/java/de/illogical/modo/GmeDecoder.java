@@ -25,6 +25,7 @@ final class GmeDecoder implements Decoder {
     private static native void gmeGetTrackInfo(int track, int what, byte[] s);
     private static native int gmeGetTrackInfoLength(int track, int what);
     private static native int gmeIsStereoFormat();
+    private static native void gmeSetStereoSeparation(int depth);
 
     private short[] samples = new short[17640];
     private int currentTrack = 0;
@@ -42,6 +43,12 @@ final class GmeDecoder implements Decoder {
 
     void setSilenceDetection(int seconds) {
         silencePeriod = seconds * 5;
+    }
+
+    public void setStereoSeparation(int sep) {
+        // libkmikmod: 128 max stereo, 0 mono
+        // libgme: 1.0 max stereo, 0.0 mono, /100.0 in C
+        gmeSetStereoSeparation(sep * 100/128);
     }
 
     public void reset() {
