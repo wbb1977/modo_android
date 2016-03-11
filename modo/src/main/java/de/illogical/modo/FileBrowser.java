@@ -637,6 +637,9 @@ implements	OnItemClickListener,
         if (fname.endsWith(".ay"))
             return "ZX Spectrum / Amstrad CPC";
 
+        //if (fname.endsWith(".ayt"))
+        //    return "ZX Spectrum / Amstrad CPC";
+
         if (fname.endsWith(".gym"))
             return "Sega Mega Drive";
 
@@ -705,12 +708,6 @@ implements	OnItemClickListener,
         if (fname.endsWith(".mus"))
             return "C64 Music";
 
-        if (fname.endsWith(".cop"))
-            return "Sam Coupe";
-
-        if (fname.endsWith(".sng"))
-            return "Same Coupe";
-
         return "??";
     }
 
@@ -744,6 +741,9 @@ implements	OnItemClickListener,
 
         if (fname.endsWith(".ay"))
             return R.drawable.file_ay;
+
+        //if (fname.endsWith(".ayt"))
+        //    return R.drawable.file_ay;
 
         if (fname.endsWith(".gym"))
             return R.drawable.file_sega;
@@ -883,6 +883,9 @@ implements	OnItemClickListener,
             if (fname.endsWith(".ay"))
                 return true;
 
+            //if (fname.endsWith(".ayt"))
+            //    return true;
+
             if (fname.endsWith(".gym"))
                 return true;
 
@@ -991,6 +994,9 @@ implements	OnItemClickListener,
 
         if (fname.endsWith(".ay"))
             return true;
+
+        //if (fname.endsWith(".ayt"))
+        //    return true;
 
         if (fname.endsWith(".gym"))
             return true;

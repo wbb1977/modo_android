@@ -2,6 +2,7 @@ package de.illogical.modo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 
 /**
  * Created by wb on 8/18/15.
@@ -13,6 +14,9 @@ final public class NotificationReceiver extends android.content.BroadcastReceive
         if (Modo.myModo != null && Modo.playlist != null && ServicePlayer.p != null) {
             synchronized (Modo.sync) {
                 switch (intent.getAction()) {
+                    case AudioManager.ACTION_AUDIO_BECOMING_NOISY:
+                        Modo.myModo.MediaPause();
+                        break;
                     case "de.illogical.modo.finish":
                         Modo.myModo.finish();
                         break;

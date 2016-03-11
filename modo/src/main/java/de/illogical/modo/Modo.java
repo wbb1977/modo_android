@@ -234,6 +234,7 @@ implements	OnSeekBarChangeListener,
     private NezplugDecoder nezplugDecoder = new NezplugDecoder();
     private RsnDecoder rsnDecoder = new RsnDecoder();
     private SpcDecoder spcDecoder = new SpcDecoder();
+    private AytDecoder aytDecoder = new AytDecoder();
 
     // Used if load failure happened. Loads next file after 5 seconds timeout.
     private LoadNextFileAfterLoadError loadNextFile = null;
@@ -385,6 +386,11 @@ implements	OnSeekBarChangeListener,
         }
     }
 
+    class PauseFromHeadset extends AsyncTask<Integer, Integer, Integer> {
+        protected Integer doInBackground(Integer... params) { return 0; }
+        protected void onPostExecute(Integer result) { Modo.this.MediaPause(); }
+    }
+
     // If a file fails to load, wait 5sec to load next file
     class LoadNextFileAfterLoadError extends AsyncTask<Integer, Integer, Integer>
     {
@@ -430,10 +436,24 @@ implements	OnSeekBarChangeListener,
 
                 if (path instanceof ModoFile) {
                     int uncompressedSize = decoder.loadFromZip(((ModoFile) path).getSrc().getAbsolutePath(), ((ModoFile) path).getZipEntry());
+                    // HACK to load ay with Playerversion == 4
+                    if (uncompressedSize == 0 && decoder instanceof SpcDecoder) {
+                        resetDecoders();
+                        decoder = aytDecoder;
+                        uncompressedSize = decoder.loadFromZip(((ModoFile) path).getSrc().getAbsolutePath(), ((ModoFile) path).getZipEntry());
+                    }
+                    //
                     ((ModoFile)path).setLength(uncompressedSize);
                     isLoadingOkay = uncompressedSize > 0;
                 } else {
                     isLoadingOkay = decoder.loadFile(path.getAbsolutePath()) > 0;
+                    // HACK to load ay with Playerversion == 4
+                    if (isLoadingOkay == false && decoder instanceof SpcDecoder) {
+                        resetDecoders();
+                        decoder = aytDecoder;
+                        isLoadingOkay = decoder.loadFile(path.getAbsolutePath()) > 0;
+                    }
+                    //
                 }
 
                 if (isLoadingOkay && pe.start >= 0)
@@ -595,6 +615,7 @@ implements	OnSeekBarChangeListener,
         filter.addAction(INTENT_NOTIFICATION_PLAY);
         filter.addAction(INTENT_NOTIFICATION_PAUSE);
         filter.addAction(INTENT_NOTIFICATION_STOP);
+        filter.addAction(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
         notificationReceiver = new NotificationReceiver();
         registerReceiver(notificationReceiver, filter);
 
@@ -968,7 +989,7 @@ implements	OnSeekBarChangeListener,
 
             if (isLoadingOkay) {
                 decoder.setTrack(track);
-                if (decoder instanceof GmeDecoder || decoder instanceof RsnDecoder || decoder instanceof SpcDecoder)
+                if (decoder instanceof GmeDecoder || decoder instanceof RsnDecoder || decoder instanceof SpcDecoder || decoder instanceof AytDecoder)
                     textFileDetails.setText(decoder.getTrackInfo());
                 ServicePlayer.p.noFastForward();
             }
@@ -1223,6 +1244,13 @@ implements	OnSeekBarChangeListener,
         updateStatusButtons();
     }
 
+    private PauseFromHeadset psh = null;
+    public void MediaPauseHeadset() {
+        if (psh != null)
+            psh.cancel(true);
+        psh = new PauseFromHeadset();
+        psh.execute();
+    }
     public void MediaPause() {
         isFastForward = false;
         isPause = false;
@@ -1625,6 +1653,7 @@ implements	OnSeekBarChangeListener,
             asapDecoder.reset();
             nezplugDecoder.reset();
             spcDecoder.reset();
+            aytDecoder.reset();
         }
     }
 
@@ -1636,6 +1665,7 @@ implements	OnSeekBarChangeListener,
         asapDecoder.setSilenceDetection(prefSilence);
         rsnDecoder.setSilenceDetection(prefSilence);
         spcDecoder.setSilenceDetection(prefSilence);
+        aytDecoder.setSilenceDetection(prefSilence);
     }
 
     void updateSoundBoost() {
@@ -1651,6 +1681,7 @@ implements	OnSeekBarChangeListener,
             if (fname.endsWith(".nsf")) { prefsSoundboost = prefsFormatSoundboost[BOOST_NSF]; return; }
             if (fname.endsWith(".nsfe")) { prefsSoundboost = prefsFormatSoundboost[BOOST_NSF]; return; }
             if (fname.endsWith(".ay")) { prefsSoundboost = prefsFormatSoundboost[BOOST_AY]; return; }
+            //if (fname.endsWith(".ayt")) { prefsSoundboost = prefsFormatSoundboost[BOOST_AY]; return; }
             if (fname.endsWith(".spc")) { prefsSoundboost = prefsFormatSoundboost[BOOST_SPC]; return; }
             if (fname.endsWith(".sap")) { prefsSoundboost = prefsFormatSoundboost[BOOST_SAP]; return; }
             if (fname.endsWith(".gbs")) { prefsSoundboost = prefsFormatSoundboost[BOOST_GBS]; return; }
@@ -1698,6 +1729,9 @@ implements	OnSeekBarChangeListener,
 
         if (fname.endsWith(".ay"))
             return file_ay;
+
+        //if (fname.endsWith(".ayt"))
+        //    return file_ay;
 
         if (fname.endsWith(".gym"))
             return file_vgm;
@@ -1806,6 +1840,10 @@ implements	OnSeekBarChangeListener,
 
         if (fname.endsWith(".spc"))
             return spcDecoder;
+
+        // Two Zx emu togehter, each with its own AY chip
+        //if (fname.endsWith(".ayt"))
+        //    return aytDecoder;
 
         // ASAP
         if (fname.endsWith(".sap"))

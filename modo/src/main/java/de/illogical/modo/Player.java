@@ -33,7 +33,7 @@ final public class Player extends Thread implements OnAudioFocusChangeListener {
                     44100,
                     AudioFormat.CHANNEL_OUT_STEREO,
                     AudioFormat.ENCODING_PCM_16BIT,
-                    17640 * 2 * 5,
+                    17640 * 2 * 5, // *5
                     AudioTrack.MODE_STREAM);
 
         setPriority(3);
