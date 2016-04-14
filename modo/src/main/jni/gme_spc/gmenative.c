@@ -120,6 +120,57 @@ jlong Java_de_illogical_modo_SpcDecoder_spcTrackLength(JNIEnv* env, jclass clazz
 	return -1;
 }
 
+jint Java_de_illogical_modo_SpcDecoder_spcSysPreset(JNIEnv* env, jclass clazz, jint track)
+{
+	gme_err_t err = NULL;
+	struct gme_info_t* trackinfo;
+	int l = -1;
+	
+	if (emu == NULL)
+	{
+		return -1;
+	}
+
+	// i4 => Playerversion
+	// i5 => SysPreset / Fadelength
+	err = gme_track_info(emu, &trackinfo, track);
+	
+	if (err == NULL)
+	{
+		l = trackinfo->syspreset;
+		gme_free_info(trackinfo);
+		return l;
+	}
+	
+	return -1;
+}
+
+jint Java_de_illogical_modo_SpcDecoder_spcPlayerVersion(JNIEnv* env, jclass clazz)
+{
+	gme_err_t err = NULL;
+	struct gme_info_t* trackinfo;
+	int l = -1;
+	
+	if (emu == NULL)
+	{
+		return -1;
+	}
+
+	// i4 => Playerversion
+	// i5 => SysPreset / Fadelength
+	err = gme_track_info(emu, &trackinfo, 0);
+	
+	if (err == NULL)
+	{
+		l = trackinfo->playerversion;
+		gme_free_info(trackinfo);
+		return l;
+	}
+	
+	return -1;
+}
+
+
 jint Java_de_illogical_modo_SpcDecoder_spcTracks(JNIEnv* env, jclass clazz)
 {
 	if (emu == NULL)

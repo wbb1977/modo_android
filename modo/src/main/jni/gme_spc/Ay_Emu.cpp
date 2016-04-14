@@ -5,6 +5,7 @@
 #include "blargg_endian.h"
 #include <string.h>
 #include <stdio.h>
+#include <android/log.h>
 
 /* Copyright (C) 2006 Shay Green. This module is free software; you
 can redistribute it and/or modify it under the terms of the GNU Lesser
@@ -83,8 +84,15 @@ static void copy_ay_fields( Ay_Emu::file_t const& file, track_info_t* out, int t
 {
 	Gme_File::copy_field_( out->song, (char const*) get_data( file, file.tracks + track * 4, 1 ) );
 	byte const* track_info = get_data( file, file.tracks + track * 4 + 2, 6 );
+
+	// i4 => Playerversion
+	// i5 => SysPreset / Fadelength	
 	if ( track_info )
+	{
 		out->length = get_be16( track_info + 4 ) * (1000L / 50); // frames to msec
+		out->syspreset = get_be16( track_info + 6 );
+		out->playerversion = file.header->player;
+	}
 	
 	Gme_File::copy_field_( out->author,  (char const*) get_data( file, file.header->author, 1 ) );
 	Gme_File::copy_field_( out->comment, (char const*) get_data( file, file.header->comment, 1 ) );
@@ -276,18 +284,33 @@ blargg_err_t Ay_Emu::start_track_( int track )
 		0xCD, 0, 0, // CALL play
 		0x18, 0xF7  // JR LOOP
 	};
-	memcpy( mem.ram, passive, sizeof passive );
+
+	// Place main loop depending on playerversion
+	// 5 => 0x4000
+	// 6 => 0x8000
+	// 7 => 0xC000
+	int player_offset = 0;
+	switch (file.header->player) {
+		case 5: player_offset = 0x4000; break;
+		case 6: player_offset = 0x8000; break;
+		case 7: player_offset = 0xC000; break;
+	}
+	//__android_log_print(ANDROID_LOG_ERROR, "GME", "Main loop offset %x\n", player_offset);
+
+	memcpy( mem.ram + player_offset, passive, sizeof passive );
 	unsigned play_addr = get_be16( more_data + 4 );
 	//debug_printf( "Play: $%04X\n", play_addr );
 	if ( play_addr )
 	{
-		memcpy( mem.ram, active, sizeof active );
-		mem.ram [ 9] = play_addr;
-		mem.ram [10] = play_addr >> 8;
+		memcpy( mem.ram + player_offset, active, sizeof active );
+		mem.ram [ player_offset + 9 ] = play_addr;
+		mem.ram [ player_offset + 10 ] = play_addr >> 8;
 	}
-	mem.ram [2] = init;
-	mem.ram [3] = init >> 8;
-	
+	mem.ram [ player_offset + 2 ] = init;
+	mem.ram [ player_offset + 3 ] = init >> 8;
+
+	r.pc = player_offset;
+
 	// IM1 Interrupt Mode 1 => at interrupt CPU calls 0x38.
 	// Filled with RET at the begin of this function.
 	// But some ay overrides that interrupt, so we carefully check if this is the case
@@ -450,6 +473,7 @@ void ay_cpu_out( Ay_Cpu* cpu, cpu_time_t time, unsigned addr, int data )
 	// Turbosound doc: OUT 65533,255 selects first AY, OUT 65533,254 selects second
 	if ( emu.spectrum_mode && addr == 65533 && data >= 254 )
 	{
+		//__android_log_print(ANDROID_LOG_DEBUG, "AY_EMU", "Data: %i", data);
 		if ( data == 255 )
 			emu.active_apu = &( emu.apu );
 		if ( data == 254 )

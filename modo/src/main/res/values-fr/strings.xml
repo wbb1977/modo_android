@@ -180,8 +180,14 @@
     </string-array>
     <string name="pref_allowdups">Fichiers doubles sur Playlists</string>
     <string name="pref_allowdups_summary">Si activé, offre la possibilité d\'ajouter plusieurs fois un même fichier dans une même playlist.</string>
+    <!--
     <string name="pref_fade">Durée du fondu d\'entrée/sortie</string>
     <string name="pref_fade_summary">Ne s\'applique pas sur les formats de type tracker.</string>
+    -->
+    <string name="pref_fade_in">Fade in duration</string>
+    <string name="pref_fade_in_summary">Does not apply to tracker formats.</string>
+    <string name="pref_fade_out">Fade out duration</string>
+    <string name="pref_fade_out_summary">Does not apply to tracker formats.</string>
     <string-array name="arr_fade">
         <item>Désactivé</item>
         <item>1 seconde</item>

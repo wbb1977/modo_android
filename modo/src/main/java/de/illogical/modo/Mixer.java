@@ -33,42 +33,65 @@ public final class Mixer {
     }
 
     // Fade in out control
-    private static float fadeStep = 0.05f;
     private static int songlength = 0;
     private static int fadeInTime = 0;
     private static int fadeOutTime = 0;
     private static float vol = 1.0f;
-    private static boolean isFade = false;
+
+    private static boolean isFadeIn = false;
+    private static boolean isFadeOut = false;
+    private static float fadeInStep = 0.05f;
+    private static float fadeOutStep = 0.05f;
 
     static void disableFadeInOut() {
-        isFade = false;
+        isFadeIn = false;
+        isFadeOut = false;
+        fadeOutTime = 0;
+        fadeInTime = 0;
+        fadeInStep = 1f;
+        fadeOutStep = 1f;
+        vol = 1.0f;
     }
 
-    static void setFadeInOut(int seconds, int songlength) {
-        // check songlength does not even allow to fade in / out one second just disable
-        if (seconds <= 0 || songlength <= 3000) {
-            disableFadeInOut();
+    static void setFadeInOut(int fadeInSeconds, int fadeOutSeconds, int songlength) {
+        Mixer.disableFadeInOut();
+
+        // Dont fade:
+        // * song is really short
+        // * fadein and fadeout duration is longer then song duration
+        if (songlength <= 3000)
             return;
-        }
-        isFade = true;
+        if (((fadeInSeconds + fadeOutSeconds) * 1100) >= songlength)
+            return;
+
         Mixer.songlength = songlength;
-        // check songlength is not big enough to fade in and out => use one second to fade in / out.
-        if ((seconds * 1000 * 2 + 1000) > songlength)
-            seconds = 1;
-        fadeStep = 1.0f / (seconds * 5);
-        vol = 0 - fadeStep; // so fade in starts from silence
-        fadeInTime = seconds * 1000;
-        fadeOutTime = seconds * 1000;
+
+        if (fadeOutSeconds > 0) {
+            isFadeOut = true;
+            fadeOutStep = 1.0f / (fadeOutSeconds * 5);
+            fadeOutTime = fadeOutSeconds * 1000;
+            vol = 1.0f;
+        }
+
+        if (fadeInSeconds > 0) {
+            isFadeIn = true;
+            fadeInStep = 1.0f / (fadeInSeconds * 5);
+            fadeInTime = fadeInSeconds * 1000;
+            vol = 0 - fadeInStep;
+        }
+
     }
 
     static void fade(short[] samples, int playtime, boolean fastForward) {
-        if (isFade && (songlength - playtime) <= fadeOutTime) {  // handle fade out
-            vol = vol - (fadeStep * (fastForward ? 2 : 1));
+        if (isFadeOut && (songlength - playtime) <= fadeOutTime) {  // handle fade out
+            vol = vol - (fadeOutStep * (fastForward ? 2 : 1));
             Mixer.adjustVolume(samples, vol < 0.0f ? 0 : (int)(vol * 100));
-        } else if (isFade && playtime <= fadeInTime) { // handle fade in
-            vol = vol + (fadeStep * (fastForward ? 2 : 1));
+            //Log.d("MIXER", "Playtime: " + playtime + " FadeOut Vol: " + vol);
+        } else if (isFadeIn && playtime <= fadeInTime) { // handle fade in
+            vol = vol + (fadeInStep * (fastForward ? 2 : 1));
             Mixer.adjustVolume(samples, vol > 1.0f ? 100 : (int) (vol * 100));
-        } else if (isFade) {
+            //Log.d("MIXER", "Playtime: " + playtime + " FadeIn Vol: " + vol);
+        } else {
             vol = 1.0f; // restore vol for fade out
         }
     }

@@ -183,8 +183,13 @@
     <string name="pref_cat_boost">Volume boost options</string>
     <string name="pref_allowdups">Doppelte Playlist-Einträge möglich</string>
     <string name="pref_allowdups_summary">Ermöglicht es, die gleiche Datei bzw. ein Track mehrmals zu einer Playlist hinzuzufügen.</string>
-    <string name="pref_fade">Musik ein- und abblenden</string>
-    <string name="pref_fade_summary">Kein Effekt bei Tracker-Modulen.</string>
+
+    <string name="pref_fade_in">Musik einblenden</string>
+    <string name="pref_fade_in_summary">Kein Effekt bei Tracker-Modulen.</string>
+
+    <string name="pref_fade_out">Musik ausblenden</string>
+    <string name="pref_fade_out_summary">Kein Effekt bei Tracker-Modulen.</string>
+
     <string-array name="arr_fade">
         <item>Aus</item>
         <item>1 Sekunde</item>

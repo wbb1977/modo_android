@@ -92,8 +92,13 @@
     <string name="pref_sound_boost_summary_sid">File extensions: .sid, .mus</string>
     <string name="pref_allowdups">Allow duplicate entries</string>
     <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
-    <string name="pref_fade">Fade in/out duration</string>
-    <string name="pref_fade_summary">Does not apply to tracker formats.</string>
+
+    <string name="pref_fade_in">Fade in duration</string>
+    <string name="pref_fade_in_summary">Does not apply to tracker formats.</string>
+
+    <string name="pref_fade_out">Fade out duration</string>
+    <string name="pref_fade_out_summary">Does not apply to tracker formats.</string>
+
     <string-array name="arr_fade">
         <item>Disable</item>
         <item>1 second</item>

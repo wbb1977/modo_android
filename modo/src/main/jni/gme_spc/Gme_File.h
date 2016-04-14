@@ -26,6 +26,11 @@ struct gme_type_t_
 
 struct track_info_t
 {
+	/* AY - Player version */
+	int playerversion;
+	/* AY - SysPreset */
+	int syspreset;
+
 	long track_count;
 	
 	/* times in milliseconds; -1 if unknown */

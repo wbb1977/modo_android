@@ -87,7 +87,10 @@ struct gme_info_t
 	otherwise a default of 150000 (2.5 minutes). */
 	int play_length;
 	
-	int i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15; /* reserved */
+	int playerversion;
+	int syspreset;
+
+	int i6,i7,i8,i9,i10,i11,i12,i13,i14,i15; /* reserved */
 	
 	/* empty string ("") if not available */
 	const char* system;

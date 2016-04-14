@@ -18,9 +18,16 @@
             android:entries="@array/arr_silence"
             android:entryValues="@array/arr_silence_entries">
         </ListPreference>
-        <ListPreference android:key="fade"
-            android:title="@string/pref_fade"
-            android:summary="@string/pref_fade_summary"
+        <ListPreference android:key="fadein"
+            android:title="@string/pref_fade_in"
+            android:summary="@string/pref_fade_in_summary"
+            android:defaultValue="0"
+            android:entries="@array/arr_fade"
+            android:entryValues="@array/arr_fade_entries">
+        </ListPreference>
+        <ListPreference android:key="fadeout"
+            android:title="@string/pref_fade_out"
+            android:summary="@string/pref_fade_out_summary"
             android:defaultValue="0"
             android:entries="@array/arr_fade"
             android:entryValues="@array/arr_fade_entries">

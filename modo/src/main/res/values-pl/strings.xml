@@ -193,8 +193,15 @@
     </string-array>
     <string name="pref_allowdups">Zezwalaj na duplikaty</string>
     <string name="pref_allowdups_summary">Gdy włączone, można dodać wielokrotnie utwór do (tej samej) playlisty.</string>
+
+    <!--
     <string name="pref_fade">Czas wyciszania</string>
     <string name="pref_fade_summary">Nie dotyczy formatów trackerowych.</string>
+    -->
+    <string name="pref_fade_in">Fade in duration</string>
+    <string name="pref_fade_in_summary">Does not apply to tracker formats.</string>
+    <string name="pref_fade_out">Fade out duration</string>
+    <string name="pref_fade_out_summary">Does not apply to tracker formats.</string>
     <string-array name="arr_fade">
         <item>Wyłączone</item>
         <item>1 sek.</item>

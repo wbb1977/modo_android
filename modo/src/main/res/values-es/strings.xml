@@ -204,8 +204,15 @@
     <string name="pref_scanfiles_summary">El explorador de ficheros muestra el nombre del juego o el primer título. Todavía no se analizan los ficheros Zip.</string>
     <string name="pref_allowdups">Permitir entradas duplicadas</string>
     <string name="pref_allowdups_summary">Si está habilitado, se puede añadir una pista varias veces a una lista de reproducción.</string>
+    <!--
     <string name="pref_fade">Duración del fundido de entrada/salida</string>
     <string name="pref_fade_summary">No se aplica a formatos tracker.</string>
+    -->
+    <string name="pref_fade_in">Fade in duration</string>
+    <string name="pref_fade_in_summary">Does not apply to tracker formats.</string>
+    <string name="pref_fade_out">Fade out duration</string>
+    <string name="pref_fade_out_summary">Does not apply to tracker formats.</string>
+
     <string-array name="arr_fade">
         <item>Deshabilitado</item>
         <item>1 segundo</item>

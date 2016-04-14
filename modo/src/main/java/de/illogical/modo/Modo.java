@@ -163,7 +163,8 @@ implements	OnSeekBarChangeListener,
     private boolean prefsIsMonoAPU;
     private int prefsShakeLevel;
     private int prefsAutomaticAction;
-    private int prefsFadeSeconds;
+    private int prefsFadeInSeconds;
+    private int prefsFadeOutSeconds;
     private boolean prefsIsAllowDups;
     private Editor edit;
 
@@ -643,7 +644,8 @@ implements	OnSeekBarChangeListener,
         super.onStart();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        prefsFadeSeconds = Integer.valueOf(prefs.getString("fade","0"));
+        prefsFadeInSeconds = Integer.valueOf(prefs.getString("fadein","0"));
+        prefsFadeOutSeconds = Integer.valueOf(prefs.getString("fadeout","0"));
         prefsDefaultTrackLength = Integer.valueOf(prefs.getString("stdplaytime", "180000"));
         prefSilence = Integer.valueOf(prefs.getString("silence", "4"));
         prefsIsInterpolation = prefs.getBoolean("interpolation", true);
@@ -1003,7 +1005,7 @@ implements	OnSeekBarChangeListener,
             // Fade in / out
             Mixer.disableFadeInOut();
             if (!decoder.isTrackerFormat())
-                Mixer.setFadeInOut(prefsFadeSeconds, (int)trackLength);
+                Mixer.setFadeInOut(prefsFadeInSeconds, prefsFadeOutSeconds, (int)trackLength);
         }
     }
     
