@@ -198,7 +198,7 @@ final class SpcDecoder implements Decoder {
         switch (lowerByte) {
             case 130:
             case 131:
-                sb.append("ZX Spectrum (SAA-1099)");
+                sb.append("SAM Coupé");//sb.append("ZX Spectrum (SAA-1099)");
                 break;
             case 128:
             case 129:

@@ -22,7 +22,15 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.*;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInput;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,6 +65,7 @@ import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -112,6 +121,7 @@ implements	OnSeekBarChangeListener,
     private static int sleepTimer = 0;
     static Decoder decoder;
     private static boolean isLoadingOkay = false;
+    private static int loadFailures = 0;
     private static int track = 0;
     private static boolean isPause = false;
     private static String fileInfo;
@@ -122,6 +132,8 @@ implements	OnSeekBarChangeListener,
     private String strTrackLength = "";
     int playtimeStamp = 0;
     boolean forceUpdate = false;
+
+    private int restoreTrack = -1;
 
     // Rest
     static private boolean pauseStatusOnAudioFocusLost = false;
@@ -309,7 +321,7 @@ implements	OnSeekBarChangeListener,
 
                     if (decoder.getStatus() != Decoder.STATUS_FILE_ERROR)
                     {
-                        //android.util.Log.e(TAG, "Service connected => trying to restore song");
+                        android.util.Log.e(TAG, "Service connected => trying to restore song");
 
                         isLoadingOkay = true;
 
@@ -363,26 +375,138 @@ implements	OnSeekBarChangeListener,
                             ServicePlayer.p.pausePlayer();
                     } else
                     {
-                        //android.util.Log.e(TAG, "Service connected => trying standard playlist222");
-                        if (playlist != null && playlist.size() > 0)
+                        //android.util.Log.d(TAG, "Service connected => trying standard playlist222");
+                        if (playlist != null && playlist.size() > 0) {
+                            isPause = true;
                             prepareNextFile(0);
+                        }
                     }
                 }
             } else {
-                //android.util.Log.e(TAG, "Service connected => trying standard playlist");
-                if (playlist != null && playlist.size() > 0)
+                //android.util.Log.d(TAG, "Service connected => trying standard playlist");
+                if (playlist != null && playlist.size() > 0) {
+                    isPause = true;
                     prepareNextFile(0);
+                }
             }
         }
 
         public void onServiceDisconnected(ComponentName name) {}
     }
 
+    void loadLastPosition() {
+        try {
+            File f1 = new File(getCacheDir().getAbsolutePath() + File.separatorChar + "plname");
+            File f2 = new File(getCacheDir().getAbsolutePath() + File.separatorChar + "pl");
+
+            if (f1.exists()) {
+                //android.util.Log.d(TAG, "Loading playlist name to file: " + f1.getName() + " " +f1.getAbsolutePath());
+                DataInputStream dataIn = new DataInputStream(new BufferedInputStream(new FileInputStream(f1)));
+                int version = dataIn.readInt();
+                restoreTrack = dataIn.readInt();
+                int pos = dataIn.readInt();
+                String name = dataIn.readUTF();
+                dataIn.close();
+                setPlaylist(name, pos, true);
+            } else if (f2.exists()) {
+                //android.util.Log.d(TAG, "loading memory playlist from file: " + f2.getName() + " " +f2.getAbsolutePath());
+                playlistFiles.clear();
+                playlistFiles.entries.ensureCapacity(peCache.length);
+                playlistFiles.shadowEntries.ensureCapacity(peCache.length);
+
+                Playlist.Entry pppp[] = new Playlist.Entry[peCache.length];
+                int index = 0;
+                DataInputStream dataIn = new DataInputStream(new BufferedInputStream(new FileInputStream(f2)));
+                int version = dataIn.readInt();
+                int size = dataIn.readInt();
+                restoreTrack = dataIn.readInt();
+                int pos = dataIn.readInt();
+                int marker = dataIn.readInt();
+                while (marker == -255 && index < MAX_PLAYLIST_FILES) {
+                    peCache[index].path = dataIn.readUTF();
+                    peCache[index].zipEntry = dataIn.readUTF();
+                    peCache[index].zipEntry = peCache[index].zipEntry.equals("") ? null : peCache[index].zipEntry;
+                    playlistFiles.entries.add(peCache[index]);
+                    int posShadow = dataIn.readInt();
+                    pppp[posShadow] = peCache[index];
+                    marker = dataIn.readInt();
+                    index++;
+                }
+                dataIn.close();
+                for (int i = 0; i < size; i++)
+                    playlistFiles.shadowEntries.add(pppp[i]);
+                playlistFiles.setShuffleModeRaw(prefsIsShuffle);
+                playlistFiles.setPlayPosition(pos);
+                playlistFiles.resetPlayedAll();
+                playlist = playlistFiles;
+            } else {
+                //android.util.Log.d(TAG, "No file found to continue from.");
+            }
+        } catch (IOException e) {
+            android.util.Log.e(TAG, "Error loading continue position: " + e);
+        }
+    }
+
     // SQL save in background on app exit
     private SavePlaylist saveplaylist = null;
     class SavePlaylist extends AsyncTask<Integer, Integer, Integer> {
+        private void savePlayPosition() {
+            File f1 = new File(getCacheDir().getAbsolutePath() + File.separatorChar + "plname");
+            File f2 = new File(getCacheDir().getAbsolutePath() + File.separatorChar + "pl");
+
+            try {
+                f1.delete();
+                f2.delete();
+
+                if (playlist == null)
+                    return;
+                if (playlist.hasEntries() == false)
+                    return;
+                if (Modo.playlistname == null) {
+                    //android.util.Log.d(TAG, "Saving memory playlist to file: " + f2.getName() + " " +f2.getAbsolutePath());
+                    ByteArrayOutputStream bytesOut = new ByteArrayOutputStream(100000);
+                    DataOutputStream outData = new DataOutputStream(bytesOut);
+                    outData.writeInt(1); // Fileversion
+                    outData.writeInt(playlist.entries.size());
+                    outData.writeInt(track);
+                    outData.writeInt(playlist.getPlayPosition());
+                    //for (Playlist.Entry pe: playlist.entries) {
+                    Playlist.Entry pe = null;
+                    for (int i = 0, l = playlist.entries.size(); i < l; i++) {
+                        outData.writeInt(-255);
+                        pe = playlist.entries.get(i);
+                        outData.writeUTF(pe.path);
+                        outData.writeUTF(pe.zipEntry == null ? "" : pe.zipEntry);
+                        outData.writeInt(playlist.shadowEntries.indexOf(pe));
+                    }
+                    outData.writeInt(-100);
+                    outData.close();
+                    BufferedOutputStream buffOut = new BufferedOutputStream(new FileOutputStream(f2));
+                    buffOut.write(bytesOut.toByteArray());
+                    buffOut.close();
+                } else {
+                    //android.util.Log.d(TAG, "Saving playlist name to file: " + f1.getName() + " " +f1.getAbsolutePath());
+                    ByteArrayOutputStream bytesOut = new ByteArrayOutputStream(100000);
+                    DataOutputStream outData = new DataOutputStream(bytesOut);
+                    outData.writeInt(1); // Fileversion
+                    outData.writeInt(track);
+                    outData.writeInt(playlist.getPlayPosition());
+                    outData.writeUTF(playlistname);
+                    outData.close();
+                    BufferedOutputStream buffOut = new BufferedOutputStream(new FileOutputStream(f1));
+                    buffOut.write(bytesOut.toByteArray());
+                    buffOut.close();
+                }
+            } catch (IOException e) {
+                android.util.Log.e(TAG, "Error saving continue position: " + e);
+                f1.delete();
+                f2.delete();
+            }
+        }
+
         protected Integer doInBackground(Integer... params) {
             PlaylistManager.saveToSQL(getApplicationContext());
+            savePlayPosition();
             return 1;
         }
     }
@@ -465,13 +589,19 @@ implements	OnSeekBarChangeListener,
                 tracks = isLoadingOkay ? decoder.tracks() : 0;
             }
 
+            if (isLoadingOkay)
+                loadFailures = 0;
+            else
+                ++loadFailures;
+
             return isLoadingOkay ? 1 : 0;
         }
 
         protected void onPostExecute(Integer result) {
             clearPlaytimeDisplay();
 
-            trackSelection(0);
+            trackSelection(restoreTrack != -1 ? restoreTrack : 0);
+            restoreTrack = -1;
 
             updateTitle();
             updateStatusButtons();
@@ -497,8 +627,13 @@ implements	OnSeekBarChangeListener,
                 textFileInfo.setText(String.format("%s\n%s", path.getName(), getString(R.string.loading_failed)));
                 textFileDetails.setText("<no info>");
                 sendNotification(R.string.loading_failed);
-                loadNextFile = new LoadNextFileAfterLoadError();
-                loadNextFile.execute();
+
+                if (loadFailures >= 10) {
+                    textFileDetails.setText(R.string.invalid_files);
+                } else {
+                    loadNextFile = new LoadNextFileAfterLoadError();
+                    loadNextFile.execute();
+                }
             }
 
             fileInfo = textFileInfo.getText().toString();
@@ -531,8 +666,6 @@ implements	OnSeekBarChangeListener,
         prefsIsLoop = prefs.getBoolean("loop", false);
         prefsIs99 = prefs.getBoolean("loop99", false);
         prefsIsMediabuttons = prefs.getBoolean("mediabuttons", false);
-
-        PlaylistManager.loadFromSQL(getApplicationContext());
 
         mHandler = new Handler(this);
         
@@ -577,7 +710,11 @@ implements	OnSeekBarChangeListener,
         buttonNextTrack.setEnabled(false);
         
         buttonNextTrack.setOnLongClickListener(this);
-        buttonPrevTrack.setOnLongClickListener(this);      
+        buttonPrevTrack.setOnLongClickListener(this);
+
+        // Restore play postion
+        PlaylistManager.loadFromSQL(getApplicationContext());
+        loadLastPosition();
 
         // System services
         audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);	
@@ -638,6 +775,7 @@ implements	OnSeekBarChangeListener,
         file_nsf = BitmapFactory.decodeResource(getResources(), R.drawable.file_nes);
         file_msx = BitmapFactory.decodeResource(getResources(), R.drawable.file_msx);
         file_pcengine = BitmapFactory.decodeResource(getResources(), R.drawable.file_pcengine);
+
     }
         
     protected void onStart() {
@@ -1196,8 +1334,10 @@ implements	OnSeekBarChangeListener,
             updatePlaylistname();
 
             // Load selected file, assigned by playlist
-            if (sp != null)
+            if (sp != null) {
+                isPause = false;
                 prepareNextFile(0);
+            }
 
             // save last user directory
             edit.putString("last_directory", new File(data.getAction()).getParentFile().getAbsolutePath());
@@ -1580,16 +1720,21 @@ implements	OnSeekBarChangeListener,
 
     // set playlist form playlist manager
     void setPlaylist(String playlistName, int playPosition) {
+        setPlaylist(playlistName, playPosition, false);
+    }
+
+    void setPlaylist(String playlistName, int playPosition, boolean isSkipLoad) {
 
         synchronized(playlistSync) {
-
-
             if (PlaylistManager.getPlaylist(playlistName) != null && PlaylistManager.getPlaylist(playlistName).size() > 0) {
                 playlist = PlaylistManager.getPlaylist(playlistName);
                 playlist.setPlayPosition(playPosition);
                 playlist.syncPlayPositionForShuffle();
                 playlist.setShuffleMode(prefsIsShuffle);
-                prepareNextFile(0);
+                if (isSkipLoad == false) {
+                    isPause = false;
+                    prepareNextFile(0);
+                }
 
                 Modo.playlistname = playlistName;
                 updatePlaylistname();
@@ -1633,7 +1778,7 @@ implements	OnSeekBarChangeListener,
                 playlistFiles.shadowEntries.add(peCache[current]);
 
                 if (f == playing)
-                    playlistFiles.setPlayPosition(playlistFiles.entries.size()-1);
+                    playlistFiles.setPlayPosition(playlistFiles.entries.size() - 1);
 
                 current += 1;
             }

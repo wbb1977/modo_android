@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="invalid_files">Player paused. Invalid files.\n\nThere is something wrong with your files.\n\nFor you to examine the situation the app come to a halt.\n\nYou can try to load new files or quit the app by pressing the back button.</string>
     <string name="app_name">Modo - Computer Music Player</string>
     <string name="seek_warning_forward">Please note, seeking not possible in this format. Activating fast forward instead.</string>
     <string name="button_filebrowser">Browse music</string>
@@ -102,13 +103,13 @@
     <string-array name="arr_fade">
         <item>Disable</item>
         <item>1 second</item>
-        <item>2 sconds</item>
+        <item>2 seconds</item>
         <item>3 seconds</item>
         <item>4 second</item>
-        <item>5 sconds</item>
+        <item>5 seconds</item>
         <item>6 seconds</item>
         <item>7 second</item>
-        <item>8 sconds</item>
+        <item>8 seconds</item>
         <item>9 seconds</item>
         <item>10 seconds</item>
     </string-array>

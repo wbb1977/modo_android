@@ -1,5 +1,7 @@
 package de.illogical.modo;
 
+import android.util.Log;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -122,6 +124,10 @@ final class Playlist {
         resetPlayedAll();
     }
 
+    void setShuffleModeRaw(boolean isShuffleMode) {
+        isShuffle = isShuffleMode;
+    }
+
     void advancePlayPosition() {
         setPlayPosition(playPosition + 1);
     }
@@ -132,6 +138,10 @@ final class Playlist {
 
     void syncPlayPositionForShuffle() {
         playPosition = shadowEntries.indexOf(entries.get(playPosition));
+    }
+
+    int getPlayPosition() {
+       return playPosition;
     }
 
     void setPlayPosition(int index) {
