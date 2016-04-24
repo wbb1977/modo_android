@@ -321,7 +321,7 @@ implements	OnSeekBarChangeListener,
 
                     if (decoder.getStatus() != Decoder.STATUS_FILE_ERROR)
                     {
-                        android.util.Log.e(TAG, "Service connected => trying to restore song");
+                        //android.util.Log.d(TAG, "Service connected => trying to restore song");
 
                         isLoadingOkay = true;
 
