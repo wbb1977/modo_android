@@ -25,7 +25,8 @@
         android:label="@string/app_title_short" android:restoreNeedsApplication="false" android:restoreAnyVersion="false" android:backupAgent="DatabaseBackup2" android:killAfterRestore="false">
 		<meta-data android:name="com.google.android.backup.api_key" android:value="AEdPqrEAAAAIooGruawHSqVxnufJL2xnWIkmzmeS1wBhhEqinA" />        
         <receiver android:name="de.illogical.modo.ModoReceiver" >
-            <intent-filter android:priority="999">
+            <!--  android:priority="999"-->
+            <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
