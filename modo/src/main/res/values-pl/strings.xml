@@ -106,7 +106,7 @@
         <br><b>Uwagi</b><br><br>
         <small>
         <b>C64 SID &amp; MUS</b>
-        <br><br>&bull; Odtwarzacz ma wbudowane długości utworu z HVSC #63. Nie możesz używać zewnętrznych plików. Zamierzam aktualizować wbudowaną baze długości piosenek kiedy będzie taka potrzeba. Zadecydowałem tak, ponieważ parsowanie oryginalnego pliku z bazy danych przy każdym starcie programu jest zbyt wolne. Przekonwertowałem bazę danych we własny, mały format w celu szybkiego i łatwego dostępu z poziomu odtwarzacza.
+        <br><br>&bull; Odtwarzacz ma wbudowane długości utworu z HVSC #64. Nie możesz używać zewnętrznych plików. Zamierzam aktualizować wbudowaną baze długości piosenek kiedy będzie taka potrzeba. Zadecydowałem tak, ponieważ parsowanie oryginalnego pliku z bazy danych przy każdym starcie programu jest zbyt wolne. Przekonwertowałem bazę danych we własny, mały format w celu szybkiego i łatwego dostępu z poziomu odtwarzacza.
         <br><br>&bull; Emulacja układu SID jest zasobożerna dla CPU (szczególnie RSID), więc spodziewaj się zacięć, jeżeli odtwarzasz w tle na mało wydajnym urządzeniu.
         <br><br><b>Moduły trackerowe</b>
         <br><br>&bull; Jeżeli moduł jest na końcu zapętlony, odtwarzacz zapętla tą część trzy razy, a następnie ładuje kolejny plik. Obecnie, użytkownik nie może tego zmienić.

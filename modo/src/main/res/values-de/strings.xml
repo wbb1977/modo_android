@@ -101,7 +101,7 @@
         <br><b>Anmerkungen</b><br><br>
         <small>
         <b>C64 SID &amp; MUS</b>
-        <br><br>&bull; Es ist die HVSC#63 Datenbank für die Wiedergabezeiten direkt in den Player integriert. Man kann im Moment keine externe Datenbank verwenden.
+        <br><br>&bull; Es ist die HVSC#64 Datenbank für die Wiedergabezeiten direkt in den Player integriert. Man kann im Moment keine externe Datenbank verwenden.
         <br><br>&bull; SID-Emulation ist sehr CPU intensiv. Es kann zu Störungen in der Wiedergabe kommen, falls das Handy eine zu schwache CPU verwendet oder viele andere Hintergrundprozesse aktiv sind.
         <br><br><b>Tracker-Module</b>
         <br><br>&bull; Falls ein Modul am Ende auf ein vorheriges Pattern zurückspringt, wird dies dreimal durchgeführt, danach wird die nächste Datei geladen. Es gibt im Moment keine Einstellmöglichkeit um dies zu ändern.

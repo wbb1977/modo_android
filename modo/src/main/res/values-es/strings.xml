@@ -101,7 +101,7 @@
         <br><b>Observaciones</b><br><br>
         <small>
         <b>C64 SID &amp; MUS</b>
-        <br><br>&bull; El reproductor tiene incorporado el soporte para la longitud del fichero de música en HVSC #63. No se puede utilizar un fichero externo. Voy a actualizar la base de datos de longitud de las canciones que está incroporada, según vaya haciendo falta. He decidido hacerlo así, ya que interpretar la base de datos desde el fichero original al arranque de la aplicación es algo muy lento. He convertido la base de datos a un pequeño fichero personalizado, para un acceso rápido y sencillo desde el propio reproductor.
+        <br><br>&bull; El reproductor tiene incorporado el soporte para la longitud del fichero de música en HVSC #64. No se puede utilizar un fichero externo. Voy a actualizar la base de datos de longitud de las canciones que está incroporada, según vaya haciendo falta. He decidido hacerlo así, ya que interpretar la base de datos desde el fichero original al arranque de la aplicación es algo muy lento. He convertido la base de datos a un pequeño fichero personalizado, para un acceso rápido y sencillo desde el propio reproductor.
         <br><br>&bull; La emulación SID requiere mucha CPU (especialmente RSID), así que es posible que haya pequeños cortes si se reproduce como música de fondo y tienes un dispositivo poco potente.
         <br><br><b>Módulos de Tracker</b>
         <br><br>&bull; Si un módulo se escucha con repetición al final, el reproductor repite esa parte tres veces y luego carga el siguiente fichero. Actualmente no hay forma de cambiar esto por parte del usuario.

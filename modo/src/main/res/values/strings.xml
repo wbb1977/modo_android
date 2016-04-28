@@ -162,7 +162,7 @@
         <br><b>Remarks</b><br><br>
         <small>
         <b>C64 SID &amp; MUS</b>
-        <br><br>&bull; The player has builtin songlength support for HVSC #63. You can not use an external file. I will update the builtin songlength database as needed. I have decided to do, because parsing the database from the original file at each startup is to slow. I have converted the database into a custom small size format for fast and easy access within the player.
+        <br><br>&bull; The player has builtin songlength support for HVSC #64. You can not use an external file. I will update the builtin songlength database as needed. I have decided to do, because parsing the database from the original file at each startup is to slow. I have converted the database into a custom small size format for fast and easy access within the player.
         <br><br>&bull; SID emulation is CPU intensive (especially RSID), so expect stutter if you play in background if you have a low end device.
         <br><br><b>Tracker Modules</b>
         <br><br>&bull; If a module is looped at the end, the player loops that part three times and then loads the next file. There is currently no setting to change this by the user.
