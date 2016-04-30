@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="invalid_files">Player paused. Invalid files.\n\nThere is something wrong with your files.\n\nFor you to examine the situation the app come to a halt.\n\nYou can try to load new files or quit the app by pressing the back button.</string>
+    <string name="pref_sidmodel">默许Sid型号</string>
+    <string name="pref_sidmodel_summary">如果.sid档案无指定型号，用默许型号</string>
+
+    <string name="invalid_files">播放暂停，档案有问题。请登入新档案或按回头犍以退出程序</string>
     <string name="app_name">Modo中文版</string>
     <string name="seek_warning_forward">对不起。此格式并不支持跳转。只能快进。</string>
     <string name="button_filebrowser">浏览</string>
@@ -175,9 +178,9 @@
     </string-array>
     <string name="pref_allowdups">Allow duplicate entries</string>
     <string name="pref_allowdups_summary">If enabled you can add a track multiple times to a playlist.</string>
-    <string name="pref_fade_in">Fade in duration</string>
+    <string name="pref_fade_in">淡入</string>
     <string name="pref_fade_in_summary">Does not apply to tracker formats.</string>
-    <string name="pref_fade_out">Fade out duration</string>
+    <string name="pref_fade_out">淡出</string>
     <string name="pref_fade_out_summary">Does not apply to tracker formats.</string>
     <string-array name="arr_fade">
         <item>关闭</item>

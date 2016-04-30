@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="pref_sidmodel">Default Sid model</string>
+    <string name="pref_sidmodel_summary">Used if there is no model specified in a .sid file.</string>
+    <string-array translatable="false" name="arr_sidmodel">
+        <item>MOS 6581</item>
+        <item>MOS 8580</item>
+    </string-array>
+    <string-array translatable="false" name="arr_sidmodel_entries">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
     <string name="invalid_files">Player paused. Invalid files.\n\nThere is something wrong with your files.\n\nFor you to examine the situation the app come to a halt.\n\nYou can try to load new files or quit the app by pressing the back button.</string>
     <string name="app_name">Modo - Computer Music Player</string>
     <string name="seek_warning_forward">Please note, seeking not possible in this format. Activating fast forward instead.</string>

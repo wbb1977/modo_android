@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="pref_sidmodel">Default Sid model</string>
+    <string name="pref_sidmodel_summary">Used if there is no model specified in a .sid file.</string>
+
     <string name="invalid_files">Player paused. Invalid files.\n\nThere is something wrong with your files.\n\nFor you to examine the situation the app come to a halt.\n\nYou can try to load new files or quit the app by pressing the back button.</string>
     <string name="app_name">Modo - Reproductor de Música de Ordenador</string>
     <string name="seek_warning_forward">No es posible realizar búsquedas en este formato. Activando el avance rápido en su lugar.</string>

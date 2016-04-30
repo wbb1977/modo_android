@@ -30,6 +30,7 @@ final class SidDecoder implements Decoder {
     native private static String sidGetMD5();
     native private static void sidSetTempo(int tempo);
     native private static int sidIsStereo();
+    native private static int sidSetDefaultSidModel(int model);
 
     // track info
     native private static int sidCreditsCount();
@@ -53,6 +54,12 @@ final class SidDecoder implements Decoder {
     private int silencePeriod = 20;
     private int playlistTrack = -1;
     private boolean isConvertStereoToMono = false;
+    private int defaultSidModel = 0;
+
+    void setDefaultSidModel(int model) {
+        defaultSidModel = model;
+        sidSetDefaultSidModel(model);
+    }
 
     void setMonoOutput(boolean isConvertStereoToMono) {
         this.isConvertStereoToMono = isConvertStereoToMono;
@@ -203,6 +210,8 @@ final class SidDecoder implements Decoder {
         {
             case SIDTUNE_SIDMODEL_UNKNOWN:
                 sb.append("Unknown");
+                sb.append(defaultSidModel == 0 ? " (Using 6581)" : "");
+                sb.append(defaultSidModel != 0 ? " (Using 8580)" : "");
                 break;
             case SIDTUNE_SIDMODEL_6581:
                 sb.append("6581");
@@ -212,6 +221,8 @@ final class SidDecoder implements Decoder {
                 break;
             case SIDTUNE_SIDMODEL_ANY:
                 sb.append("Any");
+                sb.append(defaultSidModel == 0 ? " (Using 6581)" : "");
+                sb.append(defaultSidModel != 0 ? " (Using 8580)" : "");
                 break;
             default:
                 sb.append("??");

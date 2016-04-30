@@ -177,6 +177,7 @@ implements	OnSeekBarChangeListener,
     private int prefsAutomaticAction;
     private int prefsFadeInSeconds;
     private int prefsFadeOutSeconds;
+    private int prefsDefaultSidModel;
     private boolean prefsIsAllowDups;
     private Editor edit;
 
@@ -782,8 +783,9 @@ implements	OnSeekBarChangeListener,
         super.onStart();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        prefsFadeInSeconds = Integer.valueOf(prefs.getString("fadein","0"));
-        prefsFadeOutSeconds = Integer.valueOf(prefs.getString("fadeout","0"));
+        prefsDefaultSidModel = Integer.valueOf(prefs.getString("sidmodel", "0"));
+        prefsFadeInSeconds = Integer.valueOf(prefs.getString("fadein", "0"));
+        prefsFadeOutSeconds = Integer.valueOf(prefs.getString("fadeout", "0"));
         prefsDefaultTrackLength = Integer.valueOf(prefs.getString("stdplaytime", "180000"));
         prefSilence = Integer.valueOf(prefs.getString("silence", "4"));
         prefsIsInterpolation = prefs.getBoolean("interpolation", true);
@@ -832,6 +834,7 @@ implements	OnSeekBarChangeListener,
             asapDecoder.setMonoOutput(prefsIsMonoAPU);
             sidDecoder.setMonoOutput(prefsIsMonoAPU);
             nezplugDecoder.setMonoOutput(prefsIsMonoAPU);
+            sidDecoder.setDefaultSidModel(prefsDefaultSidModel);
         }
         
         mSensorManager.unregisterListener(mSensorListener);

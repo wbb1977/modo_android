@@ -22,6 +22,8 @@ static short localSamples[18000];
 static const int TRACK_DATA_SIZE = 163576;
 extern int track_data[];
 
+static int default_mos = 0;
+
 static void init()
 {
 	// Setup sidplay2
@@ -113,6 +115,10 @@ extern "C" int Java_de_illogical_modo_SidDecoder_sidGetSongspeed(JNIEnv* env, jc
 	return sid_tune != NULL ? sid_tuneinfo.songSpeed : -1;
 }
 
+extern "C" void Java_de_illogical_modo_SidDecoder_sidSetDefaultSidModel(JNIEnv* env, jclass clazz, int model)
+{
+	default_mos = model; // 0 = 6581, other = 8580
+}
 
 extern "C" jint Java_de_illogical_modo_SidDecoder_sidLoadFile(JNIEnv* env, jclass clazz, jstring path)
 {
@@ -141,6 +147,9 @@ extern "C" jint Java_de_illogical_modo_SidDecoder_sidLoadFile(JNIEnv* env, jclas
 		{
 			case SIDTUNE_SIDMODEL_UNKNOWN:
 			case SIDTUNE_SIDMODEL_ANY:
+				sid_cfg.sidDefault = default_mos == 0 ? SID2_MOS6581 : SID2_MOS8580;
+				sid_cfg.sidModel = default_mos == 0 ? SID2_MOS6581 : SID2_MOS8580;
+				break;
 			case SIDTUNE_SIDMODEL_6581:
 				sid_cfg.sidDefault = SID2_MOS6581;
 				sid_cfg.sidModel = SID2_MOS6581;
@@ -207,6 +216,9 @@ extern "C" jint Java_de_illogical_modo_SidDecoder_sidLoadFromZip(JNIEnv* env, jc
 		{
 			case SIDTUNE_SIDMODEL_UNKNOWN:
 			case SIDTUNE_SIDMODEL_ANY:
+				sid_cfg.sidDefault = default_mos == 0 ? SID2_MOS6581 : SID2_MOS8580;
+				sid_cfg.sidModel = default_mos == 0 ? SID2_MOS6581 : SID2_MOS8580;
+				break;
 			case SIDTUNE_SIDMODEL_6581:
 				sid_cfg.sidDefault = SID2_MOS6581;
 				sid_cfg.sidModel = SID2_MOS6581;

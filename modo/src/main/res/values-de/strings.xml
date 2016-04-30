@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="pref_sidmodel">Voreinstellung Sid-Modell</string>
+    <string name="pref_sidmodel_summary">Wird verwendet wenn kein Modell in einer Datei (.sid) angegeben ist.</string>
+
     <string name="invalid_files">Wiedergabe angehalten.\n\nZuviele ungültige Dateien in Folge.\n\nBitte andere Dateien versuchen oder die \"Zurück\"-Schaltfläche antippen um die App zu beenden..</string>
     <string name="app_name">Modo - Computer Music Player</string>
     <string name="seek_warning_forward">Leider nur schneller Vorlauf für dieses Format möglich.</string>

@@ -32,6 +32,13 @@
             android:entries="@array/arr_fade"
             android:entryValues="@array/arr_fade_entries">
         </ListPreference>
+        <ListPreference android:key="sidmodel"
+            android:title="@string/pref_sidmodel"
+            android:summary="@string/pref_sidmodel_summary"
+            android:defaultValue="0"
+            android:entries="@array/arr_sidmodel"
+            android:entryValues="@array/arr_sidmodel_entries">
+        </ListPreference>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_cat_mixer">

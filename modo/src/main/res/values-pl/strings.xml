@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="pref_sidmodel">Default Sid model</string>
+    <string name="pref_sidmodel_summary">Used if there is no model specified in a .sid file.</string>
+
     <string name="invalid_files">Odtwarzacz zatrzymany.\n\nNie odnaleziono plików lub pliki zawierają błędy. Mogły zostać przeniesione lub usunięte.\n\nProszę sprawdzić lokalizację plików.</string>
 
     <string name="app_name">Modo - Odtwarzacz Muzyki Komputerowej</string>
