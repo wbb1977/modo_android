@@ -11,6 +11,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,7 @@ import com.lb.material_preferences_library.PreferenceActivity;
 final public class Prefs extends PreferenceActivity
 implements OnSharedPreferenceChangeListener {
 
-    private HashMap<String, String> descriptions = new HashMap<String, String>(10);
+    private HashMap<String, String> descriptions = new HashMap<String, String>(20);
 
     @Override
     protected int getPreferencesXmlId() {
@@ -29,6 +30,8 @@ implements OnSharedPreferenceChangeListener {
 
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().hide();

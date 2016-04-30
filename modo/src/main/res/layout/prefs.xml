@@ -68,19 +68,19 @@
             android:key="mediabuttons"
             android:title="@string/pref_mediabuttons"
             android:summary="@string/pref_mediabuttons_summary"
-            android:defaultValue="false">            
+            android:defaultValue="false">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:key="scanfiles"
             android:title="@string/pref_scanfiles"
             android:summary="@string/pref_scanfiles_summary"
-            android:defaultValue="false">            
+            android:defaultValue="false">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:key="seekbar_disabled"
             android:title="@string/pref_seekbar"
             android:summary="@string/pref_seekbar_summary"
-            android:defaultValue="false">            
+            android:defaultValue="false">
         </CheckBoxPreference>
         <CheckBoxPreference
             android:key="flatzip"

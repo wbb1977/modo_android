@@ -155,7 +155,7 @@
     <string name="info_service_continue">Modo - Musik pausieren um die App zu beenden!</string>
 	<string name="menu_tablet">Modo für das Tablet</string>
 	<string name="pref_interpolation_summary">Nur für Tracker-Module. Benötigt mehr CPU-Leistung für bessere Tonqualität.</string>
-	<string name="pref_interpolation">Interpolationsmixer</string>
+	<string name="pref_interpolation">Interpolation</string>
  	<string name="pref_mediabuttons">Media Buttons ignorieren</string>	    
  	<string name="pref_mediabuttons_summary">Aktivieren um mögliche Konflikte mit anderen Apps zu vermeiden.</string>	    
 	<string name="pref_stereo_max">Stereo</string>
