@@ -396,10 +396,13 @@ implements	OnSeekBarChangeListener,
     }
 
     void loadLastPosition() {
-        try {
-            File f1 = new File(getCacheDir().getAbsolutePath() + File.separatorChar + "plname");
-            File f2 = new File(getCacheDir().getAbsolutePath() + File.separatorChar + "pl");
+        File f1 = new File(getCacheDir().getAbsolutePath() + File.separatorChar + "plname");
+        File f2 = new File(getCacheDir().getAbsolutePath() + File.separatorChar + "pl");
 
+        if (playlist != null && playlist.size() > 0)
+            return;
+
+        try {
             if (f1.exists()) {
                 //android.util.Log.d(TAG, "Loading playlist name to file: " + f1.getName() + " " +f1.getAbsolutePath());
                 DataInputStream dataIn = new DataInputStream(new BufferedInputStream(new FileInputStream(f1)));
@@ -445,6 +448,9 @@ implements	OnSeekBarChangeListener,
             }
         } catch (IOException e) {
             android.util.Log.e(TAG, "Error loading continue position: " + e);
+        } finally {
+            f1.delete();
+            f2.delete();
         }
     }
 

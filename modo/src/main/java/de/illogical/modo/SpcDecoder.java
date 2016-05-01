@@ -11,6 +11,8 @@ final class SpcDecoder implements Decoder {
         spcInit();
     }
 
+    static final boolean DEBUG_INFO = true;
+
     // RSN related
     static native void spcInit(); // Init RSN structure
     static native void spcResetRsnEntries();
@@ -182,17 +184,27 @@ final class SpcDecoder implements Decoder {
         StringBuffer sb = new StringBuffer(256*9);
 
         // Debug output
-        sb.append("Playerversion: " + spcPlayerVersion()+"\n");
-        switch (spcPlayerVersion()) {
-            case 5: sb.append("=> Main loop @ 0x4000\n"); break;
-            case 6: sb.append("=> Main loop @ 0x8000\n"); break;
-            case 7: sb.append("=> Main loop @ 0xC000\n"); break;
-            default: sb.append("=> Main loop @ 0x0000\n"); break;
+        if (DEBUG_INFO) {
+            sb.append("Playerversion: " + spcPlayerVersion() + "\n");
+            switch (spcPlayerVersion()) {
+                case 5:
+                    sb.append("=> Main loop @ 0x4000\n");
+                    break;
+                case 6:
+                    sb.append("=> Main loop @ 0x8000\n");
+                    break;
+                case 7:
+                    sb.append("=> Main loop @ 0xC000\n");
+                    break;
+                default:
+                    sb.append("=> Main loop @ 0x0000\n");
+                    break;
+            }
+            sb.append("SysPreset: " + spcSysPreset(currentTrack) + "\n");
+            sb.append("=> lo: " + String.format("%8s", Integer.toBinaryString(lowerByte)).replace(' ', '0') + "\n");
+            sb.append("=> hi: " + String.format("%8s", Integer.toBinaryString(higherByte)).replace(' ', '0') + "\n");
+            sb.append("-------<<<<>>>>\n\n");
         }
-        sb.append("SysPreset: " + spcSysPreset(currentTrack) + "\n");
-        sb.append("=> lo: " + String.format("%8s", Integer.toBinaryString(lowerByte)).replace(' ', '0') + "\n");
-        sb.append("=> hi: " + String.format("%8s", Integer.toBinaryString(higherByte)).replace(' ', '0') + "\n");
-        sb.append("-------<<<<>>>>\n\n");
         //
 
         switch (lowerByte) {
