@@ -120,7 +120,7 @@ jlong Java_de_illogical_modo_SpcDecoder_spcTrackLength(JNIEnv* env, jclass clazz
 	return -1;
 }
 
-jint Java_de_illogical_modo_SpcDecoder_spcSysPreset(JNIEnv* env, jclass clazz, jint track)
+jint Java_de_illogical_modo_SpcDecoder_spcAYsysPreset(JNIEnv* env, jclass clazz, jint track)
 {
 	gme_err_t err = NULL;
 	struct gme_info_t* trackinfo;
@@ -133,6 +133,7 @@ jint Java_de_illogical_modo_SpcDecoder_spcSysPreset(JNIEnv* env, jclass clazz, j
 
 	// i4 => Playerversion
 	// i5 => SysPreset / Fadelength
+	// i6 => Channels: 0 = ABC, 1 = ACB
 	err = gme_track_info(emu, &trackinfo, track);
 	
 	if (err == NULL)
@@ -145,7 +146,7 @@ jint Java_de_illogical_modo_SpcDecoder_spcSysPreset(JNIEnv* env, jclass clazz, j
 	return -1;
 }
 
-jint Java_de_illogical_modo_SpcDecoder_spcPlayerVersion(JNIEnv* env, jclass clazz)
+jint Java_de_illogical_modo_SpcDecoder_spcAYplayerVersion(JNIEnv* env, jclass clazz)
 {
 	gme_err_t err = NULL;
 	struct gme_info_t* trackinfo;
@@ -158,6 +159,7 @@ jint Java_de_illogical_modo_SpcDecoder_spcPlayerVersion(JNIEnv* env, jclass claz
 
 	// i4 => Playerversion
 	// i5 => SysPreset / Fadelength
+	// i6 => Channels: 0 = ABC, 1 = ACB
 	err = gme_track_info(emu, &trackinfo, 0);
 	
 	if (err == NULL)
@@ -170,6 +172,31 @@ jint Java_de_illogical_modo_SpcDecoder_spcPlayerVersion(JNIEnv* env, jclass claz
 	return -1;
 }
 
+jint Java_de_illogical_modo_SpcDecoder_spcAYfirstsong(JNIEnv* env, jclass clazz)
+{
+	gme_err_t err = NULL;
+	struct gme_info_t* trackinfo;
+	int l = -1;
+	
+	if (emu == NULL)
+	{
+		return -1;
+	}
+
+	// i4 => Playerversion
+	// i5 => SysPreset / Fadelength
+	// i6 => Channels: 0 = ABC, 1 = ACB
+	err = gme_track_info(emu, &trackinfo, 0);
+	
+	if (err == NULL)
+	{
+		l = trackinfo->firstsong;
+		gme_free_info(trackinfo);
+		return l;
+	}
+	
+	return -1;
+}
 
 jint Java_de_illogical_modo_SpcDecoder_spcTracks(JNIEnv* env, jclass clazz)
 {

@@ -271,10 +271,10 @@ BLARGG_EXPORT gme_err_t gme_track_info( Music_Emu const* me, gme_info_t** out, i
 	
 	COPY ( playerversion );
 	COPY ( syspreset);
-
+	COPY ( firstsong );
 	//info->i4  = -1;
 	//info->i5  = -1;
-	info->i6  = -1;
+	//info->i6  = -1;
 	info->i7  = -1;
 	info->i8  = -1;
 	info->i9  = -1;

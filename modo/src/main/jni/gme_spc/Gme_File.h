@@ -30,6 +30,8 @@ struct track_info_t
 	int playerversion;
 	/* AY - SysPreset */
 	int syspreset;
+	/* AY - Channel order: 0 = ABC, 1 = ACB */
+	int firstsong;
 
 	long track_count;
 	

@@ -33,8 +33,9 @@ final class SpcDecoder implements Decoder {
     static native int spcSeek(long milli);
     static native void spcGetTrackInfo(int track, int what, byte[] s);
     static native int spcGetTrackInfoLength(int track, int what);
-    static native int spcPlayerVersion();
-    static native int spcSysPreset(int track);
+    static native int spcAYplayerVersion();
+    static native int spcAYsysPreset(int track);
+    static native int spcAYfirstsong();
 
     private short[] samples = new short[17640];
     private int currentTrack = 0;
@@ -103,7 +104,7 @@ final class SpcDecoder implements Decoder {
         if (path == null)
             return 0;
         isLoadingOkay = spcLoadFile(path);
-        if (isLoadingOkay > 0 && spcPlayerVersion() == 16)  // Player version 16 used for emulation of two ZX cores
+        if (isLoadingOkay > 0 && spcAYplayerVersion() == 16)  // Player version 16 used for emulation of two ZX cores
             isLoadingOkay = 0;
         return isLoadingOkay;
     }
@@ -115,7 +116,7 @@ final class SpcDecoder implements Decoder {
         if (zipEntry == null)
             return 0;
         isLoadingOkay = spcLoadFromZip(zipFile, zipEntry);
-        if (isLoadingOkay > 0 && spcPlayerVersion() == 16) // Player version 16 used for emulation of two ZX cores
+        if (isLoadingOkay > 0 && spcAYplayerVersion() == 16) // Player version 16 used for emulation of two ZX cores
             isLoadingOkay = 0;
         return isLoadingOkay;
     }
@@ -177,58 +178,76 @@ final class SpcDecoder implements Decoder {
         spcGetTrackInfo(currentTrack, 5, comment);
         spcGetTrackInfo(currentTrack, 6, dumper);
 
-        int sysPreset = spcSysPreset(currentTrack);
+        int playerversion = spcAYplayerVersion();
+        int sysPreset = spcAYsysPreset(currentTrack);
         int lowerByte = 0x000000FF & sysPreset; // computer type
         int higherByte = (0x0000FF00 & sysPreset) >> 8; // soundchip type
+        int firstsong = spcAYfirstsong();
 
         StringBuffer sb = new StringBuffer(256*9);
 
         // Debug output
-        if (DEBUG_INFO) {
-            sb.append("Playerversion: " + spcPlayerVersion() + "\n");
-            switch (spcPlayerVersion()) {
-                case 5:
-                    sb.append("=> Main loop @ 0x4000\n");
-                    break;
-                case 6:
-                    sb.append("=> Main loop @ 0x8000\n");
-                    break;
-                case 7:
-                    sb.append("=> Main loop @ 0xC000\n");
-                    break;
-                default:
-                    sb.append("=> Main loop @ 0x0000\n");
-                    break;
-            }
-            sb.append("SysPreset: " + spcSysPreset(currentTrack) + "\n");
+        if (DEBUG_INFO && playerversion != -1) {
+
+            final int[] PLAYER_BASE = {
+                0x0000,
+                0x1000 - 0x10,
+                0x2000 - 0x10,
+                0x3000 - 0x10,
+                0x4000 - 0x10,
+                0x5000 - 0x10,
+                0x6000 - 0x10,
+                0x7000 - 0x10,
+                0x8000 - 0x10,
+                0x9000 - 0x10,
+                0xA000 - 0x10,
+                0xB000 - 0x10,
+                0xC000 - 0x10,
+                0xD000 - 0x10,
+                0xE000 - 0x10,
+                0xF000 - 0x10 };
+
+            sb.append("Playerversion: " + playerversion + "\n");
+            sb.append("FirstSong: " + firstsong + "\n");
+            sb.append("=> main loop @ " + String.format("%04X", PLAYER_BASE[firstsong & 0x0000000F]) + "\n");
+            sb.append("=> " + String.format("%8s", Integer.toBinaryString(firstsong)).replace(' ', '0') + "\n");
+            sb.append("---<<<<>>>>\n");
+            sb.append("SysPreset: " + sysPreset + "\n");
             sb.append("=> lo: " + String.format("%8s", Integer.toBinaryString(lowerByte)).replace(' ', '0') + "\n");
             sb.append("=> hi: " + String.format("%8s", Integer.toBinaryString(higherByte)).replace(' ', '0') + "\n");
             sb.append("-------<<<<>>>>\n\n");
         }
         //
 
-        switch (lowerByte) {
-            case 130:
-            case 131:
-                sb.append("SAM Coupé");//sb.append("ZX Spectrum (SAA-1099)");
-                break;
-            case 128:
-            case 129:
-                sb.append("Amstrad CPC");
-                break;
-            case 0:
-            default:
-                sb.append("ZX Spectrum");
-                break;
+        if (playerversion != -1) {
+            switch (lowerByte) {
+                case 130:
+                case 131:
+                    sb.append("SAM Coupé");//sb.append("ZX Spectrum (SAA-1099)");
+                    break;
+                case 128:
+                case 129:
+                    sb.append("Amstrad CPC");
+                    break;
+                case 0:
+                default:
+                    sb.append("ZX Spectrum");
+                    break;
+            }
+
+            switch (higherByte) {
+                case 1:
+                    sb.append(" (Turbosound)");
+                    break;
+            }
+
+            if ((firstsong & 0x80) == 0)
+                sb.append(" [ABC]");
+            if ((firstsong & 0x80) != 0)
+                sb.append(" [ACB]");
+            sb.append("\n");
         }
 
-        switch (higherByte) {
-            case 1:
-                sb.append(" (Turbosound)");
-                break;
-        }
-
-        sb.append("\n");
         sb.append(new String(game)).append("\n");
         sb.append(new String(song)).append("\n");
         sb.append(new String(author)).append("\n");

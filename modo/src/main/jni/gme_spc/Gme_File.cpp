@@ -185,6 +185,7 @@ blargg_err_t Gme_File::track_info( track_info_t* out, int track ) const
 
 	out->syspreset = -1;
 	out->playerversion = -1;
+	out->firstsong = 0;
 
 	out->song [0]      = 0;
 	

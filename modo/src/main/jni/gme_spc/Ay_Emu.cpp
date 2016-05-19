@@ -62,6 +62,9 @@ static byte const* get_data( Ay_Emu::file_t const& file, byte const* ptr, int mi
 
 static blargg_err_t parse_header( byte const* in, long size, Ay_Emu::file_t* out )
 {
+
+//__android_log_print(ANDROID_LOG_ERROR, "GME", "AY::parse_header");
+
 	typedef Ay_Emu::header_t header_t;
 	out->header = (header_t const*) in;
 	out->end    = in + size;
@@ -87,11 +90,13 @@ static void copy_ay_fields( Ay_Emu::file_t const& file, track_info_t* out, int t
 
 	// i4 => Playerversion
 	// i5 => SysPreset / Fadelength	
+	// i6 => Channels: 0 = ABC, 1 = ACB
 	if ( track_info )
 	{
 		out->length = get_be16( track_info + 4 ) * (1000L / 50); // frames to msec
 		out->syspreset = get_be16( track_info + 6 );
 		out->playerversion = file.header->player;
+		out->firstsong = file.header->first_track;
 	}
 	
 	Gme_File::copy_field_( out->author,  (char const*) get_data( file, file.header->author, 1 ) );
@@ -159,6 +164,9 @@ void Ay_Emu::update_eq( blip_eq_t const& eq )
 
 void Ay_Emu::set_voice( int i, Blip_Buffer* center, Blip_Buffer* left, Blip_Buffer* right )
 {
+//__android_log_print(ANDROID_LOG_ERROR, "GME", "AY::set_voice: %x\n", i);
+//__android_log_print(ANDROID_LOG_ERROR, "GME", ">>AY::set_voice: first_track %i\n", file.header->first_track);
+//__android_log_print(ANDROID_LOG_ERROR, "GME", ">>AY::set_voice: first_track %i\n", file.header->first_track & 0x80); 
 
 	if ( i >= Ay_Apu::osc_count )
 		beeper_output = center;
@@ -172,22 +180,44 @@ void Ay_Emu::set_voice( int i, Blip_Buffer* center, Blip_Buffer* left, Blip_Buff
 			return;
 		}
 
-		if ( i == 0 ) {
-			apu.osc_output(i, left);  // Channel A
-			apu2.osc_output(i, left);
-			apusaa.osc_output(i, left);
-		} else if ( i == 1 ) {
-			apu.osc_output(i, center); // Channel B
-			apu2.osc_output(i, center);
-			apusaa.osc_output(i, center);
-		} else if ( i == 2 ) {
-			apu.osc_output(i, right);  // Channel C
-			apu2.osc_output(i, right);
-			apusaa.osc_output(i, right);
+		if ((file.header->first_track) & 0x80) {
+//__android_log_print(ANDROID_LOG_ERROR, "GME", ">>AY::set_voice: ACB - first_track %i\n", file.header->first_track); 
+			if ( i == 0 ) {
+				apu.osc_output(i, left);  // Channel A
+				apu2.osc_output(i, left);
+				apusaa.osc_output(i, left);
+			} else if ( i == 1 ) {
+				apu.osc_output(i, right); // Channel B
+				apu2.osc_output(i, right);
+				apusaa.osc_output(i, right);
+			} else if ( i == 2 ) {
+				apu.osc_output(i, center);  // Channel C
+				apu2.osc_output(i, center);
+				apusaa.osc_output(i, center);
+			} else {
+				apu.osc_output(i, center); // just to make sure
+				apu2.osc_output(i, center); // just to make sure
+				apusaa.osc_output(i, center);
+			}
 		} else {
-			apu.osc_output(i, center); // just to make sure
-			apu2.osc_output(i, center); // just to make sure
-			apusaa.osc_output(i, center);
+//__android_log_print(ANDROID_LOG_ERROR, "GME", ">>AY::set_voice: ABC - first_track %i\n", file.header->first_track); 
+			if ( i == 0 ) {
+				apu.osc_output(i, left);  // Channel A
+				apu2.osc_output(i, left);
+				apusaa.osc_output(i, left);
+			} else if ( i == 1 ) {
+				apu.osc_output(i, center); // Channel B
+				apu2.osc_output(i, center);
+				apusaa.osc_output(i, center);
+			} else if ( i == 2 ) {
+				apu.osc_output(i, right);  // Channel C
+				apu2.osc_output(i, right);
+				apusaa.osc_output(i, right);
+			} else {
+				apu.osc_output(i, center); // just to make sure
+				apu2.osc_output(i, center); // just to make sure
+				apusaa.osc_output(i, center);
+			}
 		}
 	}
 }
@@ -196,13 +226,33 @@ void Ay_Emu::set_voice( int i, Blip_Buffer* center, Blip_Buffer* left, Blip_Buff
 
 void Ay_Emu::set_tempo_( double t )
 {
+//	play_period = blip_time_t (clock_rate() / 50 / t);
 	play_period = blip_time_t (clock_rate() / 50 / t);
+//	__android_log_print(ANDROID_LOG_ERROR, "GME", ">>AY::set_tempo: Freq 50");
 }
 
 blargg_err_t Ay_Emu::start_track_( int track )
 {
 	RETURN_ERR( Classic_Emu::start_track_( track ) );
-	
+
+	const int PLAYER_BASE[16] = {
+		0x0000,
+		0x1000 - 0x10,
+		0x2000 - 0x10,
+		0x3000 - 0x10,
+		0x4000 - 0x10,
+		0x5000 - 0x10,
+		0x6000 - 0x10,
+		0x7000 - 0x10,
+		0x8000 - 0x10,
+		0x9000 - 0x10,
+		0xA000 - 0x10,
+		0xB000 - 0x10,
+		0xC000 - 0x10,
+		0xD000 - 0x10,
+		0xE000 - 0x10,
+		0xF000 - 0x10 };
+
 	memset( mem.ram + 0x0000, 0xC9, 0x100 ); // fill RST vectors with RET
 	memset( mem.ram + 0x0100, 0xFF, 0x4000 - 0x100 );
 	memset( mem.ram + ram_start, 0x00, sizeof mem.ram - ram_start );
@@ -286,16 +336,8 @@ blargg_err_t Ay_Emu::start_track_( int track )
 	};
 
 	// Place main loop depending on playerversion
-	// 5 => 0x4000
-	// 6 => 0x8000
-	// 7 => 0xC000
-	int player_offset = 0;
-	switch (file.header->player) {
-		case 5: player_offset = 0x4000; break;
-		case 6: player_offset = 0x8000; break;
-		case 7: player_offset = 0xC000; break;
-	}
-	//__android_log_print(ANDROID_LOG_ERROR, "GME", "Main loop offset %x\n", player_offset);
+	int player_offset = PLAYER_BASE[(file.header->first_track) & 0x0F];
+//	__android_log_print(ANDROID_LOG_ERROR, "GME", "Main loop offset %x\n", player_offset);
 
 	memcpy( mem.ram + player_offset, passive, sizeof passive );
 	unsigned play_addr = get_be16( more_data + 4 );
@@ -332,8 +374,10 @@ blargg_err_t Ay_Emu::start_track_( int track )
 
 	// start at spectrum speed
 	change_clock_rate( spectrum_clock );
-	set_tempo(0.9977);//set_tempo( tempo() );
-	
+//__android_log_print(ANDROID_LOG_ERROR, "GME", ">>AY::start_track: Setting tempo to 4x: 0.9977*4\n");
+//__android_log_print(ANDROID_LOG_ERROR, "GME", ">>AY::start_track: Setting tempo to 1x: 0.9977*1\n");
+	//set_tempo(0.9977);//set_tempo( tempo() );
+	set_tempo(0.9977);
 	spectrum_mode = false;
 	cpc_mode      = false;
 	cpc_latch     = 0;

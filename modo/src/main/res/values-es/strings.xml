@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="pref_sidmodel">Default Sid model</string>
-    <string name="pref_sidmodel_summary">Used if there is no model specified in a .sid file.</string>
+    <string name="pref_sidmodel">Modelo Sid por defecto</string>
+    <string name="pref_sidmodel_summary">Usado si no hay un modelo especificado en un fichero .sid</string>
 
-    <string name="invalid_files">Player paused. Invalid files.\n\nThere is something wrong with your files.\n\nFor you to examine the situation the app come to a halt.\n\nYou can try to load new files or quit the app by pressing the back button.</string>
+    <string name="invalid_files">Reproductor en pausa. Ficheros inválidos.\n\nHay algún error con tus ficheros.\n\nLa aplicación se ha detenido para que puedas examinar la situación.\n\nPuedes intentar cargar nuevos ficheros o quitar la aplicación con el botón atrás.</string>
     <string name="app_name">Modo - Reproductor de Música de Ordenador</string>
     <string name="seek_warning_forward">No es posible realizar búsquedas en este formato. Activando el avance rápido en su lugar.</string>
     <string name="button_filebrowser">Explorar música</string>
@@ -213,10 +213,10 @@
     <string name="pref_fade">Duración del fundido de entrada/salida</string>
     <string name="pref_fade_summary">No se aplica a formatos tracker.</string>
     -->
-    <string name="pref_fade_in">Fade in duration</string>
-    <string name="pref_fade_in_summary">Does not apply to tracker formats.</string>
-    <string name="pref_fade_out">Fade out duration</string>
-    <string name="pref_fade_out_summary">Does not apply to tracker formats.</string>
+    <string name="pref_fade_in">Fundido de entrada</string>
+    <string name="pref_fade_in_summary">No se aplica a formatos tracker.</string>
+    <string name="pref_fade_out">Fundido de salida</string>
+    <string name="pref_fade_out_summary">No se aplica a formatos tracker.</string>
 
     <string-array name="arr_fade">
         <item>Deshabilitado</item>
