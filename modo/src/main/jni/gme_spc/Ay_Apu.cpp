@@ -14,6 +14,7 @@ License along with this module; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA */
 
 #include "blargg_source.h"
+#include <android/log.h>
 
 // Emulation inaccuracies:
 // * Noise isn't run when not in use
@@ -84,12 +85,14 @@ Ay_Apu::Ay_Apu()
 			amp *= 15;
 			for ( int y = 16; --y >= 0; )
 			{
-				*out++ = amp_table [amp];
+				*out++ = amp_table [amp] ;
 				amp += step;
 			}
 			flags >>= 2;
 		}
 	}
+
+//__android_log_print(ANDROID_LOG_ERROR, "GME", "AY_Apu:: tttt	");
 	
 	output( 0 );
 	volume( 1.0 );

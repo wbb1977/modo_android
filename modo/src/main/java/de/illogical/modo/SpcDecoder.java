@@ -208,7 +208,11 @@ final class SpcDecoder implements Decoder {
                 0xF000 - 0x10 };
 
             sb.append("Playerversion: " + playerversion + "\n");
-            sb.append("FirstSong: " + firstsong + "\n");
+            sb.append("FirstSong: " + firstsong + " ");
+            if ((firstsong & 0x80) == 0)
+                sb.append(" [ABC]\n");
+            if ((firstsong & 0x80) != 0)
+                sb.append(" [ACB]\n");
             sb.append("=> main loop @ " + String.format("%04X", PLAYER_BASE[firstsong & 0x0000000F]) + "\n");
             sb.append("=> " + String.format("%8s", Integer.toBinaryString(firstsong)).replace(' ', '0') + "\n");
             sb.append("---<<<<>>>>\n");
@@ -241,10 +245,12 @@ final class SpcDecoder implements Decoder {
                     break;
             }
 
-            if ((firstsong & 0x80) == 0)
-                sb.append(" [ABC]");
-            if ((firstsong & 0x80) != 0)
-                sb.append(" [ACB]");
+            if (lowerByte != 130 && lowerByte != 131) {
+                if ((firstsong & 0x80) == 0)
+                    sb.append(" [ABC]");
+                if ((firstsong & 0x80) != 0)
+                    sb.append(" [ACB]");
+            }
             sb.append("\n");
         }
 

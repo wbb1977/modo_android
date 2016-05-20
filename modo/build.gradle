@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "de.illogical.modo"
         minSdkVersion 8
         targetSdkVersion 23
-
+        resConfigs "en", "de", "es", "fr", "pl", "zh-rCN"
     }
     sourceSets.main {
         jni.srcDirs = [] // This prevents the auto generation of Android.mk
