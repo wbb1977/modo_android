@@ -23,6 +23,15 @@ static int rsnCount;
 static char *rsnInfo;
 
 
+jlong Java_de_illogical_modo_SpcDecoder_spcSeekDirect(JNIEnv* env, jclass clazz, int time) {
+
+	if (emu == NULL)
+	{
+		return -1;
+	}
+	return gme_seek(emu, time) == NULL;
+}
+
 void Java_de_illogical_modo_SpcDecoder_spcReset(JNIEnv* env, jclass clazz)
 {
 	if (emu != NULL)

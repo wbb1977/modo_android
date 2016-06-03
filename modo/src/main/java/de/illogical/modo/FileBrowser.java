@@ -606,6 +606,12 @@ implements	OnItemClickListener,
                 return "Directorio";
             if (Locale.getDefault().getLanguage().equalsIgnoreCase("fr"))
                 return "Annuaire";
+            if (Locale.getDefault().getLanguage().equalsIgnoreCase("it"))
+                return "Cartella";
+            if (Locale.getDefault().getLanguage().equalsIgnoreCase("pl"))
+                return "Katalog";
+            if (Locale.getDefault().getLanguage().equalsIgnoreCase("zh-rCN"))
+                return "文件夹";
             return "Directory";
         }
 

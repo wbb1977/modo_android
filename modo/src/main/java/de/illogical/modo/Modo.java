@@ -868,6 +868,7 @@ implements	OnSeekBarChangeListener,
         audioManager.registerMediaButtonEventReceiver(cc);
     }
 
+
     public void onBackPressed() {
         // only terminate if not playing music
         if (buttonPauseResume.isEnabled() && isPause == false) { // isplaying!

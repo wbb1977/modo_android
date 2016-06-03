@@ -11,7 +11,7 @@ final class SpcDecoder implements Decoder {
         spcInit();
     }
 
-    static final boolean DEBUG_INFO = true;
+    static final boolean DEBUG_INFO = false;
 
     // RSN related
     static native void spcInit(); // Init RSN structure
@@ -31,6 +31,7 @@ final class SpcDecoder implements Decoder {
     static native int spcTrackLength(int track);
     static native int spcPlaytime();
     static native int spcSeek(long milli);
+    static native int spcSeekDirect(int milli);
     static native void spcGetTrackInfo(int track, int what, byte[] s);
     static native int spcGetTrackInfoLength(int track, int what);
     static native int spcAYplayerVersion();
@@ -47,6 +48,15 @@ final class SpcDecoder implements Decoder {
     private int playlistTrack = -1;
     private boolean isAyStereo = false;
     private boolean isConvertStereoToMono = false;
+
+
+    boolean seek(int time) {
+        if (time < 0)
+            time = 0;
+        samplesPlayed = time / 1000 * 88200;
+        // ymSeek returns 0 if unpossible to seek
+        return spcSeekDirect(time) == 1;
+    }
 
     void setMonoOutput(boolean isConvertStereoToMono) {
         this.isConvertStereoToMono = isConvertStereoToMono;

@@ -7,7 +7,7 @@ android {
         applicationId "de.illogical.modo"
         minSdkVersion 8
         targetSdkVersion 23
-        resConfigs "en", "de", "es", "fr", "pl", "zh-rCN"
+        resConfigs "en", "de", "es", "fr", "pl", "it", "zh-rCN"
     }
     sourceSets.main {
         jni.srcDirs = [] // This prevents the auto generation of Android.mk

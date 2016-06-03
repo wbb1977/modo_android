@@ -92,7 +92,7 @@ Ay_Apu::Ay_Apu()
 		}
 	}
 
-//__android_log_print(ANDROID_LOG_ERROR, "GME", "AY_Apu:: tttt	");
+//__android_log_print(ANDROID_LOG_ERROR, "GME", "AY_Apu:: Period2");
 	
 	output( 0 );
 	volume( 1.0 );
