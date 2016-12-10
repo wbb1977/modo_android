@@ -6,8 +6,8 @@
     android:versionName="2.6b" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="23">
+        android:minSdkVersion="9"
+        android:targetSdkVersion="25">
     </uses-sdk>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
